@@ -1,0 +1,2 @@
+export const tokenAddress = '0xb62672cd828af0c752bb137600B1CF2d1BBc627A'
+export const crowdsaleAddress = '0x316B797af38062Eef7CBa960153A9c1a2DE4A418'
