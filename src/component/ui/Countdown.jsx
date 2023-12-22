@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import { Box, Button, Typography, Stack } from '@mui/material'
 
-const COUNTDOWN_TARGET = new Date("2023-12-20").getTime()
+const COUNTDOWN_TARGET = new Date("2023-12-29").getTime()
 
 const TimeShow = ({label,value}) => {
 	return (

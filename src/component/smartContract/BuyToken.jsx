@@ -9,13 +9,13 @@ import { useStateContext } from '../../context'
 
 export const BuyToken = () => {
   
-  const {preIco,balance,buyTokens,buyTokenOnPresale,rate,ethRate} = useStateContext()
+  const {preIco,balance,buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale,rate,ethRate} = useStateContext()
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
   const [grfToken,setGrfToken] = useState('')
 
-  const handleBuyToken = async () => {
+  const handleBuyTokenWithEth = async () => {
     if(preIco){
       console.log('buyTokenOnPresale')
       await buyTokenOnPresale(crypto)
@@ -26,11 +26,35 @@ export const BuyToken = () => {
     //console.log(crypto,grfToken)
   }
 
+  const handleBuyTokenWithUsdt = async () => {
+    if(preIco){
+      console.log('buyTokenWithUsdtOnPresale')
+      await buyTokenWithUsdtOnPresale(crypto)
+    } else {
+      console.log('buyTokens')
+      await buyTokens(crypto)
+    }
+    //console.log(crypto,grfToken)
+  }
+
+  const handleBuyToken = () =>{
+      if(currencToPay === 'usdt'){
+        handleBuyTokenWithUsdt()
+      }
+      else {
+        handleBuyTokenWithEth()
+      }
+  }
+
+
   const handleCryptoOnChange = (value) =>{
     setCrypto(value)
-    console.log(ethRate)
-
-    setGrfToken(value*ethRate)
+    if(currencToPay === 'usdt'){
+      setGrfToken(value*rate)
+    }
+    else{
+      setGrfToken(value*ethRate)
+    }
   }
 
   return (

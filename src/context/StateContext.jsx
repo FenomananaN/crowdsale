@@ -234,7 +234,7 @@ useEffect(()=>{
     setLoadingMessage(`Buying ${value} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
-    value=ethers.utils.parseUnits(value, 18)
+    value=ethers.utils.parseUnits(value, 18) //'ether'
     
     try {
       const data = await _buyTokenOnPresale({
@@ -244,6 +244,35 @@ useEffect(()=>{
         overrides: {
             gasLimit: 1000000, // override default gas limit
             value: value//utils.parseEther("0.1"), // send 0.1 native token with the contract 
+        }
+			});
+
+      console.log("contract call to buy on presale token successed", data)
+      setLoading(false)
+    } catch (error) {
+      console.log("contract call failure to buy on presale token", error)
+      setLoading(false)
+    }
+  }
+
+  //buy token on presale with usdt
+  //buy Tokens on preSale
+  const { mutateAsync: _buyTokenWithUsdtOnPresale } = useContractWrite(contractCrowdsale, 'buyTokensWithUsdt');
+  const buyTokenWithUsdtOnPresale = async (value) => {
+    setLoadingMessage(`Buying ${value} Token`)
+    setLoading(true)
+    //from ethers 6 : utils is no longer available
+    value=ethers.utils.parseUnits(value, 18)
+    
+    try {
+      const data = await _buyTokenWithUsdtOnPresale({
+				args: [
+					address, // address who buy token
+          value
+				],
+        overrides: {
+            gasLimit: 1000000, // override default gas limit
+           // value: value//utils.parseEther("0.1"), // send 0.1 native token with the contract 
         }
 			});
 
@@ -291,6 +320,7 @@ useEffect(()=>{
         setCrowdsaleStage,
         buyTokens,
         buyTokenOnPresale,
+        buyTokenWithUsdtOnPresale,
         claimTokens,
      //   data,
       }}
