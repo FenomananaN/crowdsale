@@ -2,7 +2,7 @@ import { useAddress, useConnectionStatus, useContract, useContractRead, useContr
 import { ethers } from 'ethers';
 import React, { useContext, createContext, useEffect, useState } from 'react'
 import { Loading } from '../component/ui/Loading';
-import { crowdsaleAbi, crowdsaleAddress, tokenAbi, tokenAddress } from '../contract';
+import { crowdsaleAbi, crowdsaleAddress, tetherAbi, tetherAddress, tokenAbi, tokenAddress } from '../contract';
 
 const StateContext = createContext();
 
@@ -28,6 +28,43 @@ export const StateContextProvider = ({ children }) => {
   const { contract:contractToken, isLoading:isContractTokenLoading , error:contractTokenError, isSuccess:isSuccessToken } = useContract(tokenAddress)
   
   const { contract:contractCrowdsale, isLoading:isContractCrowdsaleLoading , error:contractCrowdsaleError, isSuccess: isSuccessCrowdsale } = useContract(crowdsaleAddress)
+
+  //owner wallet getWallet
+
+  const { data:walletOwner, isLoading:isWalletOwnerLoading, error: getWalletError } = useContractRead(contractCrowdsale, 'getWallet');
+  ///connect to usdt contract ////////////////
+  const [tetherContract, setUsdtContract] = useState(null)
+  const [tetherLoading, setTetherLoading] = useState(false)
+
+  const connectToThetherContract = () => {
+    try{
+      setTetherLoading(true)
+      //must connect to methamask before calling this
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const signer = provider.getSigner()
+
+      const contract = new ethers.Contract(
+        tetherAddress,//contractAddress.Token,
+        tetherAbi,
+        provider
+      )
+      setUsdtContract({
+        contract:contract,
+        signer: signer
+      })
+      console.log('contract Raw tether loaded')
+      setTetherLoading(false)
+    } catch (e){
+      console.log('error to connect to contract', e)
+    }
+  }
+  
+
+  useEffect(()=>{
+    connectToThetherContract()
+  },[])
+  ///////////end connect to usdt contract /////////////
+
 
   //hook for connecting to wallet status
   //value can be 'unkown' 'connecting' 'connected'  
