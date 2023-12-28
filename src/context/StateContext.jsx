@@ -46,7 +46,7 @@ export const StateContextProvider = ({ children }) => {
   //owner wallet getWallet
 
   const { data:walletOwner, isLoading:isWalletOwnerLoading, error: getWalletError } = useContractRead(contractCrowdsale, 'getWallet');
-  start
+  
   ///connect to usdt contract ////////////////
   const [tetherContract, setUsdtContract] = useState(null)
   const [tetherLoading, setTetherLoading] = useState(false)
