@@ -46,7 +46,7 @@ export const StateContextProvider = ({ children }) => {
   //owner wallet getWallet
 
   const { data:walletOwner, isLoading:isWalletOwnerLoading, error: getWalletError } = useContractRead(contractCrowdsale, 'getWallet');
-  
+  start
   ///connect to usdt contract ////////////////
   const [tetherContract, setUsdtContract] = useState(null)
   const [tetherLoading, setTetherLoading] = useState(false)
@@ -283,16 +283,18 @@ useEffect(()=>{getNativeEth()},[address])
   //Buy Token
   const { mutateAsync: _buyTokens } = useContractWrite(contractCrowdsale, 'buyTokens');
   const buyTokens = async (value) => {
-    setLoadingMessage(`Buying ${value} Token`)
+    setLoadingMessage(`Buying ${value*rate*coreRate} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     value=ethers.utils.parseUnits(value, 18)
+    const f= coreRate.toString()
+    const coreRateInBigN=ethers.utils.parseUnits(f,18)
     
     try {
       const data = await _buyTokens({
 				args: [
 					address, // address who buy token
-          coreRate,
+          coreRateInBigN,
 				],
         overrides: {
             gasLimit: 1000000, // override default gas limit
