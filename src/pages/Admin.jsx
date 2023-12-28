@@ -5,8 +5,8 @@ import { useStateContext } from '../context'
 
 export const Admin = () => {
     
-    const { preIco,setCrowdsaleStage, getCrowdsaleStage ,ethPrice} = useStateContext()
-    const [_ethPrice, setEthPrice] = useState('0')
+    const { preIco,setCrowdsaleStage, getCrowdsaleStage, coreRate } = useStateContext()
+   // const [_ethPrice, setEthPrice] = useState('0')
 
     const handleEndPresale = () => {
         setCrowdsaleStage('Ico', 0)
@@ -21,21 +21,21 @@ export const Admin = () => {
         console.log('call getcrowdsale', data)
     }
 
-    useEffect(()=>{
+   /* useEffect(()=>{
         if(ethPrice){
             let eth = Number(ethPrice.toString())/10**8
             setEthPrice(eth)
         }
         console.log('eth price', ethPrice)
-    },[ethPrice])
+    },[ethPrice])*/
   return (
     <Box>
         <Typography mt={3} mx={3}>
-            1 eth = {_ethPrice} USD
+            1 core = {coreRate} USD
         </Typography>
         <Typography mx={3} mb={3}>
             
-        1 usd = {1/_ethPrice} ETH
+        1 usd = {1/coreRate} CORE
         </Typography>
         {preIco ? 
         <Box p={3}>

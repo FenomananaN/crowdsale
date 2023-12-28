@@ -15,6 +15,7 @@
     "@thirdweb-dev/sdk": "^4",
     "assert": "^2.0.0",
     "browserify-zlib": "latest",
+    "cryptocompare": "^1.0.0",
     "dotenv": "^16.3.1",
     "ethers": "^5",
     "http": "npm:http-browserify",

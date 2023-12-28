@@ -4,10 +4,16 @@ import { useStateContext } from '../../context'
 import { ethers } from 'ethers'
 
 export const MintToken = () => {
-    const { contractRaw, token  } = useStateContext()
+    const { contractRaw, token, connectToRawContract,ethB  } = useStateContext()
     const [addressTo,setAddressTo] = useState('')
     const [amount,setAmount] = useState('')
     
+
+    /*
+    const getNative = async () =>{
+      const balance = await useSDK.wallet.balance();
+      return balance
+    }*/
 
     const handleTransfert = () => {
         if(!amount && !addressTo){
@@ -21,11 +27,14 @@ export const MintToken = () => {
         const recipientAddress = addressTo;
         const transferAmount = amount;
 
+        connectToRawContract()
+
        // const decimals = contract.decimals()
     
         console.log(`Minting ${transferAmount} ${token?.symbol}} tokens to ${recipientAddress}`); // from ${ownerAddress}
 
 
+        console.log(contractRaw,window.ethereum);
         const tokenWithSigner = contractRaw.contract.connect(contractRaw.signer);
 
         // Each DAI has 18 decimal places
@@ -68,6 +77,7 @@ export const MintToken = () => {
     sx={{
         mt:1
     }}>Mint</Button>
+    <Button onClick={()=>console.log(ethB)}>ETH</Button>
     </Box>
   )
 }

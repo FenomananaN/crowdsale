@@ -8,8 +8,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
+import { CoreBlockchain } from "@thirdweb-dev/chains";
+//import {Sepolia} from '@thirdweb-dev/chains'
 
-import {Sepolia} from '@thirdweb-dev/chains'
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -21,7 +22,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ThirdwebProvider
-        activeChain={Sepolia}
+        activeChain={CoreBlockchain}
         clientId={'019e19953c2a1884996f40491d1e8b35'}
     >
       

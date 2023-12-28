@@ -1,6 +1,7 @@
 import { Box, Button, Typography, Stack, TextField, FormControl, InputLabel, Input, InputAdornment, InputBase } from '@mui/material'
 import {ReactComponent as  UsdtIcon} from '../../assets/icon/tether-seeklogo.com.svg'
-import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
+//import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
+import {ReactComponent as  CoreIcon} from '../../assets/icon/core-logo.svg'
 
 import React, { useState } from 'react'
 import { AccountCircle } from '@mui/icons-material'
@@ -9,7 +10,7 @@ import { useStateContext } from '../../context'
 
 export const BuyToken = () => {
   
-  const {preIco,balance,buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale,rate,ethRate} = useStateContext()
+  const {preIco,balance,buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale,rate, coreRate, ethBalance, usdtBalance} = useStateContext()
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
@@ -53,7 +54,7 @@ export const BuyToken = () => {
       setGrfToken(value*rate)
     }
     else{
-      setGrfToken(value*ethRate)
+      setGrfToken(value*rate*coreRate) //diso crowdsale rate*coreRate)
     }
   }
 
@@ -73,16 +74,16 @@ export const BuyToken = () => {
           </Button>
 
           <Button variant="outlined" round='rounded' 
-            startIcon= {<EtheriumIcon width={25} height={25}/>}
-            onClick={()=>setCurrencyToPay('eth')}
+            startIcon= {<CoreIcon width={25} height={25}/>}
+            onClick={()=>setCurrencyToPay('core')}
             sx={{
               textTransform: 'capitalize' //lowercase, capitalize, none
             }}>
-              ETH
+              CORE
           </Button>
         </Stack>
 
-        <Typography>Your {currencToPay.toUpperCase()} balance is 0</Typography>
+        <Typography>Your {currencToPay.toUpperCase()} balance is {currencToPay === 'usdt' ? usdtBalance: ethBalance}</Typography>
 
         <Stack my={1} direction={'row'} spacing={1}>
           <Box >
@@ -99,7 +100,7 @@ export const BuyToken = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    {currencToPay === 'usdt' ? <UsdtIcon width={20} height={20} /> :<EtheriumIcon width={20} height={20} />}
+                    {currencToPay === 'usdt' ? <UsdtIcon width={20} height={20} /> :<CoreIcon width={20} height={20} />}
                   </InputAdornment>
                 ),
               }}
