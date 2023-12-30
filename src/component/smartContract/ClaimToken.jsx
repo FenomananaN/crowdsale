@@ -1,11 +1,11 @@
 import { Box, Button } from '@mui/material'
 import React from 'react'
-import { useStateContext } from '../../context'
+import { useUserContext } from '../../context'
 
 
 export const ClaimToken = () => {
   
-  const {claimTokens} = useStateContext()
+  const {claimTokens} = useUserContext()
 
   return (
     <Box>

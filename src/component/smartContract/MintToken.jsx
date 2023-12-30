@@ -1,10 +1,12 @@
 import { Box, Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { useStateContext } from '../../context'
+import { useStateContext, useAdminContext } from '../../context'
 import { ethers } from 'ethers'
 
 export const MintToken = () => {
-    const { contractRaw, token, connectToRawContract,ethB  } = useStateContext()
+    const { token } = useStateContext()
+    const {contractRaw,connectToRawContract} = useAdminContext()
+
     const [addressTo,setAddressTo] = useState('')
     const [amount,setAmount] = useState('')
     
@@ -35,6 +37,7 @@ export const MintToken = () => {
 
 
         console.log(contractRaw,window.ethereum);
+
         const tokenWithSigner = contractRaw.contract.connect(contractRaw.signer);
 
         // Each DAI has 18 decimal places
@@ -77,7 +80,6 @@ export const MintToken = () => {
     sx={{
         mt:1
     }}>Mint</Button>
-    <Button onClick={()=>console.log(ethB)}>ETH</Button>
     </Box>
   )
 }

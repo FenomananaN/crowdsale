@@ -1,8 +1,11 @@
 import React from 'react'
 import { Crowdsale } from '../component'
+import { UserContextProvider } from '../context'
 
 export const Home = () => {
   return (
-    <Crowdsale/>
+    <UserContextProvider>
+      <Crowdsale/>
+    </UserContextProvider>
   )
 }

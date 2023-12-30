@@ -1,11 +1,26 @@
 import { Box, Button, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import {MintToken} from '../component'
-import { useStateContext } from '../context'
+import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
+
+import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
+//import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
+import {ReactComponent as  CoreIcon} from '../assets/icon/core-logo.svg'
+import { ethers } from 'ethers'
 
 export const Admin = () => {
-    
-    const { preIco,setCrowdsaleStage, getCrowdsaleStage, coreRate } = useStateContext()
+    return (
+        <AdminContextProvider>
+            <AdminLayout/>
+        </AdminContextProvider>
+    )
+   
+}
+
+const AdminLayout = () => {
+    const { preIco, coreRate } = useStateContext()
+    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt} = useAdminContext()
+
    // const [_ethPrice, setEthPrice] = useState('0')
 
     const handleEndPresale = () => {
@@ -14,11 +29,6 @@ export const Admin = () => {
 
     const handleBackToPresale = () => {
         setCrowdsaleStage('PreIco', 1)
-    }
-
-    const getCrowdsalestageIco = async () => {
-        const data = await getCrowdsaleStage()
-        console.log('call getcrowdsale', data)
     }
 
    /* useEffect(()=>{
@@ -37,6 +47,17 @@ export const Admin = () => {
             
         1 usd = {1/coreRate} CORE
         </Typography>
+
+        <Box sx={{
+            display: 'flex',
+            alignItems: 'center',
+            px:3
+        }}>
+            <UsdtIcon width={35} height={35}/>
+            <Typography sx={{pl:1}}>{crowdsaleUsdtBalance} usdt</Typography>
+            <Button variant='contained' sx={{ml:2}}  onClick={ async ()=> await withdrawUsdt()}>Withdraw</Button>
+        </Box>
+        
         {preIco ? 
         <Box p={3}>
         <Typography>We are on preSale</Typography>
@@ -51,8 +72,6 @@ export const Admin = () => {
         </Box>
         }
         <MintToken/>
-        <Button onClick={getCrowdsalestageIco}>GetPreIco</Button>
-        
         
     </Box>
   )

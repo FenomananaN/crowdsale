@@ -12,7 +12,6 @@ import { Drawer, List, ListItem } from '@mui/material';
 import {  ConnectWalletComponent } from '../smartContract/ConnectWallet';
 
 const pages = ['Home', 'Tokenomics', 'Stake', 'Community'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const  ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);

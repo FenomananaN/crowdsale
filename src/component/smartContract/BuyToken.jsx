@@ -6,11 +6,13 @@ import {ReactComponent as  CoreIcon} from '../../assets/icon/core-logo.svg'
 import React, { useState } from 'react'
 import { AccountCircle } from '@mui/icons-material'
 
-import { useStateContext } from '../../context'
+import { useStateContext, useUserContext } from '../../context'
 
 export const BuyToken = () => {
   
-  const {preIco,balance,buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale,rate, coreRate, ethBalance, usdtBalance} = useStateContext()
+  const {preIco,rate, coreRate} = useStateContext()
+
+  const {buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale, ethBalance, usdtBalance,buyTokensWithUsdt} = useUserContext()
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
@@ -33,7 +35,7 @@ export const BuyToken = () => {
       await buyTokenWithUsdtOnPresale(crypto)
     } else {
       console.log('buyTokens')
-      await buyTokens(crypto)
+      await buyTokensWithUsdt(crypto)
     }
     //console.log(crypto,grfToken)
   }
