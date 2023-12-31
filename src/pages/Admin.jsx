@@ -50,7 +50,6 @@ const AdminLayout = () => {
   return (
     <>
     <DialogBox open={open} setOpen={setOpen}/>
-    
     <Box>
         <ConnectWalletButton/>
         <Typography mt={3} mx={3}>

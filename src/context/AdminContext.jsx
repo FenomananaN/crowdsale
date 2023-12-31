@@ -20,7 +20,7 @@ export const AdminContextProvider = ({children}) => {
   
    //admin
   //get contract crowdsale usdt balance
-  const { data:_crowdsaleUsdtBalance, isLoading:crowdsaleUsdtBalanceLoading, error: crowdsaleUsdtBalanceError } = useContractRead(contractCrowdsale, 'crowdsaleUsdtBalannce');
+  const { data:_crowdsaleUsdtBalance, isLoading:crowdsaleUsdtBalanceLoading, error: crowdsaleUsdtBalanceError } = useContractRead(contractCrowdsale, 'crowdsaleUsdtBalance');
   const [crowdsaleUsdtBalance,setCrowdsaleUsdtBalance] = useState(0)
 
   //admin

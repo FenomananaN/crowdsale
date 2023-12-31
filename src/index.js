@@ -8,8 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 
-//import { CoreBlockchain } from "@thirdweb-dev/chains";
-import { CoreBlockchainTestnet } from "@thirdweb-dev/chains";
+import { CoreBlockchain } from "@thirdweb-dev/chains";
+//import { CoreBlockchainTestnet } from "@thirdweb-dev/chains";
 //import {Sepolia} from '@thirdweb-dev/chains'
 
 
@@ -23,10 +23,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ThirdwebProvider
-        activeChain={CoreBlockchainTestnet}
+        activeChain={CoreBlockchain}
         clientId={'019e19953c2a1884996f40491d1e8b35'}
     >
-      
       <ThemeProvider theme={theme}>
       <StateContextProvider>
       <Router>

@@ -47,6 +47,11 @@ export const BuyToken = () => {
   }
 
   const handleBuyToken = () =>{
+    if(crypto === ''){
+      alert("can't be null")
+      return false
+    }
+    
     if(!address){
       setOpen(true)
     } else {
