@@ -1,7 +1,10 @@
 import React ,{useState,useEffect} from 'react'
 import { Box, Button, Typography, Stack } from '@mui/material'
 
-const COUNTDOWN_TARGET = new Date("2023-12-29").getTime()
+//Date(year,month,day,hours,minutes,seconds)
+//const COUNTDOWN_TARGET = new Date(2023,12,30,21,25,0)
+const colorFront = '#05A76C'
+
 
 const TimeShow = ({label,value}) => {
 	return (
@@ -12,6 +15,7 @@ const TimeShow = ({label,value}) => {
 			width: 'fit-content',
 		}}>
 			<Typography sx={{
+				color: colorFront,
 				fontSize: 30,
 				p:1
 			}}>
@@ -19,6 +23,7 @@ const TimeShow = ({label,value}) => {
 			</Typography>
 
 			<Typography sx={{
+				color: colorFront,
 				fontSize: 12,
 				position: 'relative',
 				top:-16,
@@ -29,9 +34,9 @@ const TimeShow = ({label,value}) => {
 	)
 }
 
-const getTimeLeft = () => {
+const getTimeLeft = (countdownTarget) => {
 
-	const totalTimeLeft = COUNTDOWN_TARGET-new Date().getTime();
+	const totalTimeLeft = new Date(countdownTarget).getTime()-new Date().getTime();
 	const days = Math.floor(totalTimeLeft / (1000 * 60 * 60 * 24));
 	const hours = Math.floor((totalTimeLeft / (1000 * 60 * 60)) % 24);
 	const minutes = Math.floor((totalTimeLeft / (1000 * 60)) % 60);
@@ -39,12 +44,14 @@ const getTimeLeft = () => {
 	return { days, hours, minutes, seconds }
 }
 
-export const Countdown = () => {
-    const [timeLeft, setTimeLeft] = useState(() => getTimeLeft());
+export const Countdown = ({countdownTarget}) => {
+
+    const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(countdownTarget))
+	
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setTimeLeft(getTimeLeft());
+			setTimeLeft(getTimeLeft(countdownTarget));
 		}, 1000);
 		return () => {
 			clearInterval(timer);
@@ -56,18 +63,19 @@ export const Countdown = () => {
   return (
     <Box sx={{
 		display:'flex',
-		border: '1px solid black',
+		border: `1px solid ${colorFront}`,
 		borderRadius: 5,
 		width: 'fit-content',
 		p:1,
-		m:1
+		m:1,
+		backgroundColor: '#ffffff11'
 	}}>
 		<TimeShow label='Days' value={timeLeft.days}/>
-		<Typography mt={2}>:</Typography>
+		<Typography mt={2} sx={{color: colorFront}}>:</Typography>
 		<TimeShow label='Heures' value={timeLeft.days}/>
-		<Typography mt={2}>:</Typography>
+		<Typography mt={2} sx={{color: colorFront}}>:</Typography>
 		<TimeShow label='Minutes' value={timeLeft.minutes}/>
-		<Typography mt={2}>:</Typography>
+		<Typography mt={2} sx={{color: colorFront}}>:</Typography>
 		<TimeShow label='Seconds' value={timeLeft.seconds}/>
 	</Box>
   )

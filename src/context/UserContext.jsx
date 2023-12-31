@@ -1,8 +1,10 @@
 import { ethers } from 'ethers';
 import React, { useContext, createContext, useEffect, useState } from 'react'
-import { useStateContext } from './StateContext';
+//import { useStateContext } from './StateContext';
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { crowdsaleAddress } from '../contract';
+import { useStateContext } from '.';
+import { Loading } from '../component';
 
 const UserContext = createContext();
 
@@ -10,7 +12,7 @@ export const UserContextProvider = ({children}) => {
 
   const { contractToken,contractCrowdsale, preIco, coreRate, address ,tetherContract, rate } = useStateContext()
 
-
+ 
   //user grf
   const [balance,setBalance] = useState(0)
 
@@ -287,6 +289,8 @@ useEffect(()=>{getNativeEth()},[address])
             claimTokens,
         }}>
             {children}
+            {isLoading && <Loading message={loadingMessage}/>}
+            
     </UserContext.Provider>
   )
 }

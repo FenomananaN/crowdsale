@@ -163,17 +163,20 @@ useEffect(()=>{
     console.log(preIco, "pre ico")
   },[preIcoData])
 
-  //this is return the same code as above to fetch preIcoData
-  /*
+  //call this first
+  const [isPreIcoFetched, setPreIcoFetched] = useState(false)
   const getCrowdsaleStage = async () => {
     const data = await contractCrowdsale.call('getCrowdsaleStage')
     return Boolean(Number(data.toString()))
   }
- */
+
+  useEffect(()=>{},[contractCrowdsale])
+ 
 
   return (
     <StateContext.Provider
       value={{
+        address,
         tetherContract, 
         contractToken,
         contractCrowdsale,
@@ -185,15 +188,18 @@ useEffect(()=>{
     >
       { (isContractTokenLoading  
             && isContractCrowdsaleLoading 
-            && preIco === '' 
+            && preIcoData === undefined
             && token.length === 0)
         ? <SplashScreen/>
         : children
       }
-
-      { isLoading && <Loading message={loadingMessage}/>}
     </StateContext.Provider>
   )
 }
 
 export const useStateContext = () => useContext(StateContext);
+
+///prim: #0B5E8F
+// sec: #05A76C
+//third: #7BBB03
+// one : 

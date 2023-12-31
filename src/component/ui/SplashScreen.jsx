@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
 import { RotatingLines } from 'react-loader-spinner'
+import { ClimbingBoxLoader } from 'react-spinners'
 
 export const SplashScreen = () => {
   return (
@@ -13,13 +14,8 @@ export const SplashScreen = () => {
         height: '100vh'
     }}
     >
-        <RotatingLines
-                strokeColor="grey"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="96"
-                visible={true}
-            />
+       <ClimbingBoxLoader size={20} color='#0B5E8F' loading={true}/>
     </Box>
   )
 }
+//#F37A24

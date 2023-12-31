@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import {MintToken} from '../component'
+import {ConnectWalletButton, DialogBox, MintToken} from '../component'
 import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
 
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
@@ -18,28 +18,41 @@ export const Admin = () => {
 }
 
 const AdminLayout = () => {
-    const { preIco, coreRate } = useStateContext()
+    const { preIco, coreRate, address } = useStateContext()
     const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt} = useAdminContext()
 
-   // const [_ethPrice, setEthPrice] = useState('0')
+    const [open, setOpen] = useState(false)
 
     const handleEndPresale = () => {
+        if(!address){
+            setOpen(true)
+        } else {
         setCrowdsaleStage('Ico', 0)
+        }
     }
 
     const handleBackToPresale = () => {
+        if(!address){
+            setOpen(true)
+        } else {
         setCrowdsaleStage('PreIco', 1)
+        }
     }
 
-   /* useEffect(()=>{
-        if(ethPrice){
-            let eth = Number(ethPrice.toString())/10**8
-            setEthPrice(eth)
+    const handleWithdraw = async () => {
+        if(!address){
+            setOpen(true)
+        } else {
+            await withdrawUsdt()
         }
-        console.log('eth price', ethPrice)
-    },[ethPrice])*/
+    }
+
   return (
+    <>
+    <DialogBox open={open} setOpen={setOpen}/>
+    
     <Box>
+        <ConnectWalletButton/>
         <Typography mt={3} mx={3}>
             1 core = {coreRate} USD
         </Typography>
@@ -55,7 +68,7 @@ const AdminLayout = () => {
         }}>
             <UsdtIcon width={35} height={35}/>
             <Typography sx={{pl:1}}>{crowdsaleUsdtBalance} usdt</Typography>
-            <Button variant='contained' sx={{ml:2}}  onClick={ async ()=> await withdrawUsdt()}>Withdraw</Button>
+            <Button variant='contained' sx={{ml:2}}  onClick={handleWithdraw}>Withdraw</Button>
         </Box>
         
         {preIco ? 
@@ -74,5 +87,14 @@ const AdminLayout = () => {
         <MintToken/>
         
     </Box>
+    </>
   )
 }
+
+
+/*
+getTimeCrowdsale
+setTimeCrowdsale
+getInvestorTargetCap
+setInvestorTargetCap
+ */

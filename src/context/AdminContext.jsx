@@ -3,13 +3,14 @@ import React, { useContext, createContext, useEffect, useState } from 'react'
 import { useStateContext } from './StateContext';
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { tokenAbi, tokenAddress } from '../contract';
+import { Loading } from '../component';
 
 const AdminContext = createContext();
 
 export const AdminContextProvider = ({children}) => {
   
   const { contractCrowdsale, address } = useStateContext()
-  
+
   //loading transaction
   const [isLoading,setLoading] = useState(false)
   const [loadingMessage,setLoadingMessage] = useState('')
@@ -131,6 +132,7 @@ export const AdminContextProvider = ({children}) => {
           connectToRawContract,
         }}>
             {children}
+            {isLoading && <Loading message={loadingMessage}/>}
     </AdminContext.Provider>
   )
 }

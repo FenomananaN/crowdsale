@@ -1,15 +1,15 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 
-export const ProgressBar = ({amount,totalAmount}) => {
+export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}) => {
 
-    const withAmout= amount * 100 / totalAmount  
+    const withAmout= amountToken * 100 / totalAmountToken  
   return (
     <Box>
         <Box sx={{
-            width:'300px',
-            height: '40px',
-            backgroundColor: 'grey',
+            width:{xs:'80vw', md:'50vw'},
+            height: {xs:60,md:'40px'},
+            backgroundColor: '#282C34',
             borderRadius: 50,
             overflow: 'hidden',
             position: 'relative',
@@ -18,7 +18,7 @@ export const ProgressBar = ({amount,totalAmount}) => {
             <Box sx={{
                 width: `${withAmout}%`,
                 height: '100%',
-                backgroundColor: '#0088ff',
+                backgroundColor: '#0B5E8F',
                 position: 'absolute',
                 zIndex: 1,
             }}>
@@ -28,12 +28,18 @@ export const ProgressBar = ({amount,totalAmount}) => {
                 width: '100%',
                 height: '100%',    
                 display: 'flex',
+                flexDirection: {xs: 'column', md:'row'},
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'absolute',
                 zIndex: 2
             }}>
-                <Typography >Token Sold: {amount}/{totalAmount}</Typography>
+                <Typography>
+                    {amount} $ / {targetedAmount}$ 
+                </Typography>
+                <Typography>
+                ({amountToken} TATA sold / {totalAmountToken} TATA)
+                </Typography>
             </Box>
 
         </Box>

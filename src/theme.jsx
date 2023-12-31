@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   palette: {
+    mode: 'dark',
    /* primary: {
       main: '#8bbc1f',
     },
@@ -25,7 +26,7 @@ export const theme = createTheme({
     }
   },
     typography: {
-      "fontFamily": `"Assistant","Roboto", "Helvetica", "Arial", sans-serif`,
+      "fontFamily": `"monospace","Roboto", "Helvetica", "Arial", sans-serif`,
       "fontSize": 14,
       "fontWeightLight": 300,
       "fontWeightRegular": 400,

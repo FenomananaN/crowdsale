@@ -1,7 +1,7 @@
 import React from 'react'
 import { ConnectWallet } from "@thirdweb-dev/react";
 
-export const ConnectWalletComponent = () => {
+export const ConnectWalletButton = () => {
   return (
     <ConnectWallet
     theme={"dark"}
@@ -9,6 +9,7 @@ export const ConnectWalletComponent = () => {
     modalSize={"compact"}
     welcomeScreen={{ title: "aas" }}
     modalTitleIconUrl={""}
+    style={{backgroundColor: '#0B5E8F', color:'#fff', marginLeft:3}}
 />
   )
 }
