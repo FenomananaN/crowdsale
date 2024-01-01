@@ -3,9 +3,9 @@ import React from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-export const FAQ = () => {
+export const FAQ = ({id}) => {
   return (
-    <Container sx={{py:3}}>
+    <Container sx={{py:3}} id={id}>
 
         <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>FAQs</Typography>
          <Accordion sx={{my:1}} defaultExpanded>
