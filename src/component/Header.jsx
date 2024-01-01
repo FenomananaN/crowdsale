@@ -56,25 +56,6 @@ export const Header = () => {
         <AppBar sx={{backgroundColor:'#282c34'}} elevation={0}>
           <Container >
             <Toolbar disableGutters>
-                {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                <Typography
-                    variant="h6"
-                    noWrap
-                    component="a"
-                    href="#app-bar-with-responsive-menu"
-                    sx={{
-                    mr: 2,
-                    display: { xs: 'none', md: 'flex' },
-                    // fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.3rem',
-                    color: 'inherit',
-                    textDecoration: 'none',
-                    }}
-                >
-                    Girefy Meme
-                </Typography>*/}
-
                 <Box
                 component={'img'}
                 alt='logo'
@@ -119,21 +100,41 @@ export const Header = () => {
                     <Drawer
                         open={anchorElNav}
                         onClose={handleCloseNavMenu}
+                        PaperProps={{
+                            elevation:0,
+                            sx:{
+                                mt:6,
+                                ml:4,
+                                width:200,
+                                height: 'fit-content',
+                                backgroundColor: '#0B5E8F'
+                            }
+                        }}
                         >
-                        <List>
-                        {pages.map((page) => (
-                            <Link
-                                key={page.title}
-                                to={page.title}
-                                onClick={handleCloseNavMenu}
-                                style={{ my: 2, color: 'white', display: 'block' }}
-                                spy={true} smooth={true} offset={page.offset} duration={500}
-                            >
-                                <Typography variant='h5'>{page.title.toUpperCase()}</Typography>
-                            </Link>
-                            ))
-                        }
-                        </List>
+                         <Box sx={{
+                            display:'flex',
+                            justifyContent:'center'
+                         }}>
+                            <List sx={{
+                                mx:4,
+                                display:'flex',
+                                flexDirection: 'column',
+                                alignItems:'center'
+                            }}>
+                            {pages.map((page) => (
+                                <Link
+                                    key={page.title}
+                                    to={page.title}
+                                    onClick={handleCloseNavMenu}
+                                    style={{ my: 2, color: 'white', display: 'block' }}
+                                    spy={true} smooth={true} offset={page.offset} duration={500}
+                                >
+                                    <Typography >{page.title.toUpperCase()}</Typography>
+                                </Link>
+                                ))
+                            }
+                            </List>
+                         </Box>
                     </Drawer>
                 </Box>
 
