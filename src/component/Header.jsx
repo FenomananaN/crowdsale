@@ -21,6 +21,7 @@ import tata from '../assets/image/tata.webp'
 import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
 import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
 import { ConnectWalletButton } from './smartContract/ConnectWallet'
+import { CancelOutlined } from '@mui/icons-material'
 
 
 const pages = [
@@ -28,15 +29,15 @@ const pages = [
     {title:'About', offset: -80},
     {title:'Presale', offset: -80},
     {title:'Community', offset: -80},
-    {title:'Tokenomics', offset: 50},
-    {title:'FAQ', offset: 50},
+    {title:'Tokenomics', offset: -80},
+    {title:'FAQ', offset: -80},
 ]
 
 export const Header = () => {
 
     const [anchorElNav, setAnchorElNav] = useState(false)
 
-    const handleOpenNavMenu = (event) => {
+    const handleOpenNavMenu = () => {
         setAnchorElNav(true);
     }
 
@@ -103,7 +104,7 @@ export const Header = () => {
                         PaperProps={{
                             elevation:0,
                             sx:{
-                                mt:6,
+                                mt:9,
                                 ml:4,
                                 width:200,
                                 height: 'fit-content',
@@ -113,8 +114,12 @@ export const Header = () => {
                         >
                          <Box sx={{
                             display:'flex',
-                            justifyContent:'center'
+                            flexDirection:'column',
+                            alignItems: 'center'
                          }}>
+                            <IconButton onClick={handleCloseNavMenu}>
+                                <CancelOutlined style={{fontSize:30}}/>
+                            </IconButton>
                             <List sx={{
                                 mx:4,
                                 display:'flex',
