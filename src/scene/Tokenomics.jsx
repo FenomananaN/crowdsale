@@ -12,7 +12,7 @@ export const Tokenomics = ({id}) => {
 
             <Typography variant='h6'>TOTAL SUPPLY = <span style={{padding:6, backgroundColor:'#05A76C', borderRadius:5}}>210,000,000 TATA</span></Typography>
 
-            <List sx={{ listStyle: "decimal", pl: 4 ,
+            <List sx={{ listStyle: "decimal", pl: {xs:2,md:4} ,
                     ['& li.MuiListItem-root::marker']:{
                         fontWeight:600
                     } }}> {/* use listStyle: "lower-alpha" for a b c*/}

@@ -22,14 +22,15 @@ import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.s
 import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
 import { ConnectWalletButton } from './smartContract/ConnectWallet'
 import { CancelOutlined } from '@mui/icons-material'
+import '../styles/style.css'
 
 
 const pages = [
     {title:'Home', offset: 0},
     {title:'About', offset: -80},
     {title:'Presale', offset: -80},
-    {title:'Community', offset: -80},
     {title:'Tokenomics', offset: -80},
+    {title:'Community', offset: -80},
     {title:'FAQ', offset: -80},
 ]
 
@@ -131,7 +132,7 @@ export const Header = () => {
                                     key={page.title}
                                     to={page.title}
                                     onClick={handleCloseNavMenu}
-                                    style={{ my: 2, color: 'white', display: 'block' }}
+                                    style={{ my: 2, color: 'white', display: 'block', cursor:'pointer'}}
                                     spy={true} smooth={true} offset={page.offset} duration={500}
                                 >
                                     <Typography >{page.title.toUpperCase()}</Typography>
@@ -182,7 +183,7 @@ export const Header = () => {
                     <Link
                         key={page.title}
                         onClick={handleCloseNavMenu}
-                        style={{ my: 2, color: 'white', display: 'block' }}
+                        style={{ my: 2, color: 'white', display: 'block' , cursor:'pointer'}}
                         to={page.title}
                         spy={true} smooth={true} offset={page.offset} duration={500}
                     >
