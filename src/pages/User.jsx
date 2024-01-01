@@ -11,7 +11,7 @@ export const User = () => {
       <About id={'About'}/>
       <Crowdsale id={'Presale'}/>
       <Community id={'Community'}/>
-      <FAQ/>
+      <FAQ id='FAQ'/>
     </UserContextProvider>
   )
 }
