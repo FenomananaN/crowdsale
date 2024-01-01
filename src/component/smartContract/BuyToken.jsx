@@ -122,7 +122,7 @@ export const BuyToken = () => {
         <Stack my={1} direction={'row'} spacing={1}>
           <Box >
             <Typography>
-              You pay {currencToPay.toUpperCase()}
+              You pay
             </Typography>
 
             <TextField
@@ -142,7 +142,7 @@ export const BuyToken = () => {
           </Box>
 
           <Box >
-            <Typography>You receive TATA</Typography>
+            <Typography>You receive</Typography>
             <TextField
               variant="outlined"
               name="usdt"
