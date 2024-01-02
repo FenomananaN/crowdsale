@@ -20,7 +20,7 @@ export const Admin = () => {
 }
 
 const AdminLayout = () => {
-    const { token, preIco, coreRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold } = useStateContext()
+    const { token, preIco, coreRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
     const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale} = useAdminContext()
 
     const [open, setOpen] = useState(false)
@@ -114,9 +114,9 @@ const AdminLayout = () => {
             <Typography>Target Cap: {investorTargetCap} USDT</Typography>
             <Typography>Token Sold: {tokenSold} TATA</Typography>
             <Typography>Total number of Token: {token.totalSupply} TATA</Typography>
+            <Typography>Token Owned By SmartContract: {crowdsaleTokenBalance} TATA</Typography>
         </Box>
 
-        
         {preIco ? 
         <Box p={3}>
         <Typography>We are on preSale</Typography>

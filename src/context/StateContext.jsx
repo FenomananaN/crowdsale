@@ -260,6 +260,21 @@ useEffect(()=>{
     }
   },[getTimeCrowdsale])
   //END get contract crowdsale wei raised
+
+
+  //get contract crowdsale wei raised
+  const { data:_crowdsaleTokenBalance, isLoading:crowdsaleTokenBalanceLoading, error:crowdsaleTokenBalanceError } = useContractRead(contractCrowdsale, 'crowdsaleTokenBalance');
+  const [crowdsaleTokenBalance,setCrowdsaleTokenBalance] = useState(0)
+  const _setCrowdsaleTokenBalance = () => {
+    setCrowdsaleTokenBalance(ethers.utils.formatUnits(_crowdsaleTokenBalance,18).toString())
+  }
+
+  useEffect(()=>{
+    if(_crowdsaleTokenBalance){
+      _setCrowdsaleTokenBalance()
+    }
+  },[_crowdsaleTokenBalance])
+  //END get contract crowdsale wei raised
  
 
   return (
@@ -278,7 +293,8 @@ useEffect(()=>{
         weiRaised,
         investorTargetCap,
         timeCrowdsale,
-        tokenSold
+        tokenSold,
+        crowdsaleTokenBalance,
       }}
     >
       { (isContractTokenLoading  
