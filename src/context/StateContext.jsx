@@ -107,7 +107,8 @@ useEffect(()=>{
   }
 
   const getTokenTotalSupply = async () => {
-    const totalSupply = await contractToken.call('totalSupply');
+    let totalSupply = await contractToken.call('totalSupply');
+    totalSupply= ethers.utils.formatEther(totalSupply)
     return totalSupply;
   }
 
@@ -135,10 +136,11 @@ const getTokenData = async () => {
   const name = await getTokenName()
   const symbol = await getTokenSymbol()
   const totalSupply = await getTokenTotalSupply()
-  console.log(name,symbol,ethers.utils.formatEther(totalSupply))
+
   setToken({    
       name:name,
-      symbol:symbol
+      symbol:symbol,
+      totalSupply:totalSupply
   })
 }
 useEffect(()=>{
@@ -153,7 +155,7 @@ useEffect(()=>{
   //////////////////////////////////////////////////////////////////////////////////////////
   ///all for crowdsale
 
-//index
+
   //two method to get 
   const { data:preIcoData, isLoading:getCorwdsaleLoading, error , } = useContractRead(contractCrowdsale, 'getCrowdsaleStage');
   useEffect(()=>{
@@ -164,13 +166,100 @@ useEffect(()=>{
   },[preIcoData])
 
   //call this first
-  const [isPreIcoFetched, setPreIcoFetched] = useState(false)
+  /*const [isPreIcoFetched, setPreIcoFetched] = useState(false)
   const getCrowdsaleStage = async () => {
     const data = await contractCrowdsale.call('getCrowdsaleStage')
     return Boolean(Number(data.toString()))
   }
 
-  useEffect(()=>{},[contractCrowdsale])
+  useEffect(()=>{},[contractCrowdsale])*/
+
+  //get contract crowdsale fund raised
+  const { data:getFundsRaised, isLoading:getFundsRaisedLoading, error:getFundsRaisedError } = useContractRead(contractCrowdsale, 'getFundsRaised');
+  const [fundsRaised,setFundsRaised] = useState(0)
+  const _setFundsRaised = () => {
+    setFundsRaised(ethers.utils.formatUnits(getFundsRaised,'mwei').toString())
+  }
+
+  useEffect(()=>{
+    if(getFundsRaised){
+      _setFundsRaised()
+    }
+  },[getFundsRaised])
+  //END get contract crowdsale fund raised
+
+  //get contract crowdsale usdt raised
+  const { data:getUsdtRaised, isLoading:getUsdtRaisedLoading, error:getUsdtRaisedError } = useContractRead(contractCrowdsale, 'getUsdtRaised');
+  const [usdtRaised,setUsdtRaised] = useState(0)
+  const _setUsdtRaised = () => {
+    setUsdtRaised(ethers.utils.formatUnits(getUsdtRaised,'mwei').toString())
+  }
+
+  useEffect(()=>{
+    if(getUsdtRaised){
+      _setUsdtRaised()
+    }
+  },[getUsdtRaised])
+  //END get contract crowdsale usdt raised
+  
+  //get contract crowdsale wei raised
+  const { data:getWeiRaised, isLoading:getWeiRaisedLoading, error:getWeiRaisedError } = useContractRead(contractCrowdsale, 'getWeiRaised');
+  const [weiRaised,setWeiRaised] = useState(0)
+  const _setWeiRaised = () => {
+    setWeiRaised(ethers.utils.formatUnits(getWeiRaised,18).toString())
+  }
+
+  useEffect(()=>{
+    if(getWeiRaised){
+      _setWeiRaised()
+    }
+  },[getWeiRaised])
+  //END get contract crowdsale wei raised
+
+  //getTokenSold
+
+  //get contract crowdsale token sold
+  const { data:getTokenSold, isLoading:getTokenSoldLoading, error:getTokenSoldError } = useContractRead(contractCrowdsale, 'getTokenSold');
+  const [tokenSold,setTokenSold] = useState(0)
+  const _setTokenSold = () => {
+    setTokenSold(ethers.utils.formatUnits(getTokenSold,18).toString())
+  }
+
+  useEffect(()=>{
+    if(getTokenSold){
+      _setTokenSold()
+    }
+  },[getTokenSold])
+  //END get contract crowdsale token sold
+
+  //get contract crowdsale investor target cap
+  const { data:getInvestorTargetCap, isLoading:getInvestorTargetCapLoading, error:getInvestorTargetCapError } = useContractRead(contractCrowdsale, 'getInvestorTargetCap');
+  const [investorTargetCap,setInvestorTargetCap] = useState(0)
+  const _setInvestorTargetCap = () => {
+    setInvestorTargetCap(ethers.utils.formatUnits(getInvestorTargetCap,'mwei').toString())
+  }
+
+  useEffect(()=>{
+    if(getInvestorTargetCap){
+      _setInvestorTargetCap()
+    }
+  },[getInvestorTargetCap])
+  //END get contract crowdsale investor target cap
+
+
+  //get contract crowdsale wei raised
+  const { data:getTimeCrowdsale, isLoading:getTimeCrowdsaleLoading, error:getTimeCrowdsaleError } = useContractRead(contractCrowdsale, 'getTimeCrowdsale');
+  const [timeCrowdsale,setTimeCrowdsale] = useState(0)
+  const _setTimeCrowdsale = () => {
+    setTimeCrowdsale(getTimeCrowdsale.toString())
+  }
+
+  useEffect(()=>{
+    if(getTimeCrowdsale){
+      _setTimeCrowdsale()
+    }
+  },[getTimeCrowdsale])
+  //END get contract crowdsale wei raised
  
 
   return (
@@ -184,6 +273,12 @@ useEffect(()=>{
         token,
         coreRate,
         rate,
+        fundsRaised,
+        usdtRaised,
+        weiRaised,
+        investorTargetCap,
+        timeCrowdsale,
+        tokenSold
       }}
     >
       { (isContractTokenLoading  

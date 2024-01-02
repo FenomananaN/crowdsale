@@ -10,8 +10,8 @@ export const User = () => {
       <Home id={'Home'}/>
       <About id={'About'}/>
       <Crowdsale id={'Presale'}/>
-      <Tokenomics id={'Tokenomics'} />
       <Community id={'Community'}/>
+      <Tokenomics id={'Tokenomics'} />
       <FAQ id='FAQ'/>
     </UserContextProvider>
   )

@@ -2,6 +2,7 @@ import { Container, Typography , Box} from '@mui/material'
 import React from 'react'
 import { useStateContext, useUserContext } from '../context'
 import { BuyToken, ClaimToken, Countdown, ProgressBar } from '../component'
+import dayjs from 'dayjs'
 
 /*import { Countdown } from './ui/Countdown'
 import { BuyToken } from './smartContract/BuyToken'
@@ -11,8 +12,13 @@ import { ProgressBar } from './ui/ProgressBar'*/
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco} = useStateContext()
+  const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold} = useStateContext()
   const {balance,claim} = useUserContext()
+
+  const convertToReadableTime = () => {
+    console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
+    return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+  }
 
   return (
     <Container id={id} sx={{mt:9}}>
@@ -28,7 +34,7 @@ export const Crowdsale = ({id}) => {
         }}>
           <Box>
             <Typography ml={2}>Buy now before it ends</Typography>
-            <Countdown countdownTarget={"2024-01-2 21:25:00"}/>
+            <Countdown countdownTarget={convertToReadableTime()}/>
           </Box>
         </Box>
         <Box sx={{
@@ -37,7 +43,7 @@ export const Crowdsale = ({id}) => {
           flexDirection: 'column',
           alignItems: 'center'
         }}>
-          <ProgressBar amount={1745345} targetedAmount={5000000} amountToken={37645256} totalAmountToken={210000000}/>
+          <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(investorTargetCap)} amountToken={Number(tokenSold)} totalAmountToken={Number(token.totalSupply)}/>
           <Typography sx={{
             color: '#FFD700',
             mt:1,

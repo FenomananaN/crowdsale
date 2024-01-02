@@ -10,13 +10,10 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
-import Button from '@mui/material/Button'
-import AdbIcon from '@mui/icons-material/Adb'
-import { Drawer, List, ListItem } from '@mui/material'
+import { Drawer, List } from '@mui/material'
 import { Link } from 'react-scroll'
 
 import tataLogo from '../assets/image/tata-logo.png'
-import tata from '../assets/image/tata.webp'
 
 import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
 import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
@@ -29,8 +26,8 @@ const pages = [
     {title:'Home', offset: 0},
     {title:'About', offset: -80},
     {title:'Presale', offset: -80},
-    {title:'Tokenomics', offset: -80},
     {title:'Community', offset: -80},
+    {title:'Tokenomics', offset: -80},
     {title:'FAQ', offset: -80},
 ]
 
@@ -132,6 +129,7 @@ export const Header = () => {
                                     key={page.title}
                                     to={page.title}
                                     onClick={handleCloseNavMenu}
+                                    activeClass='active-on-mobile'
                                     style={{ my: 2, color: 'white', display: 'block', cursor:'pointer'}}
                                     spy={true} smooth={true} offset={page.offset} duration={500}
                                 >

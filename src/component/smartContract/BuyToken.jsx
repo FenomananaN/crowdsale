@@ -13,7 +13,7 @@ import { DialogBox } from '../utils/DialogBox'
 
 export const BuyToken = () => {
   
-  const {preIco,rate, coreRate, address} = useStateContext()
+  const {preIco,rate, coreRate, address } = useStateContext()
 
   const {buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale, ethBalance, usdtBalance,buyTokensWithUsdt} = useUserContext()
 

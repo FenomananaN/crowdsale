@@ -7,8 +7,8 @@ export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}
   return (
     <Box>
         <Box sx={{
-            width:{xs:'80vw', md:'50vw'},
-            height: {xs:60,md:'40px'},
+            width:{xs:'90vw', md:'50vw'},
+            height: {xs:60,lg:'40px'},
             backgroundColor: '#282C34',
             borderRadius: 50,
             overflow: 'hidden',
@@ -28,7 +28,7 @@ export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}
                 width: '100%',
                 height: '100%',    
                 display: 'flex',
-                flexDirection: {xs: 'column', md:'row'},
+                flexDirection: {xs: 'column', lg:'row'},
                 justifyContent: 'center',
                 alignItems: 'center',
                 position: 'absolute',
@@ -37,7 +37,7 @@ export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}
                 <Typography>
                     {amount} $ / {targetedAmount}$ 
                 </Typography>
-                <Typography>
+                <Typography sx={{fontSize: 13, color:'grey', fontStyle: 'italic'}}>
                 ({amountToken} TATA sold / {totalAmountToken} TATA)
                 </Typography>
             </Box>

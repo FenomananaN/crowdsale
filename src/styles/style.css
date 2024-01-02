@@ -2,3 +2,8 @@
     border-bottom: 1px solid #0B5E8F !important;
     color: #0B5E8F !important;
 }
+
+.active-on-mobile {
+    border-bottom: 1px solid #fff !important;
+    color: #fff !important;
+}

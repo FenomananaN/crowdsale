@@ -6,9 +6,11 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 export const DialogBox = ({open,setOpen}) => {
   const {address} = useStateContext()
 
-  if(address){
-    setOpen(false)
-  }
+  useEffect(()=>{
+    if(address){
+      setOpen(false)
+    }
+  },[address])
 
   return (
     <>

@@ -78,9 +78,6 @@ export const AdminContextProvider = ({children}) => {
     console.log(`make ${stage} the crowdsale`)
     setLoadingMessage(`make ${stage} the crowdsale`)
     setLoading(true)
-    //from ethers 6 : utils is no longer available
-    //value=ethers.utils.parseUnits(value, 18)
-    //console.log(value, 'feno')
     try {
       const data = await _setCrowdsaleStage({
 				args: [
@@ -98,7 +95,6 @@ export const AdminContextProvider = ({children}) => {
 
 
   //withdraw usdt token 
-  //claim token
   const { mutateAsync: _withdrawUsdt } = useContractWrite(contractCrowdsale, 'withdrawUsdt');
   const withdrawUsdt = async () => {
     setLoadingMessage(`Withdraw USDT`)
@@ -118,6 +114,52 @@ export const AdminContextProvider = ({children}) => {
     }
   }
 
+  //set Investor Target cap
+  const { mutateAsync: _setInvestorTargetCap } = useContractWrite(contractCrowdsale, 'setInvestorTargetCap');
+  const setInvestorTargetCap = async (value) => {
+    setLoadingMessage(`setInvestorTargetCap ${value}`)
+    setLoading(true)
+
+    value=ethers.utils.parseUnits(value, 6)
+    
+    try {
+      const data = await _setInvestorTargetCap({
+				args: [
+          value
+				],
+			});
+
+      console.log("contract call to setInvestorCap successed", data)
+      setLoading(false)
+    } catch (error) {
+      console.log("contract call failure to setInvestor", error)
+      setLoading(false)
+    }
+  }
+
+
+  //set time crowdsale
+  const { mutateAsync: _setTimeCrowdsale } = useContractWrite(contractCrowdsale, 'setTimeCrowdsale');
+  const setTimeCrowdsale = async (value) => {
+    setLoadingMessage(`setTimeCrowdsale ${value}`)
+    setLoading(true)
+
+    value=ethers.utils.parseUnits(value, 0)
+    
+    try {
+      const data = await _setTimeCrowdsale({
+				args: [
+          value
+				],
+			});
+
+      console.log("contract call to setTimeCrowdsale successed", data)
+      setLoading(false)
+    } catch (error) {
+      console.log("contract call failure to setTimeCrowdsale", error)
+      setLoading(false)
+    }
+  }
 
 
 
@@ -130,6 +172,8 @@ export const AdminContextProvider = ({children}) => {
           setCrowdsaleStage,
           contractRaw,
           connectToRawContract,
+          setInvestorTargetCap,
+          setTimeCrowdsale,
         }}>
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
