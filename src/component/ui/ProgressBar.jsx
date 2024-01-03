@@ -3,7 +3,9 @@ import React from 'react'
 
 export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}) => {
 
-    const withAmout= amountToken * 100 / totalAmountToken  
+    //const withAmout= amountToken * 100 / totalAmountToken
+    const withAmout= amount * 100 / targetedAmount  
+    
   return (
     <Box>
         <Box sx={{
