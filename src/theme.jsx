@@ -26,7 +26,7 @@ export const theme = createTheme({
     }
   },
     typography: {
-      "fontFamily": `"monospace","Roboto", "Helvetica", "Arial", sans-serif`,
+      "fontFamily": `"Space Mono","monospace","Roboto", "Helvetica", "Arial", sans-serif`,
       "fontSize": 14,
       "fontWeightLight": 300,
       "fontWeightRegular": 400,
