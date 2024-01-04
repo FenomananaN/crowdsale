@@ -5,7 +5,7 @@ import tata from '../assets/image/about.webp'
 
 export const About = ({id}) => {
   return (
-    <Container id={id} mt={3}>
+    <Container id={id} sx={{mt:3}}>
         <Paper sx={{ p:3, backgroundColor: '#282C34'}}>
             <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>ABOUT</Typography>
             <Grid container>

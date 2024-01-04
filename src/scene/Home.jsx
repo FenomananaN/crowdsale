@@ -40,7 +40,7 @@ export const Home = ({id}) => {
               src={tata}
               alt='tata'
               width={{xs:'90%', md: 300}}
-              border={'1px solid white'}
+              border={'1px dashed grey'}
               />
           </Grid>
         </Grid>

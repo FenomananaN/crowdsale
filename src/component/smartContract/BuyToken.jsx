@@ -3,6 +3,8 @@ import {ReactComponent as  UsdtIcon} from '../../assets/icon/tether-seeklogo.com
 //import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
 //import {ReactComponent as  CoreIcon} from '../../assets/icon/core-logo.svg'
 import {ReactComponent as  BnbIcon} from '../../assets/icon/bnb-bnb-logo.svg'
+import {ReactComponent as  Bitcoin} from '../../assets/icon/bitcoin.svg'
+//
 import tata from '../../assets/image/tata-logo.png'
 
 import React, { useState } from 'react'
@@ -85,7 +87,7 @@ export const BuyToken = () => {
       py:2,
       px:{xs:2,md:6}
     }}>
-      <Typography align='center'> 1 TATA = ${Math.floor((1/rate)*1000)/1000}</Typography>
+      <Typography align='center'> 1 BITJOY = ${Math.floor((1/rate)*1000)/1000}</Typography>
        <Stack direction={'row'} spacing={2} py={1}
         sx={{
           //width: 'fit-content'
@@ -152,7 +154,7 @@ export const BuyToken = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <Box component={'img'} src={tata} alt='tata logo' width={20} height={20}/>
+                    <Bitcoin width={20} height={20}/>
                   </InputAdornment>
                 ),
               }}
