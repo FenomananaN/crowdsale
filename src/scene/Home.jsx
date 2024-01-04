@@ -29,7 +29,7 @@ export const Home = ({id}) => {
               <Typography py={2} align='center'>
               Greetings Crypto Enthusiasts and Smilers alike!
               </Typography>
-              <Typography>
+              <Typography align='center'>
               We're thrilled to have you join the Bitcoin Crash Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
               </Typography>
           </Grid>
@@ -40,6 +40,7 @@ export const Home = ({id}) => {
               src={tata}
               alt='tata'
               width={{xs:'90%', md: 300}}
+              border={'1px solid white'}
               />
           </Grid>
         </Grid>
