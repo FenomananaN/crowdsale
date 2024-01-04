@@ -6,7 +6,7 @@ export const Home = ({id}) => {
   return (
     <Box id={id} sx={{  
       backgroundColor: '#141821', 
-      height: '100vh',
+      height: {xs:'fit-content', md:'100vh'},
       display: 'flex',
       justifyContent:'center',
       alignItems: 'center'
