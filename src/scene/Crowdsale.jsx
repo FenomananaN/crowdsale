@@ -24,7 +24,7 @@ export const Crowdsale = ({id}) => {
     <Container id={id} sx={{mt:9}}>
         <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>PRESALE</Typography>
 
-        <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#0B5E8F', fontWeight:'bold'}}>$TATA</span> movement</Typography>
+        <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#0B5E8F', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
         {preIco ? (
         <>
         <Box sx={{
@@ -47,7 +47,7 @@ export const Crowdsale = ({id}) => {
           <Typography sx={{
             color: '#FFD700',
             mt:1,
-          }}>&lt;&lt; You have purchased {balance} TATA &gt;&gt;</Typography>
+          }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
         </Box>
         <Box sx={{
           display: 'flex',
@@ -62,7 +62,7 @@ export const Crowdsale = ({id}) => {
       :
       (
         <>
-        <Typography>You have purchased {balance} GRF</Typography>
+        <Typography>You have purchased {balance} BITJOY</Typography>
         {claim ? 
         <ClaimToken/>
         :

@@ -1,6 +1,6 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
-import tata from '../assets/image/tata.webp'
+import tata from '../assets/image/home.webp'
 
 export const Home = ({id}) => {
   return (
@@ -18,12 +18,19 @@ export const Home = ({id}) => {
           alignItems: 'center'
         }}>
           <Grid item xs={12} md={6}>
-              <Typography sx={{
-                fontSize:{sx:13,md:20},
+              <Typography variant='h5' sx={{
+                //fontSize:{sx:13,md:20},
                 fontFamily: 'monospace',
-                //textAlign: 'center'
+                textAlign: 'center',
+                fontWeight: 'bold'
               }}>
-              Welcome to the hilarious universe of <span style={{ color: '#0B5E8F', fontWeight: 'bold'}}>TATA Coin</span>, the memecoin that brings a daily dose of laughter and good vibes to the crypto community!
+              Welcome to the Bitcoin Crash Smiles! 😃🚀
+              </Typography>
+              <Typography py={2} align='center'>
+              Greetings Crypto Enthusiasts and Smilers alike!
+              </Typography>
+              <Typography>
+              We're thrilled to have you join the Bitcoin Crash Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
               </Typography>
           </Grid>
 

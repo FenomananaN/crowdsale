@@ -13,7 +13,7 @@ import Container from '@mui/material/Container'
 import { Drawer, List } from '@mui/material'
 import { Link } from 'react-scroll'
 
-import tataLogo from '../assets/image/tata-logo.png'
+import {ReactComponent as BitcoinLogo} from '../assets/icon/bitcoin.svg'
 
 import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
 import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
@@ -38,12 +38,10 @@ export const Header = () => {
     const handleOpenNavMenu = () => {
         setAnchorElNav(true);
     }
-
     
     const handleCloseNavMenu = () => {
         setAnchorElNav(false);
     }
-
 
     /*const trigger = useScrollTrigger({
         disableHysteresis: true,
@@ -55,7 +53,7 @@ export const Header = () => {
         <AppBar sx={{backgroundColor:'#282c34'}} elevation={0}>
           <Container >
             <Toolbar disableGutters>
-                <Box
+                {/*<Box
                 component={'img'}
                 alt='logo'
                 src={tataLogo}
@@ -64,8 +62,12 @@ export const Header = () => {
                 sx={{
                     display: { xs: 'none', md: 'flex' },
                 }}
-                />
-                <Typography
+            />*/}
+                <Box sx={{display:{ xs: 'none', md: 'flex' }}}>
+                    <BitcoinLogo />
+                </Box>
+               {/*
+               <Typography
                     variant="h5"
                     noWrap
                     component="a"
@@ -82,9 +84,22 @@ export const Header = () => {
                 >
                     TATA
                 </Typography>
+               */} 
+                <Box sx={{
+                    display: {xs:'none',md:'flex'},
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
+                    <Typography align={'center'} variant='h6' sx={{fontWeight:'bold'}}>
+                        BITJOY
+                    </Typography>
+                    <Typography sx={{fontSize:10}}>
+                    Bitcoin Crash Smiles! 😃🚀
+                    </Typography>
+                </Box>
 
                 {/* START MOBILE VIEW */}
-                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -141,18 +156,12 @@ export const Header = () => {
                          </Box>
                     </Drawer>
                 </Box>
-
-                <Box
-                component={'img'}
-                alt='logo'
-                src={tataLogo}
-                width={30}
-                height={30}
-                sx={{
-                    display: { xs: 'flex', md: 'none' },
-                }}
-                />
-
+                
+                <Box sx={{display:{ xs: 'flex', md: 'none' }}}>
+                    <BitcoinLogo />
+                </Box>
+                
+                {/*
                 <Typography
                     variant="h6"
                     noWrap
@@ -168,7 +177,7 @@ export const Header = () => {
                     }}
                 >
                     TATA
-                </Typography>
+                </Typography>/*}
                 {/* END MOBILE VIEW */}
 
                 {/* START LARGE VIEW */}
