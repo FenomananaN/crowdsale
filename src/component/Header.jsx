@@ -15,11 +15,13 @@ import { Link } from 'react-scroll'
 
 import {ReactComponent as BitcoinLogo} from '../assets/icon/bitcoin.svg'
 
-import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
-import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
+//import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
+//import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
 import { ConnectWalletButton } from './smartContract/ConnectWallet'
 import { CancelOutlined } from '@mui/icons-material'
 import '../styles/style.css'
+import { Telegram } from './socialMedia/Telegram'
+import { Twitter } from './socialMedia/Twitter'
 
 
 const pages = [
@@ -107,7 +109,7 @@ export const Header = () => {
                     aria-haspopup="true"
                     onClick={handleOpenNavMenu}
                     color="inherit"
-                >
+                    >
                     <MenuIcon />
                     </IconButton>
                     
@@ -153,6 +155,10 @@ export const Header = () => {
                                 ))
                             }
                             </List>
+                            <Box sx={{display:'flex'}}>
+                                <Telegram sx={{ display: { xs: 'flex', md: 'none' }}} width={40} height={40}/>
+                                <Twitter sx={{display: { xs: 'flex', md: 'none' }}} width={40} height={40}/>
+                            </Box>
                          </Box>
                     </Drawer>
                 </Box>
@@ -205,12 +211,10 @@ export const Header = () => {
                     </Link>
                     ))}
                 </Box>
-                <IconButton sx={{ml:6, display: { xs: 'none', md: 'flex' }}}>
-                    <Telegram width={40} height={40}/>
-                </IconButton>
-                <IconButton sx={{display: { xs: 'none', md: 'flex' }}}>
-                    <Twitter width={40} height={40}/>
-                </IconButton>
+
+                <Telegram width={40} height={40} sx={{ml:6, display: { xs: 'none', md: 'flex' }}}/>
+                <Twitter width={40} height={40} sx={{display: { xs: 'none', md: 'flex' }}}/>
+
                 <Box>
                     <ConnectWalletButton/>
                 </Box>

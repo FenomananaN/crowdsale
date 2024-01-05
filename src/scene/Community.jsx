@@ -1,9 +1,6 @@
 import { Box, Container, Stack, Typography } from '@mui/material'
 import React from 'react'
-
-
-import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
-import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
+import { Telegram, Twitter } from '../component'
 
 export const Community = ({id}) => {
   return (

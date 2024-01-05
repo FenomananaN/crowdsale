@@ -1,17 +1,30 @@
-import { Box, Button, Typography, Stack, TextField, FormControl, InputLabel, Input, InputAdornment, InputBase, Paper, Divider } from '@mui/material'
+import { Box, Button, Typography, Stack, TextField, InputAdornment, Paper, Divider } from '@mui/material'
 import {ReactComponent as  UsdtIcon} from '../../assets/icon/tether-seeklogo.com.svg'
-//import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
-//import {ReactComponent as  CoreIcon} from '../../assets/icon/core-logo.svg'
 import {ReactComponent as  BnbIcon} from '../../assets/icon/bnb-bnb-logo.svg'
 import {ReactComponent as  Bitcoin} from '../../assets/icon/bitcoin.svg'
-//
-import tata from '../../assets/image/tata-logo.png'
 
 import React, { useState } from 'react'
-import { AccountCircle } from '@mui/icons-material'
 
 import { useStateContext, useUserContext } from '../../context'
 import { DialogBox } from '../utils/DialogBox'
+
+import { FormProvider, useForm } from 'react-hook-form'
+import * as Yup from 'yup'
+import { yupResolver }from '@hookform/resolvers/yup'
+import { FormInput } from '../utils/FormInput'
+
+const validationSchema = Yup.object().shape({
+  crypto: Yup.number()
+    .required("Please enter number")
+    .typeError('Please enter number')
+    .moreThan(0,"shouldn't be zero"),
+    //.min(1,"shouldn't be zero"),
+  token: Yup.number()
+    .typeError('Amount must be a number')
+    .required("Please enter number")
+    .moreThan(0,"shouldn't be zero"),
+})
+
 
 export const BuyToken = () => {
   
@@ -21,12 +34,29 @@ export const BuyToken = () => {
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
-  const [grfToken,setGrfToken] = useState('')
+  const [token,setToken] = useState('')
+
+  const methods = useForm({
+    resolver:yupResolver(validationSchema)
+  })
+
+  const {handleSubmit,setValue,formState: { errors }} = methods
+
+  const onSubmit = (data) => {
+ 
+    if(currencToPay === 'usdt'){
+      const value=Math.floor(data.crypto*10**6)/10**6
+      handleBuyTokenWithUsdt(value.toString())
+    }
+    else {
+      handleBuyTokenWithEth(data.crypto.toString())
+    }
+  }
 
   //for connecting wallet dialog
   const [open,setOpen] = useState(false)
 
-  const handleBuyTokenWithEth = async () => {
+  const handleBuyTokenWithEth = async (crypto) => {
     if(preIco){
       console.log('buyTokenOnPresale')
       await buyTokenOnPresale(crypto)
@@ -37,7 +67,7 @@ export const BuyToken = () => {
     //console.log(crypto,grfToken)
   }
 
-  const handleBuyTokenWithUsdt = async () => {
+  const handleBuyTokenWithUsdt = async (crypto) => {
     if(preIco){
       console.log('buyTokenWithUsdtOnPresale')
       await buyTokenWithUsdtOnPresale(crypto)
@@ -49,31 +79,52 @@ export const BuyToken = () => {
   }
 
   const handleBuyToken = () =>{
-    if(crypto === ''){
-      alert("can't be null")
-      return false
-    }
     
     if(!address){
       setOpen(true)
     } else {
+
       if(currencToPay === 'usdt'){
         handleBuyTokenWithUsdt()
       }
       else {
         handleBuyTokenWithEth()
       }
+
     }
   }
 
 
   const handleCryptoOnChange = (value) =>{
-    setCrypto(value)
     if(currencToPay === 'usdt'){
-      setGrfToken(value*rate)
+      setCrypto(value)
+      setValue('crypto',value)
+      setToken(value*rate)
+      setValue('token',value*rate)
     }
     else{
-      setGrfToken(value*rate*coreRate) //diso crowdsale rate*coreRate)
+      setCrypto(value)
+      setValue('crypto',value)
+      setToken(value*rate*coreRate) //diso crowdsale rate*coreRate)
+      setValue('token',value*rate*coreRate)
+    }
+  }
+
+  const handleTokenOnChange = (value) =>{
+    if(currencToPay === 'usdt'){
+      
+      setToken(value)
+      setValue('token',value)
+
+      value=Math.floor((value/rate)*10**6)/10**6
+      setCrypto(value)
+      setValue('crypto',value)
+    }
+    else{
+      setToken(value)
+      setValue('token',value)
+      setCrypto(value/rate/coreRate) //diso crowdsale rate*coreRate)
+      setValue('crypto',value/rate/coreRate)
     }
   }
 
@@ -121,12 +172,29 @@ export const BuyToken = () => {
           bgcolor: currencToPay === 'usdt'? '#53ae94':'#F0B90B',
           height:2}} />
 
+      <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack my={1} direction={'row'} spacing={1}>
           <Box >
             <Typography>
               You pay
             </Typography>
 
+            <FormInput 
+              name='crypto' label=''  
+              error={errors?.crypto} 
+              helperText={errors?.crypto?.message}
+              onChange={(e)=>handleCryptoOnChange(e.currentTarget.value)}
+              value={crypto} 
+              size='small'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    {currencToPay === 'usdt' ? <UsdtIcon width={20} height={20} /> :<BnbIcon width={20} height={20} />}
+                  </InputAdornment>
+                ),
+              }}/>
+{/*
             <TextField
               variant="outlined"
               name="usdt"
@@ -140,11 +208,27 @@ export const BuyToken = () => {
                   </InputAdornment>
                 ),
               }}
-            />
+            />*/}
           </Box>
 
           <Box >
             <Typography>You receive</Typography>
+            <FormInput 
+              name='token' label=''  
+              error={errors?.token} 
+              helperText={errors?.token?.message}
+              onChange={(e)=>handleTokenOnChange(e.currentTarget.value)}
+              value={token} 
+              size='small'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">
+                    <Bitcoin width={20} height={20}/>
+                  </InputAdornment>
+                ),
+              }}/>
+
+{/* 
             <TextField
               variant="outlined"
               name="usdt"
@@ -158,7 +242,7 @@ export const BuyToken = () => {
                   </InputAdornment>
                 ),
               }}
-            />
+            />*/}
           </Box>
 
         </Stack>
@@ -167,15 +251,27 @@ export const BuyToken = () => {
           display: 'flex',
           justifyContent:'center'
         }}>
-
+          { address ?
           <Button variant='contained' round='rounded'
-          onClick={handleBuyToken}
+          //onClick={handleBuyToken}
+          type='submit'
           sx={{
             textTransform: 'capitalize', //lowercase, capitalize, none
           }}>
             Buy Now
           </Button>
+          :
+          <Button variant='contained' round='rounded'
+          onClick={()=> setOpen(true)}
+          sx={{
+            textTransform: 'capitalize', //lowercase, capitalize, none
+          }}>
+            Buy Now
+          </Button>
+          }
         </Box>
+      </form>
+      </FormProvider>
     </Paper>
     </>
   )

@@ -1,7 +1,8 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import { useStateContext } from '../../context';
 import { ConnectWallet } from '@thirdweb-dev/react';
+import { ConnectWalletButton } from '../smartContract/ConnectWallet';
 
 export const DialogBox = ({open,setOpen}) => {
   const {address} = useStateContext()
@@ -15,8 +16,6 @@ export const DialogBox = ({open,setOpen}) => {
   return (
     <>
     { !address &&
-    
-    
       <Dialog
         open={open}
         onClose={()=>setOpen(false)}
@@ -28,14 +27,15 @@ export const DialogBox = ({open,setOpen}) => {
           NOTE
         </DialogTitle>
         <DialogContent sx={{backgroundColor:'#0088ff00'}}>
+
+          <Typography align='center'>
           Before going any futher you must connect first
-          <ConnectWallet
-              theme={"dark"}
-              modalTitle={"Choisir Wallet"}
-              modalSize={"compact"}
-              welcomeScreen={{ title: "aas" }}
-              modalTitleIconUrl={""}
-          />
+          </Typography>
+          
+          <Box sx={{display:'flex',justifyContent: 'center', mt:2, width: '100%'}}>
+            <ConnectWalletButton/>
+          </Box>
+          
         </DialogContent>
       </Dialog>
       }
