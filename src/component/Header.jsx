@@ -13,7 +13,7 @@ import Container from '@mui/material/Container'
 import { Drawer, List } from '@mui/material'
 import { Link } from 'react-scroll'
 
-import {ReactComponent as BitcoinLogo} from '../assets/icon/bitcoin.svg'
+import {ReactComponent as BitcoinLogo} from '../assets/icon/bitcoindown.svg'
 
 //import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
 //import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
@@ -90,9 +90,10 @@ export const Header = () => {
                 <Box sx={{
                     display: {xs:'none',md:'flex'},
                     flexDirection: 'column',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    ml:2
                 }}>
-                    <Typography align={'center'} variant='h6' sx={{fontWeight:'bold'}}>
+                    <Typography align={'center'} variant='h6' sx={{fontWeight:'bold'}} width={40} height={40}>
                         BITJOY
                     </Typography>
                     <Typography sx={{fontSize:10}}>
