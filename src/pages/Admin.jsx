@@ -1,6 +1,6 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import {ConnectWalletButton, DialogBox, MintToken} from '../component'
+import {ConnectWalletButton, Contributor, DialogBox, MintToken} from '../component'
 import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
 
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
@@ -21,7 +21,7 @@ export const Admin = () => {
 
 const AdminLayout = () => {
     const { token, preIco, coreRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
-    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale} = useAdminContext()
+    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale, contributorList} = useAdminContext()
 
     const [open, setOpen] = useState(false)
     const [targetCap,setTargetCap] = useState('')
@@ -115,6 +115,11 @@ const AdminLayout = () => {
             <Typography>Token Sold: {tokenSold} TATA</Typography>
             <Typography>Total number of Token: {token.totalSupply} TATA</Typography>
             <Typography>Token Owned By SmartContract: {crowdsaleTokenBalance} TATA</Typography>
+        </Box>
+
+        <Box p={3}>
+            { contributorList !== null && <Contributor data={contributorList}/>
+            }
         </Box>
 
         {preIco ? 

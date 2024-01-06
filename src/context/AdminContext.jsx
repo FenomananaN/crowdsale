@@ -161,6 +161,16 @@ export const AdminContextProvider = ({children}) => {
     }
   }
 
+  //read contributor list
+  const [contributorList,setContributorList] = useState(null)
+   const { data:_contributorList, isLoading:isContributorListLoading, error: getContributorListError } = useContractRead(contractCrowdsale, 'getContributors');
+   useEffect(()=>{
+    if(_contributorList){
+      setContributorList(_contributorList)
+    }
+   },[_contributorList])
+  /// END read contributor list
+
 
 
 
@@ -174,6 +184,7 @@ export const AdminContextProvider = ({children}) => {
           connectToRawContract,
           setInvestorTargetCap,
           setTimeCrowdsale,
+          contributorList,
         }}>
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
