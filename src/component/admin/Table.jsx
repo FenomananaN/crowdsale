@@ -26,7 +26,6 @@ export const Table = ({data}) => {
             cell: (({address}) => {
                 return  address
             })
-            
         },
         {
             name: "Total Investi",

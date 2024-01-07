@@ -15,7 +15,7 @@ export const currentChainId = 1116
 /*
 //core blockchain testnet
 export const tokenAddress ='0x0F883A270310519F1f331f1824E9639d73440d57'
-export const crowdsaleAddress ='0x4b4013E9d52a7749Fa0D73DaD16AEED7012cfB55'
+export const crowdsaleAddress ='0xBE61Ca86092892619e77831fa6920e0952D0bBdE'
 export const tetherAddress = '0x3786495F5d8a83B7bacD78E2A0c61ca20722Cce3'
 export const currentChainId = 1115
 */
