@@ -171,8 +171,11 @@ export const AdminContextProvider = ({children}) => {
    },[_contributorList])
   /// END read contributor list
 
-
-
+  const getContribution = async (address) => {
+    let tokencontribution = await contractCrowdsale.call('getUserContribution',[address])
+    tokencontribution= ethers.utils.formatEther(tokencontribution)
+    return tokencontribution;
+  }
 
   return (
     <AdminContext.Provider
@@ -185,6 +188,7 @@ export const AdminContextProvider = ({children}) => {
           setInvestorTargetCap,
           setTimeCrowdsale,
           contributorList,
+          getContribution
         }}>
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
