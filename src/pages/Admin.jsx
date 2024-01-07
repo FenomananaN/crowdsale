@@ -112,7 +112,7 @@ const AdminLayout = () => {
             <Typography>Usdt Raised: {usdtRaised} USDT</Typography>
             <Typography>Time : {timeCrowdsale} sec</Typography>
             <Typography>Target Cap: {investorTargetCap} USDT</Typography>
-            <Typography>Token Sold: {tokenSold} TATA</Typography>
+            <Typography>Token Sold: {tokenSold} BITJOY</Typography>
             <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
             <Typography>Token Owned By SmartContract: {crowdsaleTokenBalance} BITJOY</Typography>
         </Box>
