@@ -1,22 +1,9 @@
+import { Box } from '@mui/material'
 import React from 'react'
 import DataTable from 'react-data-table-component'
 
 export const Table = ({data}) => {
-
-    const _data = [
-        {
-            address: '0xkjhkjhkjhkjhkjdhksjdhksjdhskjdh',
-            fundContribution: 564,
-            usdtContribution:4,
-            weiContribution:12356,
-        },
-        {
-            address: '0xkjhkjhkjhkjhkjdhksjdhksjdhskjdh',
-            fundContribution: 564,
-            usdtContribution:4,
-            weiContribution:12356,
-        },
-    ]
+    console.log(data)
 
     const columns = [
     
@@ -26,19 +13,18 @@ export const Table = ({data}) => {
             cell: (({address}) => {
                 return  address
             })
-            
         },
         {
             name: "Total Investi",
-            selector: row => row.fundContribution,
+            selector: row => row.fund,
         },
         {
             name: 'USDT',
-            selector: row => row.usdtContribution,
+            selector: row => row.usdt,
         },
         {
             name: 'BNB',
-            selector: row => row.weiContribution,
+            selector: row => row.wei,
         }  
     ]
 
@@ -60,14 +46,16 @@ export const Table = ({data}) => {
       }
 
   return (
+    <Box sx={{width:{xs: '100%', md: '60vw'}}}>
      <DataTable
             columns={columns}
-            data={_data}
+            data={data}
             customStyles={tableCustomStyles}
             theme='dark'
             persistTableHead
             noDataComponent="no contributor yet"
         />
+    </Box>
   )
 }
 //#0B5E8F
