@@ -41,16 +41,16 @@ export const Tokenomics = ({id}) => {
                     <ListItemText primary="Use of Public Sale Funds:" primaryTypographyProps={{ fontWeight: 800}}/>
                     <List disablePadding>
                         <ListItem disablePadding>
-                            <ListItemText primary="- 40% for project development, including technology, security, and ongoing improvement"/>
+                            <ListItemText primary="- 15% for project development, including technology, security, and ongoing improvement"/>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemText primary=" - 30% for marketing and promotion to expand the BITJOY community and awareness."/>
+                            <ListItemText primary=" - 15% for marketing and promotion to expand the BITJOY community and awareness."/>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemText primary="- 15% for reserves and financial security of the project."/>
+                            <ListItemText primary="- 10% for reserves and financial security of the project."/>
                         </ListItem>
                         <ListItem>
-                            <ListItemText primary="- 15% reinvested into the community for special events, rewards, and incentives to encourage active participation"/>
+                            <ListItemText primary="- 40% reinvested into the community for special events, rewards, and incentives to encourage active participation"/>
                         </ListItem>
                     </List>
                 </ListItem>
@@ -64,9 +64,6 @@ export const Tokenomics = ({id}) => {
                     </List>
                 </ListItem>
             </List>
-            <Typography>
-            This distribution aims to ensure continuous growth and development of the community while providing adequate liquidity for the BITJOY token on trading platforms. Feel free to adjust these percentages based on the specific vision of your project and feedback from your community.
-            </Typography>
         </Paper>
     </Container>
   )
