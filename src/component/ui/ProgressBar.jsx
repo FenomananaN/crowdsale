@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { numberFormatter } from '../../utils'
 
 export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}) => {
 
@@ -37,10 +38,10 @@ export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}
                 zIndex: 2
             }}>
                 <Typography>
-                $ {amount} / $ {targetedAmount} 
+                $ {numberFormatter.format(amount)} / $ {numberFormatter.format(targetedAmount)} 
                 </Typography>
                 <Typography sx={{fontSize: 13, color:'grey', fontStyle: 'italic'}}>
-                ({amountToken} BITJOY sold / {totalAmountToken} BITJOY)
+                ({numberFormatter.format(amountToken)} BITJOY sold / {numberFormatter.format(totalAmountToken)} BITJOY)
                 </Typography>
             </Box>
 

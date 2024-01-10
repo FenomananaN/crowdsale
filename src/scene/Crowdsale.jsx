@@ -4,12 +4,6 @@ import { useStateContext, useUserContext } from '../context'
 import { BuyToken, ClaimToken, Countdown, ProgressBar } from '../component'
 import dayjs from 'dayjs'
 
-/*import { Countdown } from './ui/Countdown'
-import { BuyToken } from './smartContract/BuyToken'
-import { useStateContext, useUserContext } from '../context'
-import { ClaimToken } from './smartContract/ClaimToken'
-import { ProgressBar } from './ui/ProgressBar'*/
-
 export const Crowdsale = ({id}) => {
 
   const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance} = useStateContext()
@@ -25,83 +19,102 @@ export const Crowdsale = ({id}) => {
         <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>PRESALE</Typography>
 
         <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#0B5E8F', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
-        {preIco ? (
-        <>
-        <Box sx={{
-          mt: 3,
-          display: 'flex',
-          justifyContent: 'center'
-        }}>
-          <Box>
-            <Typography ml={2}>Buy now before it ends</Typography>
-            <Countdown countdownTarget={convertToReadableTime()}/>
-          </Box>
-        </Box>
-        <Box sx={{
-          mt: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}>
-          <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(investorTargetCap)} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
+        {preIco === 1 ? (
+          <>
+            <Box sx={{
+              mt: 3,
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Box>
+                <Typography ml={2}>Buy now before it ends</Typography>
+                <Countdown countdownTarget={convertToReadableTime()}/>
+              </Box>
+            </Box>
+
+            <Box sx={{
+              mt: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}>
+              <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(investorTargetCap)} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
+              <Typography sx={{
+                color: '#FFD700',
+                mt:1,
+              }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
+            </Box>
+            <Box sx={{
+              display: 'flex',
+              justifyContent:'center',
+              width: '100%',
+              py:3,
+            }}>
+              <BuyToken/>
+            </Box>
+          </>
+      )
+      : preIco === 0 ?
+        (
+          <Box sx={{
+            mt: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}> 
           <Typography sx={{
             color: '#FFD700',
             mt:1,
           }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          justifyContent:'center',
-          width: '100%',
-          py:3,
-        }}>
-          <BuyToken/>
-        </Box>
-        </>
-      )
-      :
-      (
+          {claim ? 
+          <ClaimToken/>
+          :
+          <BuyToken/>}
+          </Box>
+        ) 
+        : 
         <>
-        <Typography>You have purchased {balance} BITJOY</Typography>
-        {claim ? 
-        <ClaimToken/>
-        :
-        <BuyToken/>}
-        </>
-      )}
+            <Box sx={{
+              mt: 3,
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+              <Box sx={{
+                mt: 3,
+                display: 'flex',
+                flexDirection:'column',
+                alignItems: 'center'
+              }}>
+                <Typography ml={2}>The presale is set to commence after the countdown timer reaches zero</Typography>
+                <Countdown countdownTarget={convertToReadableTime()}/>
+              </Box>
+            </Box>
+
+            <Box sx={{
+              mt: 3,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}>
+             {/* <Typography sx={{
+                color: '#FFD700',
+                mt:1,
+              }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
+                */}
+            </Box>
+           {/*  <Box sx={{
+              display: 'flex',
+              justifyContent:'center',
+              width: '100%',
+              py:3,
+            }}>
+              <BuyToken/>
+            </Box>
+            */}
+          </>
+
+    }
     
     </Container>
   )
 }
-/*
-
-
-export const Crowdsale = () => {
-
-  return (
-    <Box p={3}>
-      {preIco ? (
-        <>
-        <Typography>Buy now before it ends</Typography>
-        <Countdown/>
-        <ProgressBar amount={250000} totalAmount={1000000}/>
-        <Typography>You have purchased {balance} GRF</Typography>
-        <BuyToken/>
-        </>
-      )
-      :
-      (
-        <>
-        <Typography>You have purchased {balance} GRF</Typography>
-        {claim ? 
-        <ClaimToken/>
-        :
-        <BuyToken/>}
-        </>
-      )}
-    </Box>
-  )
-}
-
-
-*/

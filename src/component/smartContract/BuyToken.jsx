@@ -194,21 +194,6 @@ export const BuyToken = () => {
                   </InputAdornment>
                 ),
               }}/>
-{/*
-            <TextField
-              variant="outlined"
-              name="usdt"
-              size='small'
-              value={crypto}
-              onChange={(e)=>handleCryptoOnChange(e.currentTarget.value)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">
-                    {currencToPay === 'usdt' ? <UsdtIcon width={20} height={20} /> :<BnbIcon width={20} height={20} />}
-                  </InputAdornment>
-                ),
-              }}
-            />*/}
           </Box>
 
           <Box >
@@ -228,21 +213,6 @@ export const BuyToken = () => {
                 ),
               }}/>
 
-{/* 
-            <TextField
-              variant="outlined"
-              name="usdt"
-              size='small'
-              value={grfToken}
-              onChange={(e)=>setGrfToken(e.currentTarget.value)}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start">
-                    <Bitcoin width={20} height={20}/>
-                  </InputAdornment>
-                ),
-              }}
-            />*/}
           </Box>
 
         </Stack>
