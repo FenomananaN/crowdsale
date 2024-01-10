@@ -35,16 +35,12 @@ export const Community = ({id}) => {
             Experience Sharing: Whether you're a trading expert or a curious beginner, share your experiences, ask questions, and learn in a relaxed and friendly atmosphere.
             </Typography>
 
-            <Typography  align='center' sx={{fontSize: 18}} py={1}>
-            Special Events: Get ready to participate in exclusive events, win rewards, and celebrate community achievements together.
-            </Typography>
-
             <Typography variant='h6' align='center' fontWeight={'bold'}>
             🚀 How to Join Us:
             </Typography>
 
             <Typography align='center' sx={{fontSize: 18}} py={1}>
-            It's simple! Follow us on our social media, engage in discussions on our forums, and use the hashtag #BitcoinCrashSmiles to share your joyful moments in the crypto world.
+            It's simple! Follow us on our social media, use the hashtag #BitcoinCrashSmiles to share your joyful moments in the crypto world.
             </Typography>
 
             <Typography variant='h6' align='center' fontWeight={'bold'}>

@@ -160,7 +160,8 @@ useEffect(()=>{
   const { data:preIcoData, isLoading:getCorwdsaleLoading, error , } = useContractRead(contractCrowdsale, 'getCrowdsaleStage');
   useEffect(()=>{
     if(preIcoData !== undefined){
-      setPreIco(Boolean(Number(preIcoData.toString())))
+      //setPreIco(Boolean(Number(preIcoData.toString())))
+      setPreIco(Number(preIcoData.toString()))
     }
     console.log(preIco, "pre ico")
   },[preIcoData])

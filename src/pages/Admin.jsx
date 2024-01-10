@@ -9,6 +9,7 @@ import { DatePicker, TimePicker } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs'
+import { numberFormatter } from '../utils'
 
 export const Admin = () => {
     return (
@@ -43,6 +44,14 @@ const AdminLayout = () => {
         setCrowdsaleStage('PreIco', 1)
         }
     }
+    const handleGoToCommunity = () => {
+        if(!address){
+            setOpen(true)
+        } else {
+        setCrowdsaleStage('Community', 2)
+        }
+    }
+
 
     const handleWithdraw = async () => {
         if(!address){
@@ -114,7 +123,7 @@ const AdminLayout = () => {
             <Typography>Target Cap: {investorTargetCap} USDT</Typography>
             <Typography>Token Sold: {tokenSold} TATA</Typography>
             <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
-            <Typography>Token Owned By SmartContract: {crowdsaleTokenBalance} BITJOY</Typography>
+            <Typography>Token Owned By SmartContract: {numberFormatter.format(crowdsaleTokenBalance)} BITJOY</Typography>
         </Box>
 
         <Box p={3}>
@@ -124,18 +133,33 @@ const AdminLayout = () => {
 
         
 
-        {preIco ? 
+        {preIco  === 1 ? 
         <Box p={3}>
         <Typography>We are on preSale</Typography>
         <Typography>End presale now</Typography>
-        <Button variant='contained' onClick={handleEndPresale}>End Presale</Button>
+        <Stack direction={'row'} spacing={1}>
+            <Button  variant='contained' onClick={handleGoToCommunity}>Go to community</Button>        
+            <Button variant='contained' onClick={handleEndPresale}>End Presale</Button>
+        </Stack>
         </Box>
-        :
-        <Box p={3}>
-        <Typography>You've terminate presale</Typography>
-        <Typography>Go back to presale</Typography>
-        <Button variant='contained' onClick={handleBackToPresale}>Back to presale</Button>
-        </Box>
+        : preIco  === 0 ?
+            <Box p={3}>
+            <Typography>You've terminate presale</Typography>
+            <Typography>Go back to presale</Typography>
+            <Stack direction={'row'} spacing={1}>
+                <Button  variant='contained' onClick={handleGoToCommunity}>Go to community</Button>
+                <Button variant='contained' onClick={handleBackToPresale}>Back to presale</Button>
+            </Stack>
+            </Box>
+            :
+            <Box p={3}>
+                <Typography>You are finding communauty</Typography>
+                <Stack direction={'row'} spacing={1}>
+                    <Button variant='contained'  onClick={handleBackToPresale}> Go to Presale</Button>
+                    <Button  variant='contained' onClick={handleEndPresale}>End Presale</Button>
+                </Stack>
+            </Box>
+            
         }
 
         <Box p={3}>

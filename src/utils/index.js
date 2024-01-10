@@ -1,0 +1,1 @@
+export {numberFormatter} from './numberFormater'
