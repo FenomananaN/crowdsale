@@ -17,7 +17,7 @@ export const ShowError = ({message, open, setOpen}) => {
             <IconButton sx={{position:'absolute', right: 0, top:0}} onClick={()=>setOpen(false)}>
                 <CloseIcon/>
             </IconButton>
-            <Box sx={{display:'flex', justifyContent:'center', alignItems:'center',p:3}}>
+            <Box sx={{display:'flex', justifyContent:'center', alignItems:'center',px:{xs:1, sm:3},py:3}}>
                 <ReportGmailerrorredIcon style={{fontSize: '35px'}}/>
               <Typography sx={{ml:2}}>{message}</Typography>
             </Box>
