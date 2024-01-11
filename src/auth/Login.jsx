@@ -74,7 +74,8 @@ export const Login = () => {
                     <Paper sx={{
                         backgroundColor: '#161c29',
                         p:3,
-                        m:3,
+                        marginY:3,
+                        marginX:{xs:1,md:3},
                     }}>
                         <Typography variant='h5'>ADMIN BITJOY</Typography>
                         <FormProvider {...methods}>
