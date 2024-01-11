@@ -24,7 +24,7 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              BITJOY is a playful and positive crypto token launched on the Binance Smart Chain (BSC). It aims to bring joy and optimism to the crypto community while providing a unique trading experience.              </Typography>
+              BITJOY is a playful and positive crypto token launched on the Binance Smart Chain (BSC). It aims to bring joy and optimism to the crypto community.</Typography>
             </AccordionDetails>
           </Accordion>
           
@@ -86,7 +86,7 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              BITJOY offers a unique experience focused on positivity, with rewards for the community. Holders can participate in special events and enjoy an active and engaged community.              </Typography>
+              BITJOY offers a unique experience focused on positivity. Holders can enjoy an active and engaged community.              </Typography>
             </AccordionDetails>
           </Accordion>
 

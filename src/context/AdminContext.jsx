@@ -4,10 +4,14 @@ import { useStateContext } from './StateContext';
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { tokenAbi, tokenAddress } from '../contract';
 import { Loading } from '../component';
+import { Login } from '../auth';
 
 const AdminContext = createContext();
 
 export const AdminContextProvider = ({children}) => {
+
+  //for authentification
+  const [auth,setAuth] = useState(false)
   
   const { contractCrowdsale, address } = useStateContext()
 
@@ -16,12 +20,17 @@ export const AdminContextProvider = ({children}) => {
   const [loadingMessage,setLoadingMessage] = useState('')
 
    //owner wallet getWallet
-   const { data:walletOwner, isLoading:isWalletOwnerLoading, error: getWalletError } = useContractRead(contractCrowdsale, 'getWallet');
+  const { data:walletOwner, isLoading:isWalletOwnerLoading, error: getWalletError } = useContractRead(contractCrowdsale, 'getWallet');
   
    //admin
   //get contract crowdsale usdt balance
   const { data:_crowdsaleUsdtBalance, isLoading:crowdsaleUsdtBalanceLoading, error: crowdsaleUsdtBalanceError } = useContractRead(contractCrowdsale, 'crowdsaleUsdtBalance');
   const [crowdsaleUsdtBalance,setCrowdsaleUsdtBalance] = useState(0)
+
+  // for authentification
+  const login = (isAuthed) => {
+    setAuth(isAuthed)
+  }
 
   //admin
   const _setCrowdsaleUsdtBalance = () => {
@@ -184,8 +193,10 @@ export const AdminContextProvider = ({children}) => {
           setInvestorTargetCap,
           setTimeCrowdsale,
           contributorList,
+          login,
+          walletOwner,
         }}>
-            {children}
+            {auth ? children : <Login/>}
             {isLoading && <Loading message={loadingMessage}/>}
     </AdminContext.Provider>
   )
