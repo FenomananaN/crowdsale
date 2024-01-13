@@ -1,6 +1,6 @@
-import { Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import {ConnectWalletButton, Contributor, DialogBox, MintToken, Table} from '../component'
+import {CardShow, ConnectWalletButton, Contributor, DialogBox, MintToken, Table} from '../component'
 import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
 
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
@@ -116,6 +116,17 @@ const AdminLayout = () => {
             <Button variant='contained' sx={{ml:2}}  onClick={handleWithdraw}>Withdraw</Button>
         </Box>
         <Box p={3}>
+            <Grid container>
+                <Grid item xs={12} sm={4} md={3} p={1}>
+                    <CardShow title={'Fund Raised'} currency={'USDT'} value={numberFormatter.format(fundsRaised)}/>
+                </Grid>
+                <Grid item xs={12} sm={4} md={3} p={1}>
+                    <CardShow title={'USDT Raised'} currency={'USDT'} value={numberFormatter.format(usdtRaised)}/>
+                </Grid>
+                <Grid item xs={12} sm={4} md={3} p={1}>
+                    <CardShow title={'BNB Raised'} currency={'BNB'} value={numberFormatter.format(weiRaised)}/>
+                </Grid>
+            </Grid>
             <Typography>Funds Raised: {fundsRaised} USDT</Typography>
             <Typography>BNB Raised: {weiRaised} BNB</Typography>
             <Typography>Usdt Raised: {usdtRaised} USDT</Typography>

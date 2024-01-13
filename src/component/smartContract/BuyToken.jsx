@@ -12,6 +12,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver }from '@hookform/resolvers/yup'
 import { FormInput } from '../utils/FormInput'
+import { Logo } from '../../assets/icon/Logo'
 
 const validationSchema = Yup.object().shape({
   crypto: Yup.number()
@@ -208,7 +209,8 @@ export const BuyToken = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start">
-                    <Bitcoin width={20} height={20}/>
+                    <Logo/>
+                    {/* <Bitcoin width={20} height={20}/>*/}
                   </InputAdornment>
                 ),
               }}/>

@@ -1,11 +1,11 @@
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Box, Button, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import tata from '../assets/image/home.webp'
 
 export const Home = ({id}) => {
   return (
     <Box id={id} sx={{  
-      backgroundColor: '#141821', 
+      //backgroundColor: '#141821', 
       height: {xs:'fit-content', md:'100vh'},
       display: 'flex',
       justifyContent:'center',
@@ -17,21 +17,31 @@ export const Home = ({id}) => {
           justifyContent:'center',
           alignItems: 'center'
         }}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} justifyContent={'center'}>
               <Typography variant='h5' sx={{
-                //fontSize:{sx:13,md:20},
-                fontFamily: 'monospace',
+                fontSize:{xs:'8vw',sm:'6vw',md:'3.5vw'},
+                fontFamily: 'Small pixel',
                 textAlign: 'center',
-                fontWeight: 'bold'
+                //fontWeight: 'bold'
               }}>
-              Welcome to the Bitcoin Crash Smiles! 😃🚀
+              Welcome to the Bitcoin Smiles!
               </Typography>
-              <Typography py={2} align='center'>
+              <Typography py={2} align='center' sx={{fontFamily: 'Merchant', fontSize: {sx:'0.8vw', md:'1.5vw'}}}>
               Greetings Crypto Enthusiasts and Smilers alike!
               </Typography>
-              <Typography align='center'>
+              <Typography align='center' sx={{fontFamily: 'Monoid'}}>
               We're thrilled to have you join the Bitcoin Crash Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
               </Typography>
+
+              <Box sx={{display:'flex', justifyContent:'center', }}>
+                <Button variant='contained' color='main' sx={{
+                  fontFamily: 'Supply',
+                  border: '1px solid white',
+                  mt:2,
+                }} >
+                  Claim Now
+                </Button>
+              </Box>
           </Grid>
 
           <Grid item xs={12} md={6} sx={{display: 'flex', justifyContent:'center', mt:{xs:3,md:0}}}>

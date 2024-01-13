@@ -1,0 +1,24 @@
+@font-face {
+    font-family: Merchant;
+    src: url('./Merchant.ttf');
+}
+
+@font-face {
+    font-family: Mono;
+    src: url('./MonoBold.ttf');
+}
+
+@font-face {
+    font-family: Monoid;
+    src: url('./Monoid.ttf');
+}
+
+@font-face {
+    font-family: 'Small pixel';
+    src: url('./small_pixel.ttf');
+}
+
+@font-face {
+    font-family: Supply;
+    src: url('./Supply-Regular.otf');
+}

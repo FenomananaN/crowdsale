@@ -14,16 +14,12 @@ export const theme = createTheme({
      main: '#082D0E',
      contrastText: '#fff',
     },
-    yellow: {
-      main:'#FFC000',  
+    main: {
+      main:'#C2992D',
       contrastText: '#fff',
       //dark:'#CC9600',
       //light:'#FFD800',
     },
-    blackvoly: {
-      main: '#000',
-      contrastText: '#fff'
-    }
   },
     typography: {
       "fontFamily": `"Space Mono","monospace","Roboto", "Helvetica", "Arial", sans-serif`,

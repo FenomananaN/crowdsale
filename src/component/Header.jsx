@@ -10,10 +10,10 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
-import { Drawer, List } from '@mui/material'
+import { Drawer, List, useScrollTrigger } from '@mui/material'
 import { Link } from 'react-scroll'
 
-import {ReactComponent as BitcoinLogo} from '../assets/icon/bitcoindown.svg'
+import {ReactComponent as BitcoinLogo} from '../assets/icon/logo.svg'
 
 //import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
 //import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
@@ -45,14 +45,14 @@ export const Header = () => {
         setAnchorElNav(false);
     }
 
-    /*const trigger = useScrollTrigger({
+    const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 0,
-        target: window ? window : undefined,     ///#282C34
-    })*/
+        target: window ? window : undefined,     ///#282C34 #121212
+    })
     
   return (
-        <AppBar sx={{backgroundColor:'#282c34'}} elevation={0}>
+        <AppBar sx={{backgroundColor:trigger ? '#1c1c1c':'#121212' }} elevation={0}>
           <Container >
             <Toolbar disableGutters>
                 {/*<Box
@@ -93,11 +93,8 @@ export const Header = () => {
                     justifyContent: 'center',
                     ml:2
                 }}>
-                    <Typography align={'center'} variant='h6' sx={{fontWeight:'bold'}} width={40} height={40}>
+                    <Typography align={'center'} variant='h6' sx={{fontWeight:'bold', fontFanily:'Mono'}} width={40} height={40}>
                         BITJOY
-                    </Typography>
-                    <Typography sx={{fontSize:10}}>
-                    Bitcoin Crash Smiles! 😃🚀
                     </Typography>
                 </Box>
 

@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 
 export default function App() {
   return (
-    <main className="main" style={{backgroundColor: '#141821'}}>
+    <main className="main">
       <div className="container">
         <div className="header">
         <Routes> 
@@ -19,3 +19,4 @@ export default function App() {
     </main>
   );
 }
+///#141821
