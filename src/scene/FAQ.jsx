@@ -2,6 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Container, Typography } 
 import React from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { tokenAddress } from '../contract'
 
 export const FAQ = ({id}) => {
   return (
@@ -44,7 +45,7 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              You can buy BITJOY here, during the presale, or later on exchange platforms after the launch.
+              You can buy BITJOY here, during the crowdsale, or later on exchange platforms after the launch.
               </Typography>            
             </AccordionDetails>
           </Accordion>
@@ -99,7 +100,7 @@ export const FAQ = ({id}) => {
               sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}> 
-              5. How can I check my BITJOY balance?   
+              5.  What is the contract address of BITJOY?   
               </Typography>
             </AccordionSummary>
             <AccordionDetails
@@ -107,30 +108,14 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              You can check your BITJOY balance using a BSC block explorer such as BscScan and connecting your wallet.              </Typography>
-            </AccordionDetails>
-          </Accordion>
-
-
-          <Accordion sx={{my:1}}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
-            >
-              <Typography sx={{ fontWeight: 'bold'}}>    
-              6. How can I participate in community events?
+              The contract address of BITJOY is {tokenAddress} that you can check on the Binance Smart Chain Explorer &nbsp;
+             <a href={`https://scan.coredao.org/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'>bsc scan </a>
               </Typography>
-            </AccordionSummary>
-            <AccordionDetails
-            sx={{
-              bgcolor: '#393f4a'
-            }}>
-              <Typography>
-              Stay tuned for announcements on our official social media channels. We regularly organize community events, contests, and rewards for BITJOY holders.              </Typography>
             </AccordionDetails>
           </Accordion>
+
+
+          
 
 
           <Accordion sx={{my:1}}>
@@ -141,7 +126,7 @@ export const FAQ = ({id}) => {
               sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
-              7. How can I contribute to the development of the BITJOY community?  
+              6. How can I contribute to the development of the BITJOY community?  
               </Typography>
             </AccordionSummary>
             <AccordionDetails
@@ -149,31 +134,12 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              You can contribute by participating in discussions on our official communication channels, sharing ideas, and inviting others to join the community. We value active community participation.              </Typography>
+              You can contribute by participating in discussions on our official communication channels, sharing ideas, and inviting others to join the community.              </Typography>
             </AccordionDetails>
           </Accordion>
 
 
-          <Accordion sx={{my:1}}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
-            >
-              <Typography sx={{ fontWeight: 'bold'}}> 
-              8. Are there future plans for BITJOY?   
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails
-            sx={{
-              bgcolor: '#393f4a'
-            }}>
-              <Typography>
-              We have exciting plans for the ongoing development of BITJOY, including new features, partnerships, and integrations. Stay tuned for official announcements.              </Typography>
-            </AccordionDetails>
-          </Accordion>
-
+         
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
@@ -183,7 +149,7 @@ export const FAQ = ({id}) => {
               sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
-              9. How can I actively engage in the BITJOY community?  
+              7. How can I actively engage in the BITJOY community?  
               </Typography>
             </AccordionSummary>
             <AccordionDetails
@@ -194,27 +160,7 @@ export const FAQ = ({id}) => {
               To actively engage in the BITJOY community, join our discussion forums and social media channels. Share your ideas, engage in discussions, and provide suggestions. We encourage a dynamic and participative community.              </Typography>
             </AccordionDetails>
           </Accordion>
-
-
-          <Accordion sx={{my:1}}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
-            >
-              <Typography sx={{ fontWeight: 'bold'}}>  
-              10. How does BITJOY contribute to philanthropy or social causes?  
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails
-            sx={{
-              bgcolor: '#393f4a'
-            }}>
-              <Typography>
-              BITJOY is committed to giving back to the community. A portion of our profits is allocated to charitable works and social initiatives. Stay informed on our official channels to learn about the philanthropic projects we support and how you can contribute.              </Typography>
-            </AccordionDetails>
-          </Accordion>
+        
 
     </Container>
   )

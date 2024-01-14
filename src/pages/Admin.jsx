@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import {CardShow, ConnectWalletButton, Contributor, DialogBox, MintToken, Table} from '../component'
+import {CardShow, CardTime, ConnectWalletButton, Contributor, DialogBox, MintToken, Table} from '../component'
 import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
 
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
@@ -180,7 +180,7 @@ const AdminLayout = () => {
                 <Button variant='contained' onClick={handleSetNewTargetCap}>Change</Button>
             </Stack>
         </Box>
-
+        <CardTime/>
         <Box p={3} display={'flex'} flexDirection={'column'} sx={{width:'fit-content'}}>
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>

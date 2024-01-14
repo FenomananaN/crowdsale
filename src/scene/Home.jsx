@@ -30,7 +30,7 @@ export const Home = ({id}) => {
               Greetings Crypto Enthusiasts and Smilers alike!
               </Typography>
               <Typography align='center' sx={{fontFamily: 'Monoid'}}>
-              We're thrilled to have you join the Bitcoin Crash Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
+              We're thrilled to have you join the Bitcoin Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
               </Typography>
 
               <Box sx={{display:'flex', justifyContent:'center', }}>

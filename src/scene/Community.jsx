@@ -12,12 +12,12 @@ export const Community = ({id}) => {
             border: '2px solid #0B5E8F'
         }}>
             <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>COMMUNITY</Typography>
-            <Typography variant='h6' align='center' sx={{fontWeight: 'bold', mt:2}}>Join the Smile Revolution with Bitcoin Crash Smiles! 😄🚀</Typography>
+            <Typography variant='h6' align='center' sx={{fontWeight: 'bold', mt:2}}>Join the Smile Revolution with Bitcoin Smiles! 😄🚀</Typography>
             <Typography align='center' sx={{fontSize: 18, my:2}}>
             Hello to all crypto enthusiasts, market explorers, and laughter lovers!
             </Typography>
             <Typography align='center' sx={{fontSize: 18, mb:2}}>
-            Are you searching for a space where market crashes turn into opportunities for smiles, and crypto camaraderie reigns supreme? Welcome to Bitcoin Crash Smiles! – the community where every dip is a chance for a radiant grin.
+            Are you searching for a space where market crashes turn into opportunities for smiles, and crypto camaraderie reigns supreme? Welcome to Bitcoin Smiles! – the community where every dip is a chance for a radiant grin.
             </Typography>
             <Typography variant='h6' align='center' fontWeight={'bold'}>
             🌟Why Join Us?
@@ -40,7 +40,7 @@ export const Community = ({id}) => {
             </Typography>
 
             <Typography align='center' sx={{fontSize: 18}} py={1}>
-            It's simple! Follow us on our social media, use the hashtag #BitcoinCrashSmiles to share your joyful moments in the crypto world.
+            It's simple! Follow us on our social media, use the hashtag #BitcoinSmiles to share your joyful moments in the crypto world.
             </Typography>
 
             <Typography variant='h6' align='center' fontWeight={'bold'}>
@@ -52,7 +52,7 @@ export const Community = ({id}) => {
             </Typography>
 
             <Typography  align='center'  sx={{fontSize: 18}} py={1}>
-            Join the Smile Revolution – Bitcoin Crash Smiles! 🚀😄
+            Join the Smile Revolution – Bitcoin Smiles! 🚀😄
             </Typography>
 
             <Stack direction={'row'} justifyContent={'center'}>

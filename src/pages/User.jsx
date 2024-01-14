@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from '../component'
+import { Footer, Header } from '../component'
 import { UserContextProvider } from '../context'
 import { About, Community, Crowdsale, FAQ, Home, Tokenomics} from '../scene'
 
@@ -13,6 +13,7 @@ export const User = () => {
       <Community id={'Community'}/>
       <Tokenomics id={'Tokenomics'} />
       <FAQ id='FAQ'/>
+      <Footer/>
     </UserContextProvider>
   )
 }

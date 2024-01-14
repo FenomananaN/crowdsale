@@ -2,43 +2,62 @@ import { Box, Container, List, ListItem, ListItemText, Paper, Typography } from 
 import React from 'react'
 import TokenomicsTokenShare from '../assets/image/tokenomics.png'
 import { ChartLabel } from '../component'
+import { Link } from 'react-router-dom'
+import { tokenAddress } from '../contract'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export const Tokenomics = ({id}) => {
   return (
     <Container id={id} sx={{py:3}}>
 
         <Paper sx={{ p:3, backgroundColor: '#282C34'}} elevation={0}>
-            <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>TOKENOMICS</Typography>
+            <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold', mb:2}}>TOKENOMICS</Typography>
 
             <Typography variant='h6'>TOTAL SUPPLY = <span style={{padding:6, backgroundColor:'#05A76C', borderRadius:5}}>21,000,000,000 BITJOY</span></Typography>
 
-            <List sx={{ listStyle: "none", pl: {xs:2,md:4} , //listStyle: 'decimal'
-                    ['& li.MuiListItem-root::marker']:{
+            <List sx={{ listStyle: "none", pl: {xs:2,md:4} ,}}>
+                    {/*['& li.MuiListItem-root::marker']:{
                         fontWeight:600
-                    } }}> {/* use listStyle: "lower-alpha" for a b c*/}
-                <ListItem sx={{ display: "list-item" }} disablePadding>
+                    } }}>  use listStyle: "lower-alpha" for a b c*/}
+                <ListItem sx={{ display: "list-item" }} >
                     <ListItemText primary="Distribution:" primaryTypographyProps={{ fontWeight: 800}}/>
                     {/* 2em method <ListItemText disableTypography primary={<Typography .....}  */}
-                    <Box sx={{display:'flex',flexDirection:{xs:'column-reverse',md:'row'}, alignItems:'center', justifyContent:{xs:'center', md:'start'}}}>
                     <List disablePadding>
                         <ListItem disablePadding>
-                            <ListItemText disableTypography primary={<ChartLabel color={'#4285F4'} text={"80% allocated to the Public Sale"}/>}/>
+                            <ListItemText primary={"- 60% allocated to the Crowdsale"}/>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemText disableTypography primary={<ChartLabel color={'#EA4335'} text={"20% reserved for Liquidity"}/>}/>
+                            <ListItemText primary={"- 40% reserved for Liquidity (20% for each DEX&CEX)"}/>
                         </ListItem>
-                    </List>
-                     {/*   <Box
-                            component={'img'}
-                            src={TokenomicsTokenShare}
-                            height={180}
-                            marginLeft={4}
-                        />
-                    */}
-                    </Box>
+                    </List> 
                 </ListItem>
 
-                <ListItem sx={{ display: "list-item" }} disablePadding>
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText disableTypography primary={
+                        <Typography sx={{fontWeight: 800}}>
+                            Token contract address: {tokenAddress}
+                        </Typography>}
+                        secondary={
+                            <Box sx={{display:'flex', alignItems:'center'}}>
+
+                                <Typography mr={1}>Check on 
+                                </Typography>
+                                    <Box component={'a'} href={`https://scan.coredao.org/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'
+                                        sx={{
+                                            //textDecoration: 'none',
+                                            display: 'flex',
+                                            alignItems:'center',
+                                            letterSpacing:1,
+                                            wordSpacing:-7
+                                        }}>
+                                    bsc scan
+                                    <ExitToAppIcon style={{fontSize: 15, marginLeft:3}}/>
+                                    </Box>
+                            </Box>
+                        }/>
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
                     <ListItemText primary="Key features:" primaryTypographyProps={{ fontWeight: 800}}/>
                     <List disablePadding>
                         <ListItem disablePadding>

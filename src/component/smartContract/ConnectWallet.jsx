@@ -8,6 +8,8 @@ import {
   } from "@thirdweb-dev/react";
 import { currentChainId } from '../../contract';
 import { useStateContext } from '../../context';
+import { Box, Typography } from '@mui/material';
+import { Logo } from '../../assets/icon/Logo';
 
 
 export const ConnectWalletButton = () => {
@@ -29,8 +31,11 @@ export const ConnectWalletButton = () => {
       theme={"dark"}
       modalTitle={"Choisir Wallet"}
       btnTitle={"CONNECT WALLET"}
-      modalSize={"compact"}
-      welcomeScreen={{ title: "aas" }}
+      //modalSize={"compact"}
+      welcomeScreen={()=>{
+        return <SideConnectWallet/>
+      }}
+      switchToActiveChain={true}
       modalTitleIconUrl={""}
       style={{
         background: "linear-gradient(45deg, #C2992D, #8f6b2e)",
@@ -45,4 +50,22 @@ export const ConnectWalletButton = () => {
     />
   )
 }
+
+const SideConnectWallet = () => {
+  return (
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width:'100%',
+      height:'100%',
+      p:3,
+    }}>
+      <Logo width={'15vw'} height={'15vw'} sx={{mt: 'auto'}}/>
+      <Typography sx={{fontFamily: 'Merchant', fontSize: '3vw', mt:2}}>BITJOY</Typography>
+      <Typography sx={{mt: 'auto'}}>Connect your wallet to buy BITJOY Token</Typography>
+    </Box>
+  )
+} 
 
