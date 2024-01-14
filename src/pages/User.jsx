@@ -9,7 +9,7 @@ export const User = () => {
       <Header/>
       <Home id={'Home'}/>
       <About id={'About'}/>
-      <Crowdsale id={'Presale'}/>
+      <Crowdsale id={'Crowdsale'}/>
       <Community id={'Community'}/>
       <Tokenomics id={'Tokenomics'} />
       <FAQ id='FAQ'/>

@@ -27,7 +27,7 @@ import { Twitter } from './socialMedia/Twitter'
 const pages = [
     {title:'Home', offset: 0},
     {title:'About', offset: -80},
-    {title:'Presale', offset: -80},
+    {title:'Crowdsale', offset: -80},
     {title:'Community', offset: -80},
     {title:'Tokenomics', offset: -80},
     {title:'FAQ', offset: -80},
