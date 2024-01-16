@@ -1,8 +1,18 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import tata from '../assets/image/home.webp'
+import { scroller } from 'react-scroll'
 
 export const Home = ({id}) => {
+  const options = {
+    offset:-55,
+    duration: 500,
+    smooth: true,
+  }
+
+  const scrollToCrowdsale = () => {
+    scroller.scrollTo('Crowdsale',options)
+  }
   return (
     <Box id={id} sx={{  
       //backgroundColor: '#141821', 
@@ -34,7 +44,9 @@ export const Home = ({id}) => {
               </Typography>
 
               <Box sx={{display:'flex', justifyContent:'center', }}>
-                <Button variant='contained' color='main' sx={{
+                <Button variant='contained' color='main' 
+                onClick={scrollToCrowdsale}
+                sx={{
                   fontFamily: 'Supply',
                   border: '1px solid white',
                   mt:2,

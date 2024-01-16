@@ -1,21 +1,22 @@
 import { Box, Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material'
 import React from 'react'
 import TokenomicsTokenShare from '../assets/image/tokenomics.png'
-import { ChartLabel } from '../component'
+import { ChartLabel, CopyToClipboard } from '../component'
 import { Link } from 'react-router-dom'
 import { tokenAddress } from '../contract'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import { useTruncateString } from '../utils'
 
 export const Tokenomics = ({id}) => {
   return (
     <Container id={id} sx={{py:3}}>
 
-        <Paper sx={{ p:3, backgroundColor: '#282C34'}} elevation={0}>
+        <Paper sx={{ p:{xs:1,md:3}, backgroundColor: '#282C34'}} elevation={0}>
             <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold', mb:2}}>TOKENOMICS</Typography>
 
             <Typography variant='h6'>TOTAL SUPPLY = <span style={{padding:6, backgroundColor:'#05A76C', borderRadius:5}}>21,000,000,000 BITJOY</span></Typography>
 
-            <List sx={{ listStyle: "none", pl: {xs:2,md:4} ,}}>
+            <List sx={{ listStyle: "none", pl: {xs:0,md:4} ,}}>
                     {/*['& li.MuiListItem-root::marker']:{
                         fontWeight:600
                     } }}>  use listStyle: "lower-alpha" for a b c*/}
@@ -34,9 +35,21 @@ export const Tokenomics = ({id}) => {
 
                 <ListItem sx={{ display: "list-item" }} >
                     <ListItemText disableTypography primary={
-                        <Typography sx={{fontWeight: 800}}>
-                            Token contract address: {tokenAddress}
-                        </Typography>}
+                        <Box sx={{display:'flex',flexDirection:{xs:'column',md:'row'}, alignItems:{xs:'start',md:'center'}}}>
+
+                            <Typography sx={{fontWeight: 800,mr:2}}>
+                                Token contract address:
+                            </Typography>
+                            <Box display={'flex'} alignItems={'center'}>
+                                <Typography sx={{display:{xs:'none',sm:'flex'}}}>
+                                    {tokenAddress}
+                                </Typography>
+                                <Typography sx={{fontWeight: 800,display:{xs:'flex',sm:'none'}}}>
+                                    {useTruncateString(tokenAddress,29)} 
+                                </Typography>
+                            <CopyToClipboard text={tokenAddress}/>
+                            </Box>
+                        </Box>}
                         secondary={
                             <Box sx={{display:'flex', alignItems:'center'}}>
 

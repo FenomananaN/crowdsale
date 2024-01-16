@@ -3,6 +3,7 @@ import React from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { tokenAddress } from '../contract'
+import { useTruncateString } from '../utils'
 
 export const FAQ = ({id}) => {
   return (
@@ -108,7 +109,7 @@ export const FAQ = ({id}) => {
               bgcolor: '#393f4a'
             }}>
               <Typography>
-              The contract address of BITJOY is {tokenAddress} that you can check on the Binance Smart Chain Explorer &nbsp;
+              The contract address of BITJOY is {useTruncateString(tokenAddress)} that you can check on the Binance Smart Chain Explorer &nbsp;
              <a href={`https://scan.coredao.org/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'>bsc scan </a>
               </Typography>
             </AccordionDetails>

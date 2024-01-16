@@ -6,8 +6,8 @@ import tata from '../assets/image/about.webp'
 export const About = ({id}) => {
   return (
     <Container id={id} sx={{mt:3}}>
-        <Paper sx={{ p:3, backgroundColor: '#282C34'}}>
-            <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>ABOUT</Typography>
+        <Paper sx={{ p:3}}>
+            <Typography variant='h5' align='center' sx={{color: '#C2992D', fontWeight: 'bold'}}>ABOUT</Typography>
             <Grid container>
                 <Grid item xs={12} md={4} sx={{display: 'flex', justifyContent:'center', px:{xs:2,sm:5}}}>
                     <Box
@@ -25,7 +25,7 @@ export const About = ({id}) => {
                 </Grid>
             </Grid>
             <Grid container justifyContent={'center'}>
-                <Grid xs={12} md={6} mt={3}>
+                <Grid item xs={12} md={6} mt={3}>
                     <Typography variant='h6' align='center' sx={{fontWeight: 'bold'}}>Objective</Typography>
                     <Typography align='center'>
                     Our goal is to create a positive community within the cryptocurrency ecosystem. Bitcoin Crash Smiles! encourages its holders to remain optimistic even in challenging market times.
