@@ -16,9 +16,9 @@ export const Crowdsale = ({id}) => {
 
   return (
     <Container id={id} sx={{mt:9}}>
-        <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>CROWDSALE</Typography>
+        <Typography variant='h4' align='center' sx={{color: '#C2992D', fontWeight: 'bold'}}>CROWDSALE</Typography>
 
-        <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#0B5E8F', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
+        <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#C2992D', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
         {preIco === 1 ? (
           <>
             <Box sx={{

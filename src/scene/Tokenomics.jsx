@@ -11,10 +11,10 @@ export const Tokenomics = ({id}) => {
   return (
     <Container id={id} sx={{py:3}}>
 
-        <Paper sx={{ p:{xs:1,md:3}, backgroundColor: '#282C34'}} elevation={0}>
-            <Typography variant='h4' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold', mb:2}}>TOKENOMICS</Typography>
+        <Paper sx={{ p:{xs:1,md:3}/*, backgroundColor: '#282C34'*/}} elevation={1}>
+            <Typography variant='h4' align='center' sx={{color: '#C2992D', fontWeight: 'bold', mb:2}}>TOKENOMICS</Typography>
 
-            <Typography variant='h6'>TOTAL SUPPLY = <span style={{padding:6, backgroundColor:'#05A76C', borderRadius:5}}>21,000,000,000 BITJOY</span></Typography>
+            <Typography variant='h6'>TOTAL SUPPLY = <span style={{color:'#C2992D', fontWeight:'bold' }}>21,000,000,000 BITJOY</span></Typography>
 
             <List sx={{ listStyle: "none", pl: {xs:0,md:4} ,}}>
                     {/*['& li.MuiListItem-root::marker']:{

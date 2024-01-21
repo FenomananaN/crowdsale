@@ -15,12 +15,13 @@ export const About = ({id}) => {
                         src={tata}
                         alt='tata'
                         width={{xs:'100%', md: 350}}
-                        border={'1px solid white'}
+                        border={'2px solid white'}
+                        sx={{boxShadow:'6px 6px 10px 5px #111'}}
                     />
                 </Grid>
                 <Grid item xs={12} md={8} sx={{display:'flex', alignItems:'center', mt:{xs:3,md:0}}}>
                     <Typography textAlign={'center'}>
-                    Bitcoin Crash Smiles! is the memecoin that turns market downturns into joyful moments. Inspired by the playful spirit of the crypto community, our virtual currency celebrates the unexpected with a smile. Join us to navigate through the highs and lows of the market with humor and positivity.
+                    Bitcoin Smiles! is the memecoin that turns market downturns into joyful moments. Inspired by the playful spirit of the crypto community, our virtual currency celebrates the unexpected with a smile. Join us to navigate through the highs and lows of the market with humor and positivity.
                     </Typography>
                 </Grid>
             </Grid>
@@ -28,7 +29,7 @@ export const About = ({id}) => {
                 <Grid item xs={12} md={6} mt={3}>
                     <Typography variant='h6' align='center' sx={{fontWeight: 'bold'}}>Objective</Typography>
                     <Typography align='center'>
-                    Our goal is to create a positive community within the cryptocurrency ecosystem. Bitcoin Crash Smiles! encourages its holders to remain optimistic even in challenging market times.
+                    Our goal is to create a positive community within the cryptocurrency ecosystem. Bitcoin Smiles! encourages its holders to remain optimistic even in challenging market times.
                     </Typography>
                 </Grid>
 

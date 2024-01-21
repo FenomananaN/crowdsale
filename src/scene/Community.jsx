@@ -9,9 +9,9 @@ export const Community = ({id}) => {
     }}>
         <Box sx={{
             p:3,
-            border: '2px solid #0B5E8F'
+            border: '2px solid #C2992D'
         }}>
-            <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>COMMUNITY</Typography>
+            <Typography variant='h5' align='center' sx={{color: '#C2992D', fontWeight: 'bold'}}>COMMUNITY</Typography>
             <Typography variant='h6' align='center' sx={{fontWeight: 'bold', mt:2}}>Join the Smile Revolution with Bitcoin Smiles! 😄🚀</Typography>
             <Typography align='center' sx={{fontSize: 18, my:2}}>
             Hello to all crypto enthusiasts, market explorers, and laughter lovers!

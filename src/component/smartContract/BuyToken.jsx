@@ -133,9 +133,9 @@ export const BuyToken = () => {
     <>
     <DialogBox open={open} setOpen={setOpen}/>
     <Paper sx={{
-      width: 'fit-content',
-      backgroundColor: '#282C34',
-      borderRadius: 5,
+      //width: 'fit-content',
+     // backgroundColor: '#282C34',
+      borderRadius: 3,
       py:2,
       px:{xs:2,md:6}
     }}>
@@ -224,19 +224,21 @@ export const BuyToken = () => {
           justifyContent:'center'
         }}>
           { address ?
-          <Button variant='contained' round='rounded'
+          <Button variant='contained' color='main' round='rounded'
           //onClick={handleBuyToken}
           type='submit'
           sx={{
             textTransform: 'capitalize', //lowercase, capitalize, none
+            border: '1px solid white'
           }}>
             Buy Now
           </Button>
           :
-          <Button variant='contained' round='rounded'
+          <Button variant='contained' color='main' round='rounded'
           onClick={()=> setOpen(true)}
           sx={{
             textTransform: 'capitalize', //lowercase, capitalize, none
+            border: '1px solid white'
           }}>
             Buy Now
           </Button>

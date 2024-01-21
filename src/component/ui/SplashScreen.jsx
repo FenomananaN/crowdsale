@@ -6,7 +6,7 @@ import { ClimbingBoxLoader } from 'react-spinners'
 export const SplashScreen = () => {
   return (
     <Box sx={{
-        backgroundColor: '#282c34',
+        //backgroundColor: '#282c34',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -14,7 +14,7 @@ export const SplashScreen = () => {
         height: '100vh'
     }}
     >
-       <ClimbingBoxLoader size={20} color='#0B5E8F' loading={true}/>
+       <ClimbingBoxLoader size={20} color='#C2992D' loading={true}/>
     </Box>
   )
 }

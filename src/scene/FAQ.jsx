@@ -9,13 +9,13 @@ export const FAQ = ({id}) => {
   return (
     <Container sx={{py:3}} id={id}>
 
-        <Typography variant='h5' align='center' sx={{color: '#0B5E8F', fontWeight: 'bold'}}>FAQs</Typography>
+        <Typography variant='h5' align='center' sx={{color: '#C2992D', fontWeight: 'bold'}}>FAQs</Typography>
          <Accordion sx={{my:1}} defaultExpanded>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
+              //sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>
                     1. What is BITJOY?
@@ -23,7 +23,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               BITJOY is a playful and positive crypto token launched on the Binance Smart Chain (BSC). It aims to bring joy and optimism to the crypto community.</Typography>
@@ -32,10 +32,9 @@ export const FAQ = ({id}) => {
           
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>
                 2.  How can I buy BITJOY?
@@ -43,7 +42,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               You can buy BITJOY here, during the crowdsale, or later on exchange platforms after the launch.
@@ -53,10 +52,9 @@ export const FAQ = ({id}) => {
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
               3. What is the total supply of BITJOY?  
@@ -64,7 +62,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               The total supply of BITJOY is 21 billion units.              </Typography>
@@ -74,10 +72,9 @@ export const FAQ = ({id}) => {
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
               4. What are the benefits of BITJOY?  
@@ -85,7 +82,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               BITJOY offers a unique experience focused on positivity. Holders can enjoy an active and engaged community.              </Typography>
@@ -95,10 +92,9 @@ export const FAQ = ({id}) => {
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}> 
               5.  What is the contract address of BITJOY?   
@@ -106,7 +102,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               The contract address of BITJOY is {useTruncateString(tokenAddress)} that you can check on the Binance Smart Chain Explorer &nbsp;
@@ -121,10 +117,9 @@ export const FAQ = ({id}) => {
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
               6. How can I contribute to the development of the BITJOY community?  
@@ -132,7 +127,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               You can contribute by participating in discussions on our official communication channels, sharing ideas, and inviting others to join the community.              </Typography>
@@ -144,10 +139,9 @@ export const FAQ = ({id}) => {
 
           <Accordion sx={{my:1}}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon style={{ color: '#0B5E8F'}}/>}
+              expandIcon={<ExpandMoreIcon style={{ color: '#C2992D'}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              sx={{backgroundColor: '#282c34'}}
             >
               <Typography sx={{ fontWeight: 'bold'}}>  
               7. How can I actively engage in the BITJOY community?  
@@ -155,7 +149,7 @@ export const FAQ = ({id}) => {
             </AccordionSummary>
             <AccordionDetails
             sx={{
-              bgcolor: '#393f4a'
+              bgcolor: '#242323'
             }}>
               <Typography>
               To actively engage in the BITJOY community, join our discussion forums and social media channels. Share your ideas, engage in discussions, and provide suggestions. We encourage a dynamic and participative community.              </Typography>

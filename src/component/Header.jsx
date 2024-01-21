@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-//import useScrollTrigger from '@mui/material/useScrollTrigger'
 
 
 import Box from '@mui/material/Box'
@@ -15,8 +14,6 @@ import { Link } from 'react-scroll'
 
 import {ReactComponent as BitcoinLogo} from '../assets/icon/logo.svg'
 
-//import { ReactComponent as Telegram } from '../assets/icon/icons8-telegram-100.svg'
-//import { ReactComponent as Twitter } from '../assets/icon/icons8-twitterx-100.svg'
 import { ConnectWalletButton } from './smartContract/ConnectWallet'
 import { CancelOutlined } from '@mui/icons-material'
 import '../styles/style.css'
