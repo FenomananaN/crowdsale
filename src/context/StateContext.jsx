@@ -85,7 +85,7 @@ export const StateContextProvider = ({ children }) => {
  //index 
 //fetch core price
 const fetchCorePrice = () => {
-  cc.price('CORE','USD')
+  cc.price('BNB','USD')
   .then(price => setCoreRate(price.USD))
   .catch(()=>console.log("can't fetch core price"))
 }

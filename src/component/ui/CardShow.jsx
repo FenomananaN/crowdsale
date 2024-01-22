@@ -18,8 +18,8 @@ export const CardShow = ({value,currency,title}) => {
         </Box>
         <Box>
             
-            <Typography sx={{ fontSize: '1.6vw' }}> {value} {currency}</Typography>
-            <Typography sx={{ fontSize: '0.7vw' }} color="text.secondary" >{/** gutterBottom */}
+            <Typography sx={{ fontSize: {xs:'6vw',md:'1.6vw'} }}> {value} {currency}</Typography>
+            <Typography sx={{ fontSize: {xs:'4vw',md:'0.7vw'} }} color="text.secondary" >{/** gutterBottom */}
                 {title}
             </Typography>
         </Box>

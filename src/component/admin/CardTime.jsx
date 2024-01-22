@@ -11,14 +11,14 @@ export const CardTime = () => {
               <Divider orientation='vertical' sx={{borderLeftWidth:5,borderRightWidth:0, borderColor: '#0088ff'}}/>
             </Grid>
             <Grid item xs={11.8} pl={1}>
-              <Typography sx={{ fontSize: '1vw' }} color="text.secondary" gutterBottom>{/**  */}
+              <Typography sx={{ fontSize: {xs:'3vw',md:'1vw'} }} color="text.secondary" gutterBottom>{/**  */}
                     Presale ends in :
               </Typography>
               <Stack direction={'row'} alignItems={'center'} spacing={1}>
-                <AccessTimeOutlined style={{fontSize:'2.5vw'}}/>
-                <Typography sx={{ fontSize: '1.5vw', pr:6 }}> Dec 15, 2024</Typography>
+                <AccessTimeOutlined style={{fontSize:{xs:'8vw',md:'2.5vw'}}}/>
+                <Typography sx={{ fontSize: {xs:'6vw',md:'1.5vw'}, pr:6 }}> Dec 15, 2024</Typography>
                 <IconButton sx={{border: '1px solid white', borderRadius:2, p:0.4}}>
-                  <Edit style={{fontSize: '1.2vw'}}/>
+                  <Edit style={{fontSize: {xs:'8vw',md:'1.2vw'}}}/>
                 </IconButton>
               </Stack>
             </Grid>

@@ -99,11 +99,11 @@ const AdminLayout = () => {
     <Box>
         <ConnectWalletButton/>
         <Typography mt={3} mx={3}>
-            1 core = {coreRate} USD
+            1 BNB = {coreRate} USD
         </Typography>
         <Typography mx={3} mb={3}>
             
-        1 usd = {1/coreRate} CORE
+        1 usd = {1/coreRate} BNB
         </Typography>
 
         <Box sx={{

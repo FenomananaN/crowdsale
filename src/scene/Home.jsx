@@ -2,8 +2,12 @@ import { Box, Button, Container, Grid, Typography } from '@mui/material'
 import React from 'react'
 import tata from '../assets/image/home.webp'
 import { scroller } from 'react-scroll'
+import { useStateContext, useUserContext } from '../context'
 
 export const Home = ({id}) => {
+  const {preIco} = useStateContext()
+  const {claim} = useUserContext()
+
   const options = {
     offset:-55,
     duration: 500,
@@ -11,7 +15,8 @@ export const Home = ({id}) => {
   }
 
   const scrollToCrowdsale = () => {
-    scroller.scrollTo('Crowdsale',options)
+    const to = preIco === 2 ? 'Community': 'Crowdsale'
+    scroller.scrollTo(to,options)
   }
   return (
     <Box id={id} sx={{  
@@ -51,7 +56,8 @@ export const Home = ({id}) => {
                   border: '1px solid white',
                   mt:2,
                 }} >
-                  Claim Now
+                  {preIco === 1?'Buy Now' : preIco === 2? 
+                      'Join Community' : claim ? 'Claim Now' : 'Buy Now'}
                 </Button>
               </Box>
           </Grid>

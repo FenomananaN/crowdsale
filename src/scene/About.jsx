@@ -16,7 +16,7 @@ export const About = ({id}) => {
                         alt='tata'
                         width={{xs:'100%', md: 350}}
                         border={'2px solid white'}
-                        sx={{boxShadow:'6px 6px 10px 5px #111'}}
+                        sx={{boxShadow:'6px 6px 10px 13px #111'}}
                     />
                 </Grid>
                 <Grid item xs={12} md={8} sx={{display:'flex', alignItems:'center', mt:{xs:3,md:0}}}>
