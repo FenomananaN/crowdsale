@@ -65,6 +65,8 @@ export const BuyToken = () => {
       console.log('buyTokens')
       await buyTokens(crypto)
     }
+    setCrypto('')
+    setToken('')
     //console.log(crypto,grfToken)
   }
 
@@ -76,6 +78,9 @@ export const BuyToken = () => {
       console.log('buyTokens')
       await buyTokensWithUsdt(crypto)
     }
+
+    setCrypto('')
+    setToken('')
     //console.log(crypto,grfToken)
   }
 
@@ -139,7 +144,7 @@ export const BuyToken = () => {
       py:2,
       px:{xs:2,md:6}
     }}>
-      <Typography align='center'> 1 BITJOY = ${Math.floor((1/rate)*1000)/1000}</Typography>
+      <Typography align='center'> 1 BITJOY = ${Math.floor((1/rate)*10000)/10000}</Typography>
        <Stack direction={'row'} spacing={2} py={1}
         sx={{
           //width: 'fit-content'

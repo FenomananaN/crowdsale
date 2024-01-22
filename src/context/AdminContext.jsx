@@ -122,13 +122,36 @@ export const AdminContextProvider = ({children}) => {
       setLoading(false)
     }
   }
+  //set rate: the price of token setRate
+  //set Investor Target cap
+  const { mutateAsync: _setRatePrice } = useContractWrite(contractCrowdsale, 'setRate');
+  const setRatePrice = async (value) => {
+    setLoadingMessage(`setting the price of token to ${value}`)
+    setLoading(true)
+    value=Math.floor(1/value)
+    value = value.toString()
+    value=ethers.utils.parseUnits(value, 0)
+    
+    try {
+      const data = await _setRatePrice({
+				args: [
+          value
+				],
+			});
+
+      console.log("contract call to setRate successed", data)
+      setLoading(false)
+    } catch (error) {
+      console.log("contract call failure to setRate", error)
+      setLoading(false)
+    }
+  }
 
   //set Investor Target cap
   const { mutateAsync: _setInvestorTargetCap } = useContractWrite(contractCrowdsale, 'setInvestorTargetCap');
   const setInvestorTargetCap = async (value) => {
     setLoadingMessage(`setInvestorTargetCap ${value}`)
     setLoading(true)
-
     value=ethers.utils.parseUnits(value, usdtDecimal)
     
     try {
@@ -193,6 +216,7 @@ export const AdminContextProvider = ({children}) => {
           setInvestorTargetCap,
           setTimeCrowdsale,
           contributorList,
+          setRatePrice,
           login,
           walletOwner,
         }}>

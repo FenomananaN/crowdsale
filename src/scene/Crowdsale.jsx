@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance} = useStateContext()
+  const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate} = useStateContext()
   const {balance,claim} = useUserContext()
 
   const convertToReadableTime = () => {
@@ -38,7 +38,7 @@ export const Crowdsale = ({id}) => {
               flexDirection: 'column',
               alignItems: 'center'
             }}>
-              <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(investorTargetCap)} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
+              <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(crowdsaleTokenBalance)*(1/rate)} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
               <Typography sx={{
                 color: '#FFD700',
                 mt:1,

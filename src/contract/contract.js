@@ -47,3 +47,14 @@ export const currentChainId = 1115
 export const chain = CoreBlockchainTestnet
 export const linkSmartChain = 'scan.coredao.org'
 */
+
+
+/////kajy/////
+/*
+
+jeton amidy= 60% ny total supply = 12.6 milliard
+Fond leve = prix definit * nmbr jeton sale(ilay 12.6milliard izan)
+
+ 
+
+ */

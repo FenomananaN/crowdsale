@@ -22,12 +22,13 @@ export const Admin = () => {
 
 const AdminLayout = () => {
     const { token, preIco, coreRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
-    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale, contributorList} = useAdminContext()
+    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale, contributorList, setRatePrice} = useAdminContext()
 
     const [open, setOpen] = useState(false)
     const [targetCap,setTargetCap] = useState('')
     const [dateCrowdsale,setDateCrowdsale] = useState(null)
     const [timeCr,setTimeCr]= useState(null)
+    const [price, setPrice] = useState('')
 
     const handleEndPresale = () => {
         if(!address){
@@ -67,6 +68,23 @@ const AdminLayout = () => {
         } else {
             if(targetCap){
                 await setInvestorTargetCap(targetCap)
+            }
+            else {
+                alert('can be null')
+            }
+        }
+    }
+
+
+    const handleSetNewPrice = async () => {
+        if(!address){
+            setOpen(true)
+        } else {
+            if(price <= 1 && price >0 ){
+                await setRatePrice(price)
+            }
+            else if(price >1 || price<0){
+                alert('should be between 1 and 0')
             }
             else {
                 alert('can be null')
@@ -173,6 +191,14 @@ const AdminLayout = () => {
             
         }
 
+        <Box p={3}>
+            <Typography sx={{fontWeight:'bold'}}>Price of Bitjoy</Typography>
+            <Typography sx={{fontStyle:'italic'}}>Note: should be between 1 and 0</Typography>
+            <Stack direction={'row'} spacing={1}>
+                <TextField onChange={(e)=>setPrice(e.target.value)} color='main'/>
+                <Button variant='contained' color='main' onClick={handleSetNewPrice}>Set</Button>
+            </Stack>
+        </Box>
         <Box p={3}>
             <Typography>Target USDT to get</Typography>
             <Stack direction={'row'} spacing={1}>

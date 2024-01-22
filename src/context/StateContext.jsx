@@ -179,7 +179,7 @@ useEffect(()=>{
   const { data:getFundsRaised, isLoading:getFundsRaisedLoading, error:getFundsRaisedError } = useContractRead(contractCrowdsale, 'getFundsRaised');
   const [fundsRaised,setFundsRaised] = useState(0)
   const _setFundsRaised = () => {
-    setFundsRaised(ethers.utils.formatUnits(getFundsRaised,'mwei').toString())
+    setFundsRaised(ethers.utils.formatUnits(getFundsRaised,usdtDecimal).toString())
   }
 
   useEffect(()=>{
