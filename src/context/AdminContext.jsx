@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import React, { useContext, createContext, useEffect, useState } from 'react'
 import { useStateContext } from './StateContext';
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
-import { tokenAbi, tokenAddress } from '../contract';
+import { tokenAbi, tokenAddress, usdtDecimal } from '../contract';
 import { Loading } from '../component';
 import { Login } from '../auth';
 
@@ -129,7 +129,7 @@ export const AdminContextProvider = ({children}) => {
     setLoadingMessage(`setInvestorTargetCap ${value}`)
     setLoading(true)
 
-    value=ethers.utils.parseUnits(value, 6)
+    value=ethers.utils.parseUnits(value, usdtDecimal)
     
     try {
       const data = await _setInvestorTargetCap({
@@ -190,7 +190,7 @@ export const AdminContextProvider = ({children}) => {
           setCrowdsaleStage,
           contractRaw,
           connectToRawContract,
-          setInvestorTargetCap,
+          etInvestorTargetCapsetInvestorTargetCap,
           setTimeCrowdsale,
           contributorList,
           login,
