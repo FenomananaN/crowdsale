@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Container, Typography } 
 import React from 'react'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { tokenAddress } from '../contract'
+import { linkSmartChain, tokenAddress } from '../contract'
 import { useTruncateString } from '../utils'
 
 export const FAQ = ({id}) => {
@@ -106,7 +106,7 @@ export const FAQ = ({id}) => {
             }}>
               <Typography>
               The contract address of BITJOY is {useTruncateString(tokenAddress)} that you can check on the Binance Smart Chain Explorer &nbsp;
-             <a href={`https://scan.coredao.org/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'>bsc scan </a>
+             <a href={`https://${linkSmartChain}/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'>bsc scan </a>
               </Typography>
             </AccordionDetails>
           </Accordion>

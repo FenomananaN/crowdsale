@@ -3,7 +3,7 @@ import React from 'react'
 import TokenomicsTokenShare from '../assets/image/tokenomics.png'
 import { ChartLabel, CopyToClipboard } from '../component'
 import { Link } from 'react-router-dom'
-import { tokenAddress } from '../contract'
+import { linkSmartChain, tokenAddress } from '../contract'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import { useTruncateString } from '../utils'
 
@@ -55,7 +55,7 @@ export const Tokenomics = ({id}) => {
 
                                 <Typography mr={1}>Check on 
                                 </Typography>
-                                    <Box component={'a'} href={`https://scan.coredao.org/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'
+                                    <Box component={'a'} href={`https://${linkSmartChain}/address/${tokenAddress}`} target='_blank' rel='noopener noreferrer'
                                         sx={{
                                             //textDecoration: 'none',
                                             display: 'flex',
