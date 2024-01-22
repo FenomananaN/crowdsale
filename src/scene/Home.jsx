@@ -41,10 +41,10 @@ export const Home = ({id}) => {
               }}>
               Welcome to the Bitcoin Smiles!
               </Typography>
-              <Typography py={2} align='center' sx={{fontFamily: 'Merchant', fontSize: {sx:'0.8vw', md:'1.5vw'}}}>
+              <Typography py={2} align='center' sx={{ fontSize: {sx:'0.8vw', md:'1.5vw'}}}>
               Greetings Crypto Enthusiasts and Smilers alike!
               </Typography>
-              <Typography align='center' sx={{fontFamily: 'Monoid'}}>
+              <Typography align='center'>
               We're thrilled to have you join the Bitcoin Smiles! community – the home of joyous resilience in the crypto world. Whether you're a seasoned trader, a meme connoisseur, or just someone who appreciates a good laugh amidst market fluctuations, you're in the right place!
               </Typography>
 

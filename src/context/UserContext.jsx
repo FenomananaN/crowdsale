@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import React, { useContext, createContext, useEffect, useState } from 'react'
 //import { useStateContext } from './StateContext';
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
-import { crowdsaleAddress } from '../contract';
+import { crowdsaleAddress, usdtDecimal } from '../contract';
 import { useStateContext } from '.';
 import { Loading } from '../component';
 
@@ -37,7 +37,7 @@ export const UserContextProvider = ({children}) => {
 
       //get balance teher
       const balance = await tetherContract.contract.balanceOf(address)
-      setUsdtBalance(Number(ethers.utils.formatUnits(balance, "mwei")))
+      setUsdtBalance(Number(ethers.utils.formatUnits(balance, usdtDecimal)))
       
       
     } catch (e){
@@ -145,7 +145,7 @@ useEffect(()=>{getNativeEth()},[address])
     setLoadingMessage(`Buying ${value*rate} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
-    value=ethers.utils.parseUnits(value, 6)
+    value=ethers.utils.parseUnits(value, usdtDecimal)
 
     try {
       const data = await _buyTokensWithUsdt({
@@ -208,7 +208,7 @@ useEffect(()=>{getNativeEth()},[address])
     setLoading(true)
 
     
-    value=ethers.utils.parseUnits(value, 6)
+    value=ethers.utils.parseUnits(value, usdtDecimal)
     
     try {
       //Approuve theher

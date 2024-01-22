@@ -16,6 +16,7 @@ export const tetherAddress ='0x55d398326f99059ff775485246999027b3197955'
 export const currentChainId = 56 
 export const chain = 'binance'
 export const linkSmartChain = 'bscscan.com'
+export const usdtDecimal = 18
 */
 
 //bnb smart chain testnet
@@ -25,6 +26,7 @@ export const tetherAddress ='0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684'
 export const currentChainId = 97
 export const chain = 'binance-testnet'
 export const linkSmartChain = 'testnet.bscscan.com'
+export const usdtDecimal = 18
 
 /*
 //core blockchain mainet

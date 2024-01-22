@@ -2,7 +2,7 @@ import { useAddress, useBalance, useConnectionStatus, useContract, useContractRe
 import { ethers } from 'ethers';
 import React, { useContext, createContext, useEffect, useState } from 'react'
 import { Loading, SplashScreen } from '../component'
-import { crowdsaleAbi, crowdsaleAddress, tetherAbi, tetherAddress, tokenAbi, tokenAddress } from '../contract';
+import { crowdsaleAbi, crowdsaleAddress, tetherAbi, tetherAddress, tokenAbi, tokenAddress, usdtDecimal } from '../contract';
 
 //index
 const cc= require('cryptocompare')
@@ -237,7 +237,7 @@ useEffect(()=>{
   const { data:getInvestorTargetCap, isLoading:getInvestorTargetCapLoading, error:getInvestorTargetCapError } = useContractRead(contractCrowdsale, 'getInvestorTargetCap');
   const [investorTargetCap,setInvestorTargetCap] = useState(0)
   const _setInvestorTargetCap = () => {
-    setInvestorTargetCap(ethers.utils.formatUnits(getInvestorTargetCap,'mwei').toString())
+    setInvestorTargetCap(ethers.utils.formatUnits(getInvestorTargetCap,usdtDecimal).toString())
   }
 
   useEffect(()=>{
