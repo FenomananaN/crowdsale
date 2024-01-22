@@ -190,7 +190,7 @@ export const AdminContextProvider = ({children}) => {
           setCrowdsaleStage,
           contractRaw,
           connectToRawContract,
-          etInvestorTargetCapsetInvestorTargetCap,
+          setInvestorTargetCap,
           setTimeCrowdsale,
           contributorList,
           login,
