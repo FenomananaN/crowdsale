@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useAdminContext, useStateContext } from '../../context'
 import { ethers } from 'ethers'
 import { Table } from './Table'
+import { usdtDecimal } from '../../contract'
 
 export const Contributor = ({data}) => {
   const [rows,setRows] = useState([])
@@ -52,7 +53,7 @@ const getContrubitorRow = async (address,contractCrowdsale,setRows) => {
 
     const getFundContribution = async (address) => {
         let fundcontribution = await contractCrowdsale.call('getUserFundContribution',[address])
-        fundcontribution= ethers.utils.formatUnits(fundcontribution,'mwei')
+        fundcontribution= ethers.utils.formatUnits(fundcontribution,usdtDecimal)
         return fundcontribution
       }
 
