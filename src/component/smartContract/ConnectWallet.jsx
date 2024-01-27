@@ -3,6 +3,7 @@ import {
   useNetworkMismatch,
   useNetwork,
   ConnectWallet,
+  darkTheme,
  // useAddress,
  // useConnectionStatus
   } from "@thirdweb-dev/react";
@@ -28,7 +29,10 @@ export const ConnectWalletButton = () => {
 
   return (
     <ConnectWallet
-      theme={"dark"}
+      
+      theme={darkTheme({
+        colors: { secondaryText: "#fff" },
+      })}
       modalTitle={"Choisir Wallet"}
       btnTitle={"CONNECT WALLET"}
       //modalSize={"compact"}

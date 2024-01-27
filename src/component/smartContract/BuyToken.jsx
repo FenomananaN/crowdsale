@@ -137,13 +137,14 @@ export const BuyToken = () => {
   return (
     <>
     <DialogBox open={open} setOpen={setOpen}/>
-    <Paper sx={{
+   {/*  <Paper sx={{
       //width: 'fit-content',
      // backgroundColor: '#282C34',
       borderRadius: 3,
       py:2,
       px:{xs:2,md:6}
-    }}>
+    }}>*/}
+    <Box>
       <Typography align='center'> 1 BITJOY = ${Math.floor((1/rate)*10000)/10000}</Typography>
        <Stack direction={'row'} spacing={2} py={1}
         sx={{
@@ -251,7 +252,8 @@ export const BuyToken = () => {
         </Box>
       </form>
       </FormProvider>
-    </Paper>
+      </Box>
+    {/*</Paper>*/}
     </>
   )
 }
