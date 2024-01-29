@@ -23,9 +23,6 @@ export const StateContextProvider = ({ children }) => {
   //index
   const [coreRate,setCoreRate] = useState()
 
-  //index
-  const [rate,setRate] = useState(null)
-
   //global index
   //loading transaction
   const [isLoading,setLoading] = useState(false)
@@ -122,6 +119,7 @@ useEffect(()=>{
 
   
   
+  const [rate,setRate] = useState(null)
   //index
   const { data:_usdRate, isLoading:usdRateLoading, error: usdRateError } = useContractRead(contractCrowdsale, 'getRate')
   useEffect(()=>{
@@ -129,6 +127,37 @@ useEffect(()=>{
       setRate(Number(_usdRate))
     }
   },[_usdRate])
+
+  //
+  //firstRate getFirstRate
+  const [firstRate,setFirstRate] = useState(null)
+  const { data:_usdFirstRate } = useContractRead(contractCrowdsale, 'getFirstRate')
+  useEffect(()=>{
+    if(_usdFirstRate !== undefined){
+      setFirstRate(Number(_usdFirstRate))
+    }
+  },[_usdFirstRate])
+
+  //secondRate getSecondRate
+
+  const [secondRate,setSecondRate] = useState(null)
+  const { data:_usdSecondRate } = useContractRead(contractCrowdsale, 'getSecondRate')
+  useEffect(()=>{
+    if(_usdSecondRate !== undefined){
+      setSecondRate(Number(_usdSecondRate))
+    }
+  },[_usdSecondRate])
+
+  //thirdRate getThirdRate
+
+  const [thirdRate,setThirdRate] = useState(null)
+  const { data:_usdThirdRate } = useContractRead(contractCrowdsale, 'getThirdRate')
+  useEffect(()=>{
+    if(_usdThirdRate !== undefined){
+      setThirdRate(Number(_usdRate))
+    }
+  },[_usdThirdRate])
+
 
 //index
 //set token data
@@ -289,6 +318,9 @@ useEffect(()=>{
         token,
         coreRate,
         rate,
+        firstRate,
+        secondRate,
+        thirdRate,
         fundsRaised,
         usdtRaised,
         weiRaised,

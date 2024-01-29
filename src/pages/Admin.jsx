@@ -21,7 +21,7 @@ export const Admin = () => {
 }
 
 const AdminLayout = () => {
-    const { token, preIco, coreRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
+    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
     const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale, contributorList, setRatePrice} = useAdminContext()
 
     const [open, setOpen] = useState(false)
@@ -153,6 +153,15 @@ const AdminLayout = () => {
             <Typography>Token Sold: {tokenSold} BITJOY</Typography>
             <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
             <Typography>Token Owned By SmartContract: {numberFormatter.format(crowdsaleTokenBalance)} BITJOY</Typography>
+            <Box>
+                <Typography>
+                    BITJOY PRICE
+                </Typography>
+                <Typography>Current Price: {1/rate}</Typography>
+                <Typography>1 Round Price: {1/firstRate}</Typography>
+                <Typography>2 Round Price: {1/secondRate}</Typography>
+                <Typography>3 Round Price: {1/thirdRate}</Typography>
+            </Box>
         </Box>
 
         <Box p={3}>
