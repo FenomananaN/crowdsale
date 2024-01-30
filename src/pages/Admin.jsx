@@ -1,13 +1,11 @@
-import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import {CardShow, CardTime, ConnectWalletButton, Contributor, DialogBox, MintToken, Table} from '../component'
+import {CardShow, CardTime, ConnectWalletButton, Contributor, DialogBox, MintToken, ShowTime, Table} from '../component'
 import { AdminContextProvider, useAdminContext, useStateContext } from '../context'
 
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
 //import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
-import { DatePicker, TimePicker } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+
 import dayjs from 'dayjs'
 import { numberFormatter } from '../utils'
 
@@ -20,15 +18,36 @@ export const Admin = () => {
    
 }
 
+
 const AdminLayout = () => {
-    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
-    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap,setTimeCrowdsale, contributorList, setRatePrice} = useAdminContext()
+    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
+    const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap, contributorList, setRatePrice , setRoundRatePrice} = useAdminContext()
 
     const [open, setOpen] = useState(false)
     const [targetCap,setTargetCap] = useState('')
-    const [dateCrowdsale,setDateCrowdsale] = useState(null)
-    const [timeCr,setTimeCr]= useState(null)
+
     const [price, setPrice] = useState('')
+
+    //for setting price
+    const [round,setRound] = useState('')
+    const [roundPrice,setRoundPrice] = useState('')
+    const [roundPriceError, setRoundPriceError] = useState('')
+    const onSelectRoundChange = (e) => {
+        setRound(e.target.value)
+    }
+    const handleChangeRoundPrice = async () => {
+        if( !round || !roundPrice){
+            setRoundPriceError('Round or price cannot be null')
+            return null
+        }
+        else if( roundPrice > 1 || roundPrice <= 0){
+            setRoundPriceError('Round price should be between 1 and 0')
+            return null
+        }
+        else if( roundPrice <=1 && roundPrice > 0){
+            await setRoundRatePrice(round,roundPrice);
+        }
+    }
 
     const handleEndPresale = () => {
         if(!address){
@@ -38,18 +57,32 @@ const AdminLayout = () => {
         }
     }
 
-    const handleBackToPresale = () => {
+    const handleGoToRoundOne = () => {
         if(!address){
             setOpen(true)
         } else {
         setCrowdsaleStage('PreIco', 1)
         }
     }
+    const handleGoToRoundTwo = () => {
+        if(!address){
+            setOpen(true)
+        } else {
+        setCrowdsaleStage('PreIco', 2)
+        }
+    }
+    const handleGoToRoundThree = () => {
+        if(!address){
+            setOpen(true)
+        } else {
+        setCrowdsaleStage('PreIco', 3)
+        }
+    }
     const handleGoToCommunity = () => {
         if(!address){
             setOpen(true)
         } else {
-        setCrowdsaleStage('Community', 2)
+        setCrowdsaleStage('Community', 4)
         }
     }
 
@@ -92,25 +125,7 @@ const AdminLayout = () => {
         }
     }
 
-    const handleTimeCrowdsale =async () => {
-        if(!address){
-            setOpen(true)
-        } else {
-
-            if(dateCrowdsale !== null && timeCr !== null){
-                const newTime= dayjs(dateCrowdsale.format('YYYY-MM-DD')+' '+timeCr.format('HH:mm:ss'))
-                console.log(newTime.toString())
-                console.log(newTime.format('YYYY-MM-DD HH:mm:ss'))
-                console.log(newTime.unix())
-
-                await setTimeCrowdsale(newTime.unix().toString())
-            }
-            else{
-                alert('can t be null')
-            }
-        }
-    }
-
+    
   return (
     <>
     <DialogBox open={open} setOpen={setOpen}/>
@@ -149,6 +164,8 @@ const AdminLayout = () => {
             <Typography>BNB Raised: {weiRaised} BNB</Typography>
             <Typography>Usdt Raised: {usdtRaised} USDT</Typography>
             <Typography>Time : {timeCrowdsale} sec</Typography>
+            <Typography>Second Time: {secondTimeCrowdsale}</Typography>
+            <Typography>Third Time: {thirdTimeCrowdsale}</Typography>
             <Typography>Target Cap: {investorTargetCap} USDT</Typography>
             <Typography>Token Sold: {tokenSold} BITJOY</Typography>
             <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
@@ -164,48 +181,99 @@ const AdminLayout = () => {
             </Box>
         </Box>
 
+        <Paper sx={{m:3, p:2}}>
+            <Typography>PRESALE ROUND</Typography>
+            {(() => {
+                switch (preIco) {
+                case 0:
+                    return (<>
+                    <Typography> PRESALE FINISHED</Typography>
+                    <Stack direction={'row'} my={2} spacing={1}>
+                        <Button variant='contained' color='main' onClick={handleGoToCommunity}>Community</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundOne}>Round 1</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundTwo}>Round 2</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundThree}>Round 3</Button>
+                    </Stack>
+                    </>)
+                case 1:
+                    return ( <>
+                    <Typography>Round 1</Typography>
+                    <Stack direction={'row'} my={2} spacing={1}>
+                        <Button variant='contained' color='main' onClick={handleGoToCommunity}>Community</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundTwo}>Round 2</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundThree}>Round 3</Button>
+                        <Button variant='contained' color='main' onClick={handleEndPresale}>Finish Presale</Button>
+                    </Stack>
+                    </>)
+                case 2:
+                    return (<>
+                    <Typography>Round 2</Typography>
+                    <Stack direction={'row'} my={2} spacing={1}>
+                        <Button variant='contained' color='main' onClick={handleGoToCommunity}>Community</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundOne}>Round 1</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundThree}>Round 3</Button>
+                        <Button variant='contained' color='main' onClick={handleEndPresale}>Finish Presale</Button>
+                    </Stack>
+                    </>)
+                case 3:
+                    return (<>
+                    <Typography>Round 3</Typography>
+                    <Stack direction={'row'} my={2} spacing={1}>
+                        <Button variant='contained' color='main' onClick={handleGoToCommunity}>Community</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundOne}>Round 1</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundTwo}>Round 2</Button>
+                        <Button variant='contained' color='main' onClick={handleEndPresale}>Finish Presale</Button>
+                    </Stack>
+                    </>)
+                case 4:
+                    return (<>
+                    <Typography> Round Finding Community</Typography>
+                    <Stack direction={'row'} my={2} spacing={1}>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundOne}>Round 1</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundTwo}>Round 2</Button>
+                        <Button variant='contained' color='main' onClick={handleGoToRoundThree}>Round 3</Button>
+                        <Button variant='contained' color='main' onClick={handleEndPresale}>Finish Presale</Button>
+                    </Stack>
+                    </>)
+                default:
+                    return null
+        }
+      })()}
+        </Paper>
+
         <Box p={3}>
             { contributorList !== null && <Contributor data={contributorList}/>
             }
         </Box>
 
-        
-
-        {preIco  === 1 ? 
-        <Box p={3}>
-        <Typography>We are on preSale</Typography>
-        <Typography>End presale now</Typography>
-        <Stack direction={'row'} spacing={1}>
-            <Button  variant='contained' onClick={handleGoToCommunity}>Go to community</Button>        
-            <Button variant='contained' onClick={handleEndPresale}>End Presale</Button>
-        </Stack>
-        </Box>
-        : preIco  === 0 ?
-            <Box p={3}>
-            <Typography>You've terminate presale</Typography>
-            <Typography>Go back to presale</Typography>
-            <Stack direction={'row'} spacing={1}>
-                <Button  variant='contained' onClick={handleGoToCommunity}>Go to community</Button>
-                <Button variant='contained' onClick={handleBackToPresale}>Back to presale</Button>
-            </Stack>
-            </Box>
-            :
-            <Box p={3}>
-                <Typography>You are finding communauty</Typography>
-                <Stack direction={'row'} spacing={1}>
-                    <Button variant='contained'  onClick={handleBackToPresale}> Go to Presale</Button>
-                    <Button  variant='contained' onClick={handleEndPresale}>End Presale</Button>
-                </Stack>
-            </Box>
-            
-        }
-
+    
         <Box p={3}>
             <Typography sx={{fontWeight:'bold'}}>Price of Bitjoy</Typography>
             <Typography sx={{fontStyle:'italic'}}>Note: should be between 1 and 0</Typography>
             <Stack direction={'row'} spacing={1}>
                 <TextField onChange={(e)=>setPrice(e.target.value)} color='main'/>
                 <Button variant='contained' color='main' onClick={handleSetNewPrice}>Set</Button>
+            </Stack>
+            <Typography pt={2}>PRICE OF EACH ROUND</Typography>
+            <Typography sx={{fontStyle:'italic'}}>Note: should be between 1 and 0</Typography>
+            <Stack direction={'row'} mt={1} spacing={1}>
+                <FormControl color='main' sx={{width:120}}>
+                    <InputLabel id="round-label" >Round</InputLabel>
+                    <Select
+                        labelId="round-label"
+                        id="round-select"
+                        value={round}
+                        label="Round"
+                        onChange={onSelectRoundChange}
+                        error={Boolean(roundPriceError)}
+                    >
+                        <MenuItem value={'1'}>Round 1</MenuItem>
+                        <MenuItem value={'2'}>Round 2</MenuItem>
+                        <MenuItem value={'3'}>Round 3</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField color='main' onChange={(e)=>setRoundPrice(e.target.value)} error={Boolean(roundPriceError)} helperText={roundPriceError}/>
+                <Button color='main' variant='contained' onClick={handleChangeRoundPrice}>Set</Button>
             </Stack>
         </Box>
         <Box p={3}>
@@ -215,19 +283,11 @@ const AdminLayout = () => {
                 <Button variant='contained' onClick={handleSetNewTargetCap}>Change</Button>
             </Stack>
         </Box>
-        <CardTime/>
-        <Box p={3} display={'flex'} flexDirection={'column'} sx={{width:'fit-content'}}>
-
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker value={dateCrowdsale} onChange={(newValue) => setDateCrowdsale(newValue)} />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <TimePicker value={timeCr} onChange={(newValue) => setTimeCr(newValue)} />
-            </LocalizationProvider>
-
-            <Button variant='contained' onClick={handleTimeCrowdsale}>Set</Button>
+        <Box p={3}>
+            {timeCrowdsale && <ShowTime round={1} time={timeCrowdsale}/>}
+            {secondTimeCrowdsale && <ShowTime round={2} time={secondTimeCrowdsale}/>}
+            {thirdTimeCrowdsale && <ShowTime round={3} time={thirdTimeCrowdsale} />}
         </Box>
-
         
         <MintToken/>
         

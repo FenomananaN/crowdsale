@@ -106,13 +106,13 @@ export const Crowdsale = ({id}) => {
 }
 
 const StageCrowdsale = ({round , preIco, balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSold, convertToReadableTime}) =>{
+  console.log("ROUNDDDD",round, preIco )
   return(
     <>
     {(() => {
         switch (round) {
           case 1 :
-            return (
-            <>
+            return ( <>
             { preIco === round ?
               <>
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>

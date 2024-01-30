@@ -277,7 +277,7 @@ useEffect(()=>{
   //END get contract crowdsale investor target cap
 
 
-  //get contract crowdsale wei raised
+  //get first time crowdsale
   const { data:getTimeCrowdsale, isLoading:getTimeCrowdsaleLoading, error:getTimeCrowdsaleError } = useContractRead(contractCrowdsale, 'getTimeCrowdsale');
   const [timeCrowdsale,setTimeCrowdsale] = useState(0)
   const _setTimeCrowdsale = () => {
@@ -289,7 +289,37 @@ useEffect(()=>{
       _setTimeCrowdsale()
     }
   },[getTimeCrowdsale])
-  //END get contract crowdsale wei raised
+  //END get first time crowdsale
+
+
+  //get second time crowdsale
+  const { data:getSecondTimeCrowdsale } = useContractRead(contractCrowdsale, 'getSecondTimeCrowdsale');
+  const [secondTimeCrowdsale,setSecondTimeCrowdsale] = useState(0)
+  const _setSecondTimeCrowdsale = () => {
+    setSecondTimeCrowdsale(getSecondTimeCrowdsale.toString())
+  }
+
+  useEffect(()=>{
+    if(getSecondTimeCrowdsale){
+      _setSecondTimeCrowdsale()
+    }
+  },[getSecondTimeCrowdsale])
+  //END second time crowdsale
+
+
+  //get second time crowdsale
+  const { data:getThirdTimeCrowdsale } = useContractRead(contractCrowdsale, 'getThirdTimeCrowdsale');
+  const [thirdTimeCrowdsale,setThirdTimeCrowdsale] = useState(0)
+  const _setThirdTimeCrowdsale = () => {
+    setThirdTimeCrowdsale(getThirdTimeCrowdsale.toString())
+  }
+
+  useEffect(()=>{
+    if(getThirdTimeCrowdsale){
+      _setThirdTimeCrowdsale()
+    }
+  },[getThirdTimeCrowdsale])
+  //END second time crowdsale
 
 
   //get contract crowdsale wei raised
@@ -326,6 +356,8 @@ useEffect(()=>{
         weiRaised,
         investorTargetCap,
         timeCrowdsale,
+        secondTimeCrowdsale,
+        thirdTimeCrowdsale,
         tokenSold,
         crowdsaleTokenBalance,
       }}
