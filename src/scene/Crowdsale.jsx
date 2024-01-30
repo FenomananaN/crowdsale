@@ -1,20 +1,19 @@
-import { Container, Typography , Box, Paper, BottomNavigation, BottomNavigationAction} from '@mui/material'
+import { Container, Typography , Button, Box, Paper, BottomNavigation, BottomNavigationAction, Tabs, Tab} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useStateContext, useUserContext } from '../context'
 import { BuyToken, ClaimToken, Countdown, ProgressBar } from '../component'
 import dayjs from 'dayjs'
-import { Button } from 'react-scroll'
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate} = useStateContext()
+  const {preIco, fundsRaised, investorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate,firstRate,secondRate,thirdRate,} = useStateContext()
   const {balance,claim} = useUserContext()
 
   const convertToReadableTime = () => {
     //console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
     return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
   }
-
+   console.log("preIco",preIco);
   const [round,setRound] = useState(preIco)
 
   const handleRound = (event,value) => {
@@ -29,7 +28,8 @@ export const Crowdsale = ({id}) => {
         <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#C2992D', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
 
         {/* NAvigation Phase */}
-        <BottomNavigation showLabels sx={{ width: 'fit-content',backgroundColor: 'transparent' }} value={round} onChange={handleRound}>
+        <Box sx={{display:'flex', justifyContent:'center'}}>
+        <BottomNavigation showLabels color={'main'} sx={{ width: {xs:'100%',md:'20vw'} , border:'1px solid #111', borderRadius:2, my:2}} value={round} onChange={handleRound}>
           <BottomNavigationAction sx={{ borderTopLeftRadius: 12, borderBottomLeftRadius:12}}
             label="Round 1"
             value={1}
@@ -43,6 +43,17 @@ export const Crowdsale = ({id}) => {
             value={3}
           />
         </BottomNavigation>
+        </Box>
+
+        <Box sx={{display:'flex', justifyContent:'center', my:3}}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={round} onChange={handleRound}>
+              <Tab label="Round One" value={1}/>
+              <Tab label="Round Two" value={2}/>
+              <Tab label="Round Three"  value={3}/>
+            </Tabs>
+          </Box>
+        </Box>
         {/* END NAvigation Phase */}
 
         {(() => {
@@ -65,8 +76,13 @@ export const Crowdsale = ({id}) => {
               <BuyToken/>}
               </Box>
             )
-          case 1 || 2 || 3:
-          return <StageCrowdsale round={round} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+          
+          case 1:
+              return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={firstRate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+          case 2:
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={secondRate}firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+          case 3:
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={thirdRate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
           case 4:
             return (
               <>
@@ -105,7 +121,7 @@ export const Crowdsale = ({id}) => {
   )
 }
 
-const StageCrowdsale = ({round , preIco, balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSold, convertToReadableTime}) =>{
+const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised,crowdsaleTokenBalance,rate,firstRate,secondRate,thirdRate, tokenSold, convertToReadableTime}) =>{
   console.log("ROUNDDDD",round, preIco )
   return(
     <>
@@ -118,7 +134,7 @@ const StageCrowdsale = ({round , preIco, balance,fundsRaised,crowdsaleTokenBalan
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond/>: <CommingRound/>
+                  <FinishedRond round={round} setRound={setRound} price={1/firstRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={1/firstRate} currentRound={preIco}/>
             }
             </>)
           case 2 :
@@ -129,7 +145,7 @@ const StageCrowdsale = ({round , preIco, balance,fundsRaised,crowdsaleTokenBalan
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond/>: <CommingRound/>
+                  <FinishedRond round={round} setRound={setRound} price={1/secondRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={1/secondRate} currentRound={preIco}/>
             }
             </>)
           case 3 :
@@ -140,7 +156,7 @@ const StageCrowdsale = ({round , preIco, balance,fundsRaised,crowdsaleTokenBalan
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond/>: <CommingRound/>
+                  <FinishedRond round={round} setRound={setRound} price={1/thirdRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={1/thirdRate} currentRound={preIco}/>
             }
             </>)
           default:
@@ -192,21 +208,22 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
 
 }
 
-const CommingRound = ({price, round}) => {
+const CommingRound = ({price, round , setRound, currentRound}) => {
   return (
-    <Box>
-      <Typography color='main' sx={{fontWeight: 'bold'}}>ROUND {round}</Typography>
-      Buy before the price will increase into <span>$ {price}</span> 
+    <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+      <Typography align={'center'} color='main' sx={{fontWeight: 'bold',my:1}}>ROUND {round}</Typography>
+      <Typography align='center' sx={{my:1}}>Buy before the price will increase into <span>$ {price}</span> </Typography>
+      <Button variant='contained' color={'main'} onClick={()=>{setRound(currentRound)}}>Go to Round {currentRound}</Button>
     </Box>
   )
 }
 
-const FinishedRond = ({round, price , currentRound}) =>{
+const FinishedRond = ({round,setRound, price , currentRound}) =>{
   return (
-    <Box>
-      <Typography>Round {round} was finished</Typography>
-      <Typography>The price was:  <span>{price}</span></Typography>
-      <Button variant='contained' color='main'> Go to round {currentRound}</Button>
+    <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', py:1}}>
+      <Typography sx={{my:1}}>Round {round} was finished</Typography>
+      <Typography sx={{my:1}}>The price was:  <span>${price}</span></Typography>
+      <Button variant='contained' sx={{my:1}} color='main' onClick={()=>{setRound(currentRound)}}> Go to round {currentRound}</Button>
     </Box>
   )
 }
