@@ -11,15 +11,19 @@ export const Crowdsale = ({id}) => {
 
   const convertToReadableTime = () => {
     //console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
-    return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    //console.log('time',dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
+    return dayjs.unix(timeCrowdsale).add(2,'hour').format('YYYY-MM-DD HH:mm:ss')
   }
    console.log("preIco",preIco);
   const [round,setRound] = useState(preIco)
 
+  useEffect(()=>{
+    setRound(preIco)
+  },[preIco])
+
   const handleRound = (event,value) => {
     setRound(value)
   }
-
 
   return (
     <Container id={id} sx={{mt:9}}>
@@ -76,13 +80,13 @@ export const Crowdsale = ({id}) => {
               <BuyToken/>}
               </Box>
             )
-          
+    
           case 1:
-              return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={firstRate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+              return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
           case 2:
-            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={secondRate}firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate}firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
           case 3:
-            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={thirdRate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={crowdsaleTokenBalance} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
           case 4:
             return (
               <>
@@ -164,7 +168,6 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised,crowdsaleT
         }
       })()
     }
-     
   </>
   )
 }

@@ -154,7 +154,7 @@ useEffect(()=>{
   const { data:_usdThirdRate } = useContractRead(contractCrowdsale, 'getThirdRate')
   useEffect(()=>{
     if(_usdThirdRate !== undefined){
-      setThirdRate(Number(_usdRate))
+      setThirdRate(Number(_usdThirdRate))
     }
   },[_usdThirdRate])
 

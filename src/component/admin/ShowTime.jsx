@@ -38,8 +38,9 @@ const DialogChange = ({open,setOpen, round}) => {
                 console.log(newTime.format('YYYY-MM-DD HH:mm:ss'))
                 console.log(newTime.unix())
 
-                await setTimeCrowdsale(newTime.unix().toString())
+                await setTimeCrowdsale(newTime.unix().toString(), round)
             }
+
             else{
                 alert('can t be null')
             }

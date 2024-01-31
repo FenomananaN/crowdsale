@@ -36,11 +36,11 @@ const TimeShow = ({label,value}) => {
 
 const getTimeLeft = (countdownTarget) => {
 
-	const totalTimeLeft = new Date(countdownTarget).getTime()-new Date().getTime();
+	const totalTimeLeft = (new Date(countdownTarget).getTime()-new Date().getTime());
 	const days = Math.floor(totalTimeLeft / (1000 * 60 * 60 * 24));
-	const hours = Math.floor((totalTimeLeft / (1000 * 60 * 60)) % 24);
-	const minutes = Math.floor((totalTimeLeft / (1000 * 60)) % 60);
-	const seconds = Math.floor((totalTimeLeft / 1000) % 60);
+	const hours = Math.floor((totalTimeLeft % (1000 * 60 * 60 *24)) / (1000*60*60));
+	const minutes = Math.floor((totalTimeLeft % (1000 * 60 * 60)) / (1000*60));
+	const seconds = Math.floor((totalTimeLeft % (1000*60)) / 1000);
 	return { days, hours, minutes, seconds }
 }
 

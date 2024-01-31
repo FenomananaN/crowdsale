@@ -198,16 +198,18 @@ export const AdminContextProvider = ({children}) => {
 
   //set time crowdsale
   const { mutateAsync: _setTimeCrowdsale } = useContractWrite(contractCrowdsale, 'setTimeCrowdsale');
-  const setTimeCrowdsale = async (value) => {
+  const setTimeCrowdsale = async (value,stage) => {
     setLoadingMessage(`setTimeCrowdsale ${value}`)
     setLoading(true)
 
     value=ethers.utils.parseUnits(value, 0)
+    stage=ethers.utils.parseUnits(stage.toString(), 0)
     
     try {
       const data = await _setTimeCrowdsale({
 				args: [
-          value
+          value,
+          stage
 				],
 			});
 

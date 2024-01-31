@@ -56,8 +56,20 @@ export const Home = ({id}) => {
                   border: '1px solid white',
                   mt:2,
                 }} >
-                  {preIco === 1?'Buy Now' : preIco === 2? 
-                      'Join Community' : claim ? 'Claim Now' : 'Buy Now'}
+                  {(()=>{
+                    switch (preIco) {
+                      case 0:
+                        return 'Claim Now'
+                      case 1:
+                        return 'Buy Now'
+                      case 2:
+                        return 'Buy Now'
+                      case 3:
+                        return 'Buy Now'
+                      case 4: 
+                        return 'Community'
+                    }
+                  })()}
                 </Button>
               </Box>
           </Grid>
