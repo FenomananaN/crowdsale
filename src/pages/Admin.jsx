@@ -6,8 +6,8 @@ import { AdminContextProvider, useAdminContext, useStateContext } from '../conte
 import {ReactComponent as  UsdtIcon} from '../assets/icon/tether-seeklogo.com.svg'
 //import {ReactComponent as  EtheriumIcon} from '../../assets/icon/ethereum-eth.svg'
 
-import dayjs from 'dayjs'
-import { numberFormatter } from '../utils'
+//import dayjs from 'dayjs'
+import { convertToRate, numberFormatter } from '../utils'
 
 export const Admin = () => {
     return (
@@ -20,11 +20,15 @@ export const Admin = () => {
 
 
 const AdminLayout = () => {
-    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
+
+    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
     const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap, contributorList, setRatePrice , setRoundRatePrice} = useAdminContext()
 
     const [open, setOpen] = useState(false)
+
     const [targetCap,setTargetCap] = useState('')
+    const [targetCapError, setTargetCapError] = useState('')
+    
 
     const [price, setPrice] = useState('')
 
@@ -48,6 +52,26 @@ const AdminLayout = () => {
             await setRoundRatePrice(round,roundPrice);
         }
     }
+
+    //TARGETCAP
+    const handleSetNewTargetCap = async () => {
+        if(!address){
+            setOpen(true)
+        } else {
+            if( !round || !targetCap){
+                setTargetCapError('Round or targetCap cannot be null')
+                return null
+            }
+            else if( targetCap < 0){
+                setTargetCapError('TargetCap should be positive')
+                return null
+            }
+            else if( targetCap >= 0){
+                await setInvestorTargetCap(round,targetCap)
+            }
+        }
+    }
+    //END TARGETCAP
 
     const handleEndPresale = () => {
         if(!address){
@@ -92,19 +116,6 @@ const AdminLayout = () => {
             setOpen(true)
         } else {
             await withdrawUsdt()
-        }
-    }
-
-    const handleSetNewTargetCap = async () => {
-        if(!address){
-            setOpen(true)
-        } else {
-            if(targetCap){
-                await setInvestorTargetCap(targetCap)
-            }
-            else {
-                alert('can be null')
-            }
         }
     }
 
@@ -166,7 +177,9 @@ const AdminLayout = () => {
             <Typography>Time : {timeCrowdsale} sec</Typography>
             <Typography>Second Time: {secondTimeCrowdsale}</Typography>
             <Typography>Third Time: {thirdTimeCrowdsale}</Typography>
-            <Typography>Target Cap: {investorTargetCap} USDT</Typography>
+            <Typography>Target Cap round 1: {investorTargetCap} BITJOY</Typography>
+            <Typography>Target Cap round 2: {secondInvestorTargetCap} BITJOY</Typography>
+            <Typography>Target Cap round 3: {thirdInvestorTargetCap} BITJOY</Typography>
             <Typography>Token Sold: {tokenSold} BITJOY</Typography>
             <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
             <Typography>Token Owned By SmartContract: {numberFormatter.format(crowdsaleTokenBalance)} BITJOY</Typography>
@@ -174,10 +187,10 @@ const AdminLayout = () => {
                 <Typography>
                     BITJOY PRICE
                 </Typography>
-                <Typography>Current Price: {1/rate}</Typography>
-                <Typography>1 Round Price: {1/firstRate}</Typography>
-                <Typography>2 Round Price: {1/secondRate}</Typography>
-                <Typography>3 Round Price: {1/thirdRate}</Typography>
+                <Typography>Current Price: {convertToRate(rate,5)}</Typography>
+                <Typography>1 Round Price: {convertToRate(firstRate,5)}</Typography>
+                <Typography>2 Round Price: {convertToRate(secondRate,5)}</Typography>
+                <Typography>3 Round Price: {convertToRate(thirdRate,5)}</Typography>
             </Box>
         </Box>
 
@@ -277,10 +290,25 @@ const AdminLayout = () => {
             </Stack>
         </Box>
         <Box p={3}>
-            <Typography>Target USDT to get</Typography>
+            <Typography>Target BITJOY to get</Typography>
             <Stack direction={'row'} spacing={1}>
-                <TextField onChange={(e)=>setTargetCap(e.target.value)}/>
-                <Button variant='contained' onClick={handleSetNewTargetCap}>Change</Button>
+                <FormControl color='main' sx={{width:120}}>
+                    <InputLabel id="round-label" >Round</InputLabel>
+                    <Select
+                        labelId="round-label"
+                        id="round-select"
+                        value={round}
+                        label="Round"
+                        onChange={onSelectRoundChange}
+                        error={Boolean(targetCapError)}
+                    >
+                        <MenuItem value={'1'}>Round 1</MenuItem>
+                        <MenuItem value={'2'}>Round 2</MenuItem>
+                        <MenuItem value={'3'}>Round 3</MenuItem>
+                    </Select>
+                </FormControl>
+                <TextField color='main' onChange={(e)=>setTargetCap(e.target.value)} error={Boolean(targetCapError)} helperText={targetCapError}/>
+                <Button variant='contained' onClick={handleSetNewTargetCap} color='main'>Change</Button>
             </Stack>
         </Box>
         <Box p={3}>

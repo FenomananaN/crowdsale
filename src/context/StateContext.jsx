@@ -263,10 +263,10 @@ useEffect(()=>{
   //END get contract crowdsale token sold
 
   //get contract crowdsale investor target cap
-  const { data:getInvestorTargetCap, isLoading:getInvestorTargetCapLoading, error:getInvestorTargetCapError } = useContractRead(contractCrowdsale, 'getInvestorTargetCap');
+  const { data:getInvestorTargetCap } = useContractRead(contractCrowdsale, 'getInvestorTargetCap');
   const [investorTargetCap,setInvestorTargetCap] = useState(0)
   const _setInvestorTargetCap = () => {
-    setInvestorTargetCap(ethers.utils.formatUnits(getInvestorTargetCap,usdtDecimal).toString())
+    setInvestorTargetCap(ethers.utils.formatUnits(getInvestorTargetCap,18).toString())
   }
 
   useEffect(()=>{
@@ -275,6 +275,36 @@ useEffect(()=>{
     }
   },[getInvestorTargetCap])
   //END get contract crowdsale investor target cap
+
+  //get contract getSecondInvestorTargetCap
+  const { data:getSecondInvestorTargetCap } = useContractRead(contractCrowdsale, 'getSecondInvestorTargetCap');
+  const [secondInvestorTargetCap,setSecondInvestorTargetCap] = useState(0)
+  const _setSecondInvestorTargetCap = () => {
+    setSecondInvestorTargetCap(ethers.utils.formatUnits(getSecondInvestorTargetCap,18).toString())
+  }
+
+  useEffect(()=>{
+    if(getSecondInvestorTargetCap){
+      _setSecondInvestorTargetCap()
+    }
+  },[getSecondInvestorTargetCap])
+
+  //END get contract getSecondInvestorTargetCap
+
+  //get contract getThirdInvestorTargetCap
+  const { data:getThirdInvestorTargetCap } = useContractRead(contractCrowdsale, 'getThirdInvestorTargetCap');
+  const [thirdInvestorTargetCap,setThirdInvestorTargetCap] = useState(0)
+  const _setThirdInvestorTargetCap = () => {
+    setThirdInvestorTargetCap(ethers.utils.formatUnits(getThirdInvestorTargetCap,18).toString())
+  }
+
+  useEffect(()=>{
+    if(getThirdInvestorTargetCap){
+      _setThirdInvestorTargetCap()
+    }
+  },[getThirdInvestorTargetCap])
+
+  //END get contract getThirdInvestorTargetCap
 
 
   //get first time crowdsale
@@ -355,6 +385,8 @@ useEffect(()=>{
         usdtRaised,
         weiRaised,
         investorTargetCap,
+        secondInvestorTargetCap,
+        thirdInvestorTargetCap,
         timeCrowdsale,
         secondTimeCrowdsale,
         thirdTimeCrowdsale,

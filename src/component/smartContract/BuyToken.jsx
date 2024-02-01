@@ -1,7 +1,6 @@
 import { Box, Button, Typography, Stack, TextField, InputAdornment, Paper, Divider } from '@mui/material'
 import {ReactComponent as  UsdtIcon} from '../../assets/icon/tether-seeklogo.com.svg'
 import {ReactComponent as  BnbIcon} from '../../assets/icon/bnb-bnb-logo.svg'
-import {ReactComponent as  Bitcoin} from '../../assets/icon/bitcoindown.svg'
 
 import React, { useState } from 'react'
 
@@ -13,6 +12,7 @@ import * as Yup from 'yup'
 import { yupResolver }from '@hookform/resolvers/yup'
 import { FormInput } from '../utils/FormInput'
 import { Logo } from '../../assets/icon/Logo'
+import { convertToRate } from '../../utils'
 
 const validationSchema = Yup.object().shape({
   crypto: Yup.number()
@@ -145,7 +145,7 @@ export const BuyToken = () => {
       px:{xs:2,md:6}
     }}>*/}
     <Box>
-      <Typography align='center'> 1 BITJOY = ${Math.floor((1/rate)*10000)/10000}</Typography>
+      <Typography align='center'> 1 BITJOY = ${convertToRate(rate,5)}</Typography>
        <Stack direction={'row'} spacing={2} py={1}
         sx={{
           //width: 'fit-content'

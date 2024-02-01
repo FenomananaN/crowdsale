@@ -22,10 +22,10 @@ export const CardTime = ({time, round ,setOpen}) => {
                     Round {round} finish in: 
               </Typography>
               <Stack direction={'row'} alignItems={'center'} spacing={1}>
-                <AccessTimeOutlined style={{fontSize:{xs:'8vw',md:'2.5vw'}}}/>
+                <AccessTimeOutlined style={{fontSize:{xs:'8vw',md:'9vw'}}}/>
                 <Stack>
-                  <Typography sx={{ fontSize: {xs:'5vw',md:'1.5vw'}, pr:3 }}> {_timeD}</Typography>
-                  <Typography sx={{ fontSize: {xs:'3.8vw',md:'1.2vw'}, pr:3 }}>{timeday}</Typography>
+                  <Typography sx={{ fontSize: {xs:'5vw',md:'1.2vw'}, pr:3 }}> {_timeD}</Typography>
+                  <Typography sx={{ fontSize: {xs:'3.8vw',md:'0.7vw'}, pr:3 }}>{timeday}</Typography>
                 </Stack>
                 <IconButton sx={{border: '1px solid white', borderRadius:2, p:0.4}} onClick={()=>setOpen(true)}>
                   <Edit style={{fontSize: {xs:'7vw',md:'1.2vw'}}}/>

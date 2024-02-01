@@ -175,14 +175,16 @@ export const AdminContextProvider = ({children}) => {
 
   //set Investor Target cap
   const { mutateAsync: _setInvestorTargetCap } = useContractWrite(contractCrowdsale, 'setInvestorTargetCap');
-  const setInvestorTargetCap = async (value) => {
+  const setInvestorTargetCap = async (round,value) => {
     setLoadingMessage(`setInvestorTargetCap ${value}`)
     setLoading(true)
-    value=ethers.utils.parseUnits(value, usdtDecimal)
+    value=ethers.utils.parseUnits(value,18)
+    round=ethers.utils.parseUnits(round,0)
     
     try {
       const data = await _setInvestorTargetCap({
 				args: [
+          round,
           value
 				],
 			});
