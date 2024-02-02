@@ -171,26 +171,26 @@ const AdminLayout = () => {
                     <CardShow title={'BNB Raised'} currency={'BNB'} value={numberFormatter.format(weiRaised)}/>
                 </Grid>
             </Grid>
-            <Typography>Funds Raised: {fundsRaised} USDT</Typography>
-            <Typography>BNB Raised: {weiRaised} BNB</Typography>
-            <Typography>Usdt Raised: {usdtRaised} USDT</Typography>
+            <Typography>Funds Raised: {numberFormatter.format(fundsRaised)} USDT</Typography>
+            <Typography>BNB Raised: {numberFormatter.format(weiRaised)} BNB</Typography>
+            <Typography>Usdt Raised: {numberFormatter.format(usdtRaised)} USDT</Typography>
             <Typography>Time : {timeCrowdsale} sec</Typography>
             <Typography>Second Time: {secondTimeCrowdsale}</Typography>
             <Typography>Third Time: {thirdTimeCrowdsale}</Typography>
-            <Typography>Target Cap round 1: {investorTargetCap} BITJOY</Typography>
-            <Typography>Target Cap round 2: {secondInvestorTargetCap} BITJOY</Typography>
-            <Typography>Target Cap round 3: {thirdInvestorTargetCap} BITJOY</Typography>
-            <Typography>Token Sold: {tokenSold} BITJOY</Typography>
-            <Typography>Total number of Token: {token.totalSupply} BITJOY</Typography>
+            <Typography>Target Cap round 1: {numberFormatter.format(investorTargetCap)} BITJOY</Typography>
+            <Typography>Target Cap round 2: {numberFormatter.format(secondInvestorTargetCap)} BITJOY</Typography>
+            <Typography>Target Cap round 3: {numberFormatter.format(thirdInvestorTargetCap)} BITJOY</Typography>
+            <Typography>Token Sold: {numberFormatter.format(tokenSold)} BITJOY</Typography>
+            <Typography>Total number of Token: {numberFormatter.format(token.totalSupply)} BITJOY</Typography>
             <Typography>Token Owned By SmartContract: {numberFormatter.format(crowdsaleTokenBalance)} BITJOY</Typography>
             <Box>
                 <Typography>
                     BITJOY PRICE
                 </Typography>
-                <Typography>Current Price: {convertToRate(rate,5)}</Typography>
-                <Typography>1 Round Price: {convertToRate(firstRate,5)}</Typography>
-                <Typography>2 Round Price: {convertToRate(secondRate,5)}</Typography>
-                <Typography>3 Round Price: {convertToRate(thirdRate,5)}</Typography>
+                <Typography>Current Price: {rate}</Typography>
+                <Typography>1 Round Price: {firstRate}</Typography>
+                <Typography>2 Round Price: {secondRate}</Typography>
+                <Typography>3 Round Price: {thirdRate}</Typography>
             </Box>
         </Box>
 

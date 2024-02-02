@@ -124,7 +124,7 @@ useEffect(()=>{
   const { data:_usdRate, isLoading:usdRateLoading, error: usdRateError } = useContractRead(contractCrowdsale, 'getRate')
   useEffect(()=>{
     if(_usdRate !== undefined){
-      setRate(Number(_usdRate))
+      setRate(Number(ethers.utils.formatEther(_usdRate)))
     }
   },[_usdRate])
 
@@ -134,7 +134,7 @@ useEffect(()=>{
   const { data:_usdFirstRate } = useContractRead(contractCrowdsale, 'getFirstRate')
   useEffect(()=>{
     if(_usdFirstRate !== undefined){
-      setFirstRate(Number(_usdFirstRate))
+      setFirstRate(Number(ethers.utils.formatEther(_usdFirstRate)))
     }
   },[_usdFirstRate])
 
@@ -144,7 +144,7 @@ useEffect(()=>{
   const { data:_usdSecondRate } = useContractRead(contractCrowdsale, 'getSecondRate')
   useEffect(()=>{
     if(_usdSecondRate !== undefined){
-      setSecondRate(Number(_usdSecondRate))
+      setSecondRate(Number(ethers.utils.formatEther(_usdSecondRate)))
     }
   },[_usdSecondRate])
 
@@ -154,7 +154,7 @@ useEffect(()=>{
   const { data:_usdThirdRate } = useContractRead(contractCrowdsale, 'getThirdRate')
   useEffect(()=>{
     if(_usdThirdRate !== undefined){
-      setThirdRate(Number(_usdThirdRate))
+      setThirdRate(Number(ethers.utils.formatEther(_usdThirdRate)))
     }
   },[_usdThirdRate])
 
