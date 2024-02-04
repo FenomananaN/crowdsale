@@ -139,7 +139,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={investorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond round={round} setRound={setRound} price={convertToRate(firstRate,5)} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={convertToRate(firstRate,5)} currentRound={preIco}/>
+                  <FinishedRond round={round} setRound={setRound} price={firstRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={firstRate} currentRound={preIco}/>
             }
             </>)
           case 2 :
@@ -150,7 +150,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={secondInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond round={round} setRound={setRound} price={convertToRate(secondRate,5)} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={convertToRate(secondRate,5)} currentRound={preIco}/>
+                  <FinishedRond round={round} setRound={setRound} price={secondRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={secondRate} currentRound={preIco}/>
             }
             </>)
           case 3 :
@@ -161,7 +161,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
               <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={thirdInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
               </>
               : preIco > round ?
-                  <FinishedRond round={round} setRound={setRound} price={convertToRate(thirdRate,5)} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={convertToRate(thirdRate,5)} currentRound={preIco}/>
+                  <FinishedRond round={round} setRound={setRound} price={thirdRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={thirdRate} currentRound={preIco}/>
             }
             </>)
           default:
@@ -194,7 +194,7 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
       flexDirection: 'column',
       alignItems: 'center'
     }}>
-      <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(crowdsaleTokenBalance)*(convertToRate(rate,5))} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
+      <ProgressBar amount={Number(fundsRaised)} targetedAmount={Number(crowdsaleTokenBalance)*rate} amountToken={Number(tokenSold)} totalAmountToken={Number(crowdsaleTokenBalance)}/>{/* token.totalSupply */}
       <Typography sx={{
         color: '#FFD700',
         mt:1,

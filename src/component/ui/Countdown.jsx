@@ -3,7 +3,7 @@ import { Box, Button, Typography, Stack } from '@mui/material'
 
 //Date(year,month,day,hours,minutes,seconds)
 //const COUNTDOWN_TARGET = new Date(2023,12,30,21,25,0)
-const colorFront = '#05A76C'
+const colorFront = '#FFD700'
 
 
 const TimeShow = ({label,value}) => {

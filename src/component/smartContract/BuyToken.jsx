@@ -105,14 +105,14 @@ export const BuyToken = () => {
     if(currencToPay === 'usdt'){
       setCrypto(value)
       setValue('crypto',value)
-      setToken(value*rate)
-      setValue('token',value*rate)
+      setToken(value/rate)
+      setValue('token',value/rate)
     }
     else{
       setCrypto(value)
       setValue('crypto',value)
-      setToken(value*rate*coreRate) //diso crowdsale rate*coreRate)
-      setValue('token',value*rate*coreRate)
+      setToken(value*coreRate/rate) //diso crowdsale rate*coreRate)
+      setValue('token',value*coreRate/rate)
     }
   }
 
@@ -122,15 +122,15 @@ export const BuyToken = () => {
       setToken(value)
       setValue('token',value)
 
-      value=Math.floor((value/rate)*10**6)/10**6
+      value=Math.floor((value*rate)*10**6)/10**6
       setCrypto(value)
       setValue('crypto',value)
     }
     else{
       setToken(value)
       setValue('token',value)
-      setCrypto(value/rate/coreRate) //diso crowdsale rate*coreRate)
-      setValue('crypto',value/rate/coreRate)
+      setCrypto(value*rate/coreRate) //diso crowdsale rate*coreRate)
+      setValue('crypto',value*rate/coreRate)
     }
   }
 
@@ -145,7 +145,7 @@ export const BuyToken = () => {
       px:{xs:2,md:6}
     }}>*/}
     <Box>
-      <Typography align='center'> 1 BITJOY = ${convertToRate(rate,5)}</Typography>
+      <Typography align='center'> 1 BITJOY = ${rate}</Typography>
        <Stack direction={'row'} spacing={2} py={1}
         sx={{
           //width: 'fit-content'

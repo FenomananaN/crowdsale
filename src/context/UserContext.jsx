@@ -111,7 +111,7 @@ useEffect(()=>{getNativeEth()},[address])
   //Buy Token
   const { mutateAsync: _buyTokens } = useContractWrite(contractCrowdsale, 'buyTokens');
   const buyTokens = async (value) => {
-    setLoadingMessage(`Buying ${value*rate*coreRate} Token`)
+    setLoadingMessage(`Buying ${value*coreRate/rate} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     value=ethers.utils.parseUnits(value, 18)
@@ -142,7 +142,7 @@ useEffect(()=>{getNativeEth()},[address])
   //Buy Token with usdt
   const { mutateAsync: _buyTokensWithUsdt } = useContractWrite(contractCrowdsale, 'buyTokensWithUsdt');
   const buyTokensWithUsdt= async (value) => {
-    setLoadingMessage(`Buying ${value*rate} Token`)
+    setLoadingMessage(`Buying ${value/rate} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     value=ethers.utils.parseUnits(value, usdtDecimal)
@@ -172,7 +172,7 @@ useEffect(()=>{getNativeEth()},[address])
   //buy Tokens on preSale
   const { mutateAsync: _buyTokenOnPresale } = useContractWrite(contractCrowdsale, 'buyTokenOnPresale');
   const buyTokenOnPresale = async (value) => {
-    setLoadingMessage(`Buying ${value*rate*coreRate} Token`)
+    setLoadingMessage(`Buying ${value*coreRate/rate} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     
@@ -204,9 +204,8 @@ useEffect(()=>{getNativeEth()},[address])
   //buy token on presale with usdt
   const { mutateAsync: _buyTokenWithUsdtOnPresale } = useContractWrite(contractCrowdsale, 'buyTokenWithUsdtOnPresale');
   const buyTokenWithUsdtOnPresale = async (value) => {
-    setLoadingMessage(`Buying ${value*rate} Token with usdt`)
+    setLoadingMessage(`Buying ${value/rate} Token with usdt`)
     setLoading(true)
-
     
     value=ethers.utils.parseUnits(value, usdtDecimal)
     

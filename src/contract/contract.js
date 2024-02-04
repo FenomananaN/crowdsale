@@ -21,7 +21,7 @@ export const usdtDecimal = 18
 
 //bnb smart chain testnet
 export const tokenAddress ='0x8eBd4993707cCb05AC87943a863F4aF92c8d37b4'
-export const crowdsaleAddress ='0x13Ae7286A8Cc715164a42699369dacc1899CEEbE'
+export const crowdsaleAddress ='0x1d497b7De68c4D30EaF1c1F1C6E7D5a2c36b4e39'
 export const tetherAddress ='0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684'
 export const currentChainId = 97
 export const chain = 'binance-testnet'

@@ -40,7 +40,7 @@ export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}
                 <Typography>
                 $ {numberFormatter.format(amount)} / $ {numberFormatter.format(targetedAmount)} 
                 </Typography>
-                <Typography sx={{fontSize: 13, color:'grey', fontStyle: 'italic'}}>
+                <Typography sx={{fontSize: 10, color:'grey', fontStyle: 'italic'}}>
                 ({numberFormatter.format(amountToken)} BITJOY sold / {numberFormatter.format(totalAmountToken)} BITJOY)
                 </Typography>
             </Box>
