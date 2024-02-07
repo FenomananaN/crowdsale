@@ -48,7 +48,7 @@ export const ClaimToken = () => {
     <Box>
 
       <Typography> You have {numberFormatter.format(claimBalance)} BITJOY to be claimed</Typography>
-      vesting Round = {vestingRound}
+      
       { ! claim && 
         <Box sx={{ display: 'flex', justifyContent: 'center'}}>
           <CountdownSimple countdownTarget={convertToReadableTime()}/>
@@ -70,6 +70,7 @@ export const ClaimToken = () => {
           sx={{
               textTransform: 'capitalize', //lowercase, capitalize, none
               mt:1,
+              mb:2
             }}
           onClick={async () => {
             setClaim(false)
