@@ -1,4 +1,5 @@
-export {Countdown} from './ui/Countdown'
+export {CountdownComponent} from './ui/Countdown'
+export {CountdownSimple} from './ui/CountdownSimple'
 export {ProgressBar} from './ui/ProgressBar'
 export {RootComponent} from './RootComponent'
 export {MintToken} from './smartContract/MintToken'

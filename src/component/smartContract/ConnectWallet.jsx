@@ -7,19 +7,26 @@ import {
  // useAddress,
  // useConnectionStatus
   } from "@thirdweb-dev/react";
-import { currentChainId } from '../../contract';
+import { currentChainId, tokenAddress } from '../../contract';
 import { useStateContext } from '../../context';
 import { Box, Typography } from '@mui/material';
 import { Logo } from '../../assets/icon/Logo';
 
 
 export const ConnectWalletButton = () => {
-
-  const {address} = useStateContext()
+  
+  const {address, preIco} = useStateContext()
   //const address = useAddress(); // Get connected wallet address
   const [, switchNetwork] = useNetwork(); // Switch to desired chain
   const isMismatched = useNetworkMismatch(); // Detect if user is connected to the wrong network
 
+  const displayBalanceToken = {
+    // 1 is chain id of Ethereum mainnet
+    //1: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599", // contract address of Wrapped BTC token
+  
+    // you can also import the chain object from @thirdweb-dev/chains to get the chain id
+    [currentChainId]: tokenAddress, // contract address of Dai Stablecoin token
+  };
 
   useEffect(() => {
     if (isMismatched) {
@@ -39,6 +46,7 @@ export const ConnectWalletButton = () => {
       welcomeScreen={()=>{
         return <SideConnectWallet/>
       }}
+      displayBalanceToken={preIco === 0 ? displayBalanceToken: undefined}
       switchToActiveChain={true}
       modalTitleIconUrl={""}
       style={{

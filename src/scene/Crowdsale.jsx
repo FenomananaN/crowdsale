@@ -1,9 +1,9 @@
 import { Container, Typography , Button, Box, Paper, BottomNavigation, BottomNavigationAction, Tabs, Tab} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useStateContext, useUserContext } from '../context'
-import { BuyToken, ClaimToken, Countdown, ProgressBar } from '../component'
+import { BuyToken, ClaimToken, CountdownComponent, ProgressBar } from '../component'
 import dayjs from 'dayjs'
-import { convertToRate } from '../utils'
+import { convertToRate, numberFormatter, roundNumber } from '../utils'
 
 export const Crowdsale = ({id}) => {
 
@@ -13,7 +13,7 @@ export const Crowdsale = ({id}) => {
   const convertToReadableTime = () => {
     //console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
     //console.log('time',dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
-    return dayjs.unix(timeCrowdsale).add(2,'hour').format('YYYY-MM-DD HH:mm:ss')
+    return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
   }
    console.log("preIco",preIco);
   const [round,setRound] = useState(preIco)
@@ -33,6 +33,7 @@ export const Crowdsale = ({id}) => {
         <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#C2992D', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
 
         {/* NAvigation Phase */}
+        { (preIco === 1 || preIco == 2 || preIco === 3 ) && ( 
         <Box sx={{display:'flex', justifyContent:'center'}}>
         <BottomNavigation showLabels color={'main'} sx={{ width: {xs:'100%',md:'20vw'} , border:'1px solid #111', borderRadius:2, my:2}} value={round} onChange={handleRound}>
           <BottomNavigationAction sx={{ borderTopLeftRadius: 12, borderBottomLeftRadius:12}}
@@ -49,16 +50,7 @@ export const Crowdsale = ({id}) => {
           />
         </BottomNavigation>
         </Box>
-
-        <Box sx={{display:'flex', justifyContent:'center', my:3}}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={round} onChange={handleRound}>
-              <Tab label="Round One" value={1}/>
-              <Tab label="Round Two" value={2}/>
-              <Tab label="Round Three"  value={3}/>
-            </Tabs>
-          </Box>
-        </Box>
+        )}
         {/* END NAvigation Phase */}
 
         {(() => {
@@ -74,11 +66,12 @@ export const Crowdsale = ({id}) => {
               <Typography sx={{
                 color: '#FFD700',
                 mt:1,
-              }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
+              }}>&lt;&lt; You have {numberFormatter.format(balance)} BITJOY &gt;&gt;</Typography>
               {claim ? 
               <ClaimToken/>
               :
-              <BuyToken/>}
+              <Typography>Buy BitJoy at PANCAKE</Typography>
+              }
               </Box>
             )
     
@@ -103,7 +96,7 @@ export const Crowdsale = ({id}) => {
                     alignItems: 'center'
                   }}>
                     <Typography ml={2}>The presale is set to commence after the countdown timer reaches zero</Typography>
-                    <Countdown countdownTarget={convertToReadableTime()}/>
+                    <CountdownComponent countdownTarget={convertToReadableTime()}/>
                   </Box>
                 </Box>
 
@@ -184,7 +177,7 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
     }}>
       <Box>
         <Typography ml={2}>Buy now before it ends</Typography>
-        <Countdown countdownTarget={convertToReadableTime()}/>
+        <CountdownComponent countdownTarget={convertToReadableTime()}/>
       </Box>
     </Box>
 
@@ -198,7 +191,7 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
       <Typography sx={{
         color: '#FFD700',
         mt:1,
-      }}>&lt;&lt; You have purchased {balance} BIJOY &gt;&gt;</Typography>
+      }}>&lt;&lt; You have purchased {numberFormatter.format(roundNumber(balance,2))} BIJOY &gt;&gt;</Typography>
     </Box>
     <Box sx={{
       display: 'flex',

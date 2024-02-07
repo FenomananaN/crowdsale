@@ -13,9 +13,8 @@ const StateContext = createContext();
 export const StateContextProvider = ({ children }) => {
 
 
-//index
+  //index
   const [preIco, setPreIco] = useState('')
-
   
   //index
   const [token, setToken] = useState([])
@@ -53,7 +52,10 @@ export const StateContextProvider = ({ children }) => {
       setTetherLoading(true)
       //must connect to methamask before calling this
       const provider = new ethers.providers.Web3Provider(window.ethereum)
+      //console.log("provider",provider)
+      
       const signer = provider.getSigner()
+      //console.log("signer",signer)
 
       const contract = new ethers.Contract(
         tetherAddress,//contractAddress.Token,
@@ -73,9 +75,9 @@ export const StateContextProvider = ({ children }) => {
   
 
   useEffect(()=>{
-    if(address){
+    //if(address){
       connectToTetherContract()
-    }
+    //}
   },[address])
   ///////////end connect to usdt contract /////////////
    

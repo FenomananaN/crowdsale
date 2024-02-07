@@ -5,6 +5,7 @@ import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { crowdsaleAddress, usdtDecimal } from '../contract';
 import { useStateContext } from '.';
 import { Loading } from '../component';
+import { roundNumber } from '../utils';
 
 const UserContext = createContext();
 
@@ -15,6 +16,9 @@ export const UserContextProvider = ({children}) => {
  
   //user grf
   const [balance,setBalance] = useState(0)
+
+  //grf balance on claim
+  const [claimBalance,setClaimBalance] = useState(0)
 
   //user balance core
   const [ethBalance, setEthBalance] = useState(0);
@@ -39,7 +43,6 @@ export const UserContextProvider = ({children}) => {
       const balance = await tetherContract.contract.balanceOf(address)
       setUsdtBalance(Number(ethers.utils.formatUnits(balance, usdtDecimal)))
       
-      
     } catch (e){
       console.log('UserContext: error get usdt balance', e)
     }
@@ -53,12 +56,35 @@ export const UserContextProvider = ({children}) => {
   },[tetherContract])
   ///////////end get usdt balance  /////////////
 
-  //user
+  
   const { data:balanceData, isLoading:getBalanceOfLoading, error: getBalanceOfError } = useContractRead(contractToken, 'balanceOf',[address]);
-  //user
+  
   const { data:balanceContributorData, isLoading:getBalanceContributorLoading, error: getBalanceContributorError } = useContractRead(contractCrowdsale, 'getUserContribution',[address]);
 
   useEffect(()=>{
+    if(balanceContributorData !== undefined && balanceData !== undefined){
+      if(preIco){
+        setBalance(ethers.utils.formatEther(balanceContributorData))
+      }
+      else{
+        setBalance(Number(ethers.utils.formatEther(balanceData)))
+      }
+    }
+  },[balanceData,balanceContributorData,preIco,address])
+
+  useEffect(()=>{
+    if(balanceContributorData !== undefined && preIco === 0){
+      const balance = Number(ethers.utils.formatEther(balanceContributorData))
+      setClaimBalance(balance)
+      if(balance>0){
+        setClaim(true)
+      }
+      else {
+        setClaim(false)
+      }
+    }
+  },[balanceContributorData,preIco,address])
+  /*useEffect(()=>{
     if(balanceContributorData !== undefined && balanceData !== undefined){
           
       if(preIco){
@@ -83,7 +109,7 @@ export const UserContextProvider = ({children}) => {
       console.log('all balance data is still undefined')
     }
   },[balanceData,balanceContributorData,preIco])
-
+*/
 
 //user
 /////////////////////////////////////////////////////////////
@@ -111,7 +137,7 @@ useEffect(()=>{getNativeEth()},[address])
   //Buy Token
   const { mutateAsync: _buyTokens } = useContractWrite(contractCrowdsale, 'buyTokens');
   const buyTokens = async (value) => {
-    setLoadingMessage(`Buying ${value*coreRate/rate} Token`)
+    setLoadingMessage(`Buying ${roundNumber(value*coreRate/rate,2)} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     value=ethers.utils.parseUnits(value, 18)
@@ -142,7 +168,7 @@ useEffect(()=>{getNativeEth()},[address])
   //Buy Token with usdt
   const { mutateAsync: _buyTokensWithUsdt } = useContractWrite(contractCrowdsale, 'buyTokensWithUsdt');
   const buyTokensWithUsdt= async (value) => {
-    setLoadingMessage(`Buying ${value/rate} Token`)
+    setLoadingMessage(`Buying ${roundNumber(value/rate,2)} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     value=ethers.utils.parseUnits(value, usdtDecimal)
@@ -172,7 +198,7 @@ useEffect(()=>{getNativeEth()},[address])
   //buy Tokens on preSale
   const { mutateAsync: _buyTokenOnPresale } = useContractWrite(contractCrowdsale, 'buyTokenOnPresale');
   const buyTokenOnPresale = async (value) => {
-    setLoadingMessage(`Buying ${value*coreRate/rate} Token`)
+    setLoadingMessage(`Buying ${roundNumber(value*coreRate/rate,2)} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
     
@@ -204,7 +230,7 @@ useEffect(()=>{getNativeEth()},[address])
   //buy token on presale with usdt
   const { mutateAsync: _buyTokenWithUsdtOnPresale } = useContractWrite(contractCrowdsale, 'buyTokenWithUsdtOnPresale');
   const buyTokenWithUsdtOnPresale = async (value) => {
-    setLoadingMessage(`Buying ${value/rate} Token with usdt`)
+    setLoadingMessage(`Buying ${roundNumber(value/rate,2)} Token with usdt`)
     setLoading(true)
     
     value=ethers.utils.parseUnits(value, usdtDecimal)
@@ -216,6 +242,7 @@ useEffect(()=>{getNativeEth()},[address])
       }
 
       console.log(tetherContract)
+      
       const approveTether = await tetherContract.contract.approve(crowdsaleAddress,value) //mbl tsy mahay gas limit
       //from ethers 6 : utils is no longer available
 
@@ -274,6 +301,57 @@ useEffect(()=>{getNativeEth()},[address])
 ////////////////////////////////////////////////////////////////////////////////
 //////////// END ALL METHOD TO BUY TOKEN ////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////// START VESTING FUNCTION /////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+  //get first time crowdsale
+  const { data:vestingRoundData } = useContractRead(contractCrowdsale, 'vestingRound',[address]);
+  const [vestingRound,setVestingRound] = useState(null)
+  const _setVestingRound = () => {
+    setVestingRound(Number(vestingRoundData.toString()))
+  }
+
+  useEffect(()=>{
+    if(vestingRoundData){
+      _setVestingRound()
+    }
+  },[vestingRoundData])
+  //END get first time crowdsale
+
+  //get first time crowdsale
+  const { data:vestingTimeData } = useContractRead(contractCrowdsale, 'vestingTime',[address]);
+  const [vestingTime,setVestingTime] = useState(null)
+  const _setVestingTime = () => {
+    setVestingTime(vestingTimeData.toString())
+  }
+
+  useEffect(()=>{
+    if(vestingTimeData){
+      _setVestingTime()
+    }
+  },[vestingTimeData])
+  //END get first time crowdsale
+
+  //get initial contribution vesting
+  const { data:_initialTokenVesting } = useContractRead(contractCrowdsale, 'initialTokenVesting',[address]);
+  const [initialTokenVesting,setInitialTokenVesting] = useState(null)
+  const _setInitialTokenVesting = () => {
+    setInitialTokenVesting(Number(ethers.utils.formatEther(_initialTokenVesting)))
+  }
+
+  useEffect(()=>{
+    if(_initialTokenVesting){
+      _setInitialTokenVesting()
+    }
+  },[_initialTokenVesting])
+  //END get initilal contributor vesting
+  
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////// END VESTING FUNCTION /////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
   return (
     <UserContext.Provider
         value={{
@@ -281,11 +359,15 @@ useEffect(()=>{getNativeEth()},[address])
             ethBalance,
             usdtBalance,
             claim,
+            claimBalance,
             buyTokens,
             buyTokensWithUsdt,
             buyTokenOnPresale,
             buyTokenWithUsdtOnPresale,
             claimTokens,
+            vestingRound,
+            vestingTime,
+            initialTokenVesting,
         }}>
             {children}
             {isLoading && <Loading message={loadingMessage}/>}

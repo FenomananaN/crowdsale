@@ -1,3 +1,3 @@
 export {numberFormatter} from './numberFormater'
 export {useTruncateString} from './truncateString'
-export {convertToRate} from './convertToRate'
+export {roundNumber} from './roundNumber'

@@ -12,7 +12,7 @@ import * as Yup from 'yup'
 import { yupResolver }from '@hookform/resolvers/yup'
 import { FormInput } from '../utils/FormInput'
 import { Logo } from '../../assets/icon/Logo'
-import { convertToRate } from '../../utils'
+import { convertToRate, roundNumber } from '../../utils'
 
 const validationSchema = Yup.object().shape({
   crypto: Yup.number()
@@ -52,6 +52,12 @@ export const BuyToken = () => {
     else {
       handleBuyTokenWithEth(data.crypto.toString())
     }
+  }
+
+  //method to change currency
+  const resetForm = () => {
+    setCrypto('')
+    setToken('')
   }
 
   //for connecting wallet dialog
@@ -105,13 +111,13 @@ export const BuyToken = () => {
     if(currencToPay === 'usdt'){
       setCrypto(value)
       setValue('crypto',value)
-      setToken(value/rate)
+      setToken(roundNumber(value/rate,2))
       setValue('token',value/rate)
     }
     else{
       setCrypto(value)
       setValue('crypto',value)
-      setToken(value*coreRate/rate) //diso crowdsale rate*coreRate)
+      setToken(roundNumber(value*coreRate/rate,2)) //diso crowdsale rate*coreRate)
       setValue('token',value*coreRate/rate)
     }
   }
@@ -153,7 +159,10 @@ export const BuyToken = () => {
         }}>
         <Button variant="outlined" round='rounded' 
           startIcon= {<BnbIcon width={25} height={25}/>}
-          onClick={()=>setCurrencyToPay('bnb')}
+          onClick={()=>{
+            setCurrencyToPay('bnb')
+            resetForm()
+          }}
           sx={{
             textTransform: 'capitalize' //lowercase, capitalize, none
           }}>
@@ -161,7 +170,10 @@ export const BuyToken = () => {
         </Button>
           <Button variant="outlined" round='rounded' 
             startIcon= {<UsdtIcon width={25} height={25}/>}
-            onClick={()=>setCurrencyToPay('usdt')}
+            onClick={()=>{
+              setCurrencyToPay('usdt')
+              resetForm()
+            }}
             sx={{
               textTransform: 'capitalize' //lowercase, capitalize, none
             }}>
@@ -173,7 +185,7 @@ export const BuyToken = () => {
         <Typography align='center' sx={{
           color: currencToPay === 'usdt'? '#53ae94':'#F0B90B'
         }}>
-          Your {currencToPay.toUpperCase()} balance = {currencToPay === 'usdt' ? usdtBalance: ethBalance} {currencToPay.toUpperCase()}
+          Your {currencToPay.toUpperCase()} balance = {currencToPay === 'usdt' ? roundNumber(usdtBalance,2): roundNumber(ethBalance,6)} {currencToPay.toUpperCase()}
         </Typography>
         <Divider variant='middle' sx={{
           bgcolor: currencToPay === 'usdt'? '#53ae94':'#F0B90B',
