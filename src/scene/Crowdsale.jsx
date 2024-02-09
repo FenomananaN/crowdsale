@@ -7,16 +7,48 @@ import { convertToRate, numberFormatter, roundNumber } from '../utils'
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco, fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate,firstRate,secondRate,thirdRate,} = useStateContext()
+  const {preIco, ffundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate,firstRate,secondRate,thirdRate,} = useStateContext()
   const {balance,claim} = useUserContext()
+
+  const fundsRaised=1006000
 
   const convertToReadableTime = () => {
     //console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
     //console.log('time',dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
     return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
   }
-   console.log("preIco",preIco);
+  //console.log("preIco",preIco);
   const [round,setRound] = useState(preIco)
+
+  const [canBuy,setCanBuy] = useState(false)
+  useEffect(()=>{
+    console.log("miditra",preIco,fundsRaised,investorTargetCap)
+    switch (preIco) {
+      case 1 :
+        if(Number(fundsRaised)>Number(investorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
+          setCanBuy(false)
+        } else {
+          setCanBuy(true)
+        }
+        break
+      case 2: 
+        if(Number(fundsRaised)>Number(secondInvestorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
+          setCanBuy(false)
+        } else {
+          setCanBuy(true)
+        }
+        break
+        case 3: 
+          if(Number(fundsRaised)>Number(thirdInvestorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
+            setCanBuy(false)
+          } else {
+            setCanBuy(true)
+          }
+        break
+        default :
+          setCanBuy(false)
+        }
+  },[fundsRaised])
 
   useEffect(()=>{
     setRound(preIco)
@@ -76,11 +108,11 @@ export const Crowdsale = ({id}) => {
             )
     
           case 1:
-              return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+              return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
           case 2:
-            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate}firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate}firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
           case 3:
-            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+            return <StageCrowdsale round={round} setRound={setRound} preIco = {preIco} balance={balance} fundsRaised={fundsRaised} investorTargetCap={investorTargetCap} secondInvestorTargetCap={secondInvestorTargetCap} thirdInvestorTargetCap={thirdInvestorTargetCap} rate={rate} firstRate={firstRate} secondRate={secondRate} thirdRate={thirdRate} tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
           case 4:
             return (
               <>
@@ -96,7 +128,7 @@ export const Crowdsale = ({id}) => {
                     alignItems: 'center'
                   }}>
                     <Typography ml={2}>The presale is set to commence after the countdown timer reaches zero</Typography>
-                    <CountdownComponent countdownTarget={convertToReadableTime()}/>
+                    <CountdownComponent countdownTarget={convertToReadableTime()} canBuy={canBuy} setCanBuy={setCanBuy}/>
                   </Box>
                 </Box>
 
@@ -113,13 +145,17 @@ export const Crowdsale = ({id}) => {
             return null
         }
       })()}
-
+      
+        { !! Number(fundsRaised) > Number(investorTargetCap) && <Typography align='center' sx={{fontStyle:'italic', color:'grey', fontSize:12,mb:2}}>
+          Sold out! Please wait for the next round
+          </Typography>
+        }
       </Paper>
     </Container>
   )
 }
 
-const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap,rate,firstRate,secondRate,thirdRate, tokenSold, convertToReadableTime}) =>{
+const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap,rate,firstRate,secondRate,thirdRate, tokenSold, convertToReadableTime,  canBuy, setCanBuy}) =>{
 
   return(
     <>
@@ -129,7 +165,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
             return ( <>
             { preIco === round ?
               <>
-              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={investorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={investorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
               </>
               : preIco > round ?
                   <FinishedRond round={round} setRound={setRound} price={firstRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={firstRate} currentRound={preIco}/>
@@ -140,7 +176,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
             <>
             { preIco === round ?
               <>
-              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={secondInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={secondInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
               </>
               : preIco > round ?
                   <FinishedRond round={round} setRound={setRound} price={secondRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={secondRate} currentRound={preIco}/>
@@ -151,7 +187,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
             <>
             { preIco === round ?
               <>
-              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={thirdInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}/>
+              <CurrentRound balance={balance} fundsRaised={fundsRaised} crowdsaleTokenBalance={thirdInvestorTargetCap} rate={rate}  tokenSold={tokenSold}   convertToReadableTime={convertToReadableTime}  canBuy={canBuy} setCanBuy={setCanBuy}/>
               </>
               : preIco > round ?
                   <FinishedRond round={round} setRound={setRound} price={thirdRate} currentRound={preIco}/>: <CommingRound round={round} setRound={setRound} price={thirdRate} currentRound={preIco}/>
@@ -167,7 +203,7 @@ const StageCrowdsale = ({round ,setRound, preIco, balance,fundsRaised, investorT
 }
 
 
-const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSold, convertToReadableTime}) => {
+const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSold, convertToReadableTime, canBuy, setCanBuy}) => {
   return (
     <>
     <Box sx={{
@@ -177,7 +213,7 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
     }}>
       <Box>
         <Typography ml={2}>Buy now before it ends</Typography>
-        <CountdownComponent countdownTarget={convertToReadableTime()}/>
+        <CountdownComponent countdownTarget={convertToReadableTime()}  canBuy={canBuy} setCanBuy={setCanBuy}/>
       </Box>
     </Box>
 
@@ -199,7 +235,7 @@ const CurrentRound = ({ balance,fundsRaised,crowdsaleTokenBalance,rate, tokenSol
       width: '100%',
       py:3,
     }}>
-      <BuyToken/>
+      <BuyToken  canBuy={canBuy} setCanBuy={setCanBuy}/>
     </Box>
     </>
   )

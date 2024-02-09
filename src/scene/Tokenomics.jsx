@@ -14,21 +14,125 @@ export const Tokenomics = ({id}) => {
         <Paper sx={{ p:{xs:1,md:3}/*, backgroundColor: '#282C34'*/}} elevation={1}>
             <Typography variant='h4' align='center' sx={{color: '#C2992D', fontWeight: 'bold', mb:2}}>TOKENOMICS</Typography>
 
-            <Typography variant='h6'>TOTAL SUPPLY = <span style={{color:'#C2992D', fontWeight:'bold' }}>21,000,000,000 BITJOY</span></Typography>
+           {/**  <Typography variant='h6'>TOTAL SUPPLY = <span style={{color:'#C2992D', fontWeight:'bold' }}>21,000,000,000 BITJOY</span></Typography>
+*/}
 
             <List sx={{ listStyle: "none", pl: {xs:0,md:4} ,}}>
                     {/*['& li.MuiListItem-root::marker']:{
                         fontWeight:600
                     } }}>  use listStyle: "lower-alpha" for a b c*/}
                 <ListItem sx={{ display: "list-item" }} >
-                    <ListItemText primary="Distribution:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    <ListItemText primary="Total Supply" primaryTypographyProps={{ fontWeight: 800}} secondary="21,000,000,000 BITJOY"/>
                     {/* 2em method <ListItemText disableTypography primary={<Typography .....}  */}
+                 </ListItem>   
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Public Sale:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
                     <List disablePadding>
                         <ListItem disablePadding>
-                            <ListItemText primary={"- 60% allocated to the Crowdsale"}/>
+                            <ListItemText primary={"- Allocation: 38%"}/>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemText primary={"- 40% reserved for Liquidity (20% for each DEX&CEX)"}/>
+                            <ListItemText primary={"- Quantity: 7,980,000,000 BITJOY"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Vesting Schedule:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- 25% unlocked after presale"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- 25% unlocked every 30 days thereafter"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Vesting Phases:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- V1 after presale: 25%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- V2 after 30 days: 25%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- V3 after 30 days: 25%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- V4 after 30 days: 25%"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Utility Allocation:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- 18%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Quantity: 3,780,000,000 BITJOY"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Liquidity Pool:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Allocation: 36%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Quantity: 7,560,000,000 BITJOY"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Decentralized Exchange (DEX):" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Allocation: 18%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Quantity: 3,780,000,000 BITJOY"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Centralized Exchange (CEX):" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Allocation: 18%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Quantity: 3,780,000,000 BITJOY"}/>
+                        </ListItem>
+                    </List> 
+                </ListItem>
+
+
+                <ListItem sx={{ display: "list-item" }} >
+                    <ListItemText primary="Airdrop:" primaryTypographyProps={{ fontWeight: 800}}/>
+                    
+                    <List disablePadding>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Allocation: 8%"}/>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemText primary={"- Quantity: 1,680,000,000 BITJOY"}/>
                         </ListItem>
                     </List> 
                 </ListItem>

@@ -1,16 +1,23 @@
 import React ,{useState,useEffect} from 'react'
 import { Box, Button, Typography, Stack } from '@mui/material'
-import Countdown from 'react-countdown'
+import Countdown ,{ CountdownApi }from 'react-countdown'
+import { useRef } from 'react'
 
 
 const colorFront = '#FFD700'
 
 
-export const CountdownComponent = ({countdownTarget}) => {
+export const CountdownComponent = ({countdownTarget,canBuy,setCanBuy}) => {
 	//new Date(countdownTarget).getTime(
+	const countdownRef = useRef(null)
+
+	const handleOnComplete = () => {
+		setCanBuy(false)
+	}
 
 	return(
-		<Countdown date={new Date(countdownTarget).getTime()} 
+		<Countdown ref={countdownRef} date={new Date(countdownTarget).getTime()} 
+          onComplete={handleOnComplete}
          renderer={renderer}/>)
 }
 
@@ -48,7 +55,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
       return (
 	  <Box sx={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
 	  <CountdownRender days={0} hours={0} minutes={0} seconds={0}/>
-	  <Typography align={'center'} mt={1} ml={1} sx={{fontSize: 12, fontStyle:'italic'}}>Please wait for the next round to begin...</Typography>
+	  <Typography align={'center'} mt={1} ml={1} sx={{fontSize: 12, fontStyle:'italic'}}>We are switching to the next round. Please wait...</Typography>
 	  </Box>)
     } else {
       // Render a countdown

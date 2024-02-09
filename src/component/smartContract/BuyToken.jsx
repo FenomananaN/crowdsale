@@ -27,11 +27,14 @@ const validationSchema = Yup.object().shape({
 })
 
 
-export const BuyToken = () => {
+export const BuyToken = ({ canBuy, setCanBuy}) => {
+
+  console.log(canBuy,"can buy")
   
   const {preIco,rate, coreRate, address } = useStateContext()
 
   const {buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale, ethBalance, usdtBalance,buyTokensWithUsdt} = useUserContext()
+
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
@@ -42,6 +45,18 @@ export const BuyToken = () => {
   })
 
   const {handleSubmit,setValue,formState: { errors }} = methods
+
+  //all method to get whether someone can buy
+  /*useEffect(()=>{
+    if (vestingRound === 0){
+      setClaim(true)
+    }
+    else {
+      //setClaim(dayjs.unix(vestingTime).isBefore(dayjs()))
+      setClaim(dayjs.unix(vestingTime).isAfter(dayjs()))
+    }
+  },[vestingRound])*/
+  //end 
 
   const onSubmit = (data) => {
  
@@ -135,7 +150,7 @@ export const BuyToken = () => {
     else{
       setToken(value)
       setValue('token',value)
-      setCrypto(value*rate/coreRate) //diso crowdsale rate*coreRate)
+      setCrypto(roundNumber(value*rate/coreRate,5)) //diso crowdsale rate*coreRate)
       setValue('crypto',value*rate/coreRate)
     }
   }
@@ -244,6 +259,7 @@ export const BuyToken = () => {
           { address ?
           <Button variant='contained' color='main' round='rounded'
           //onClick={handleBuyToken}
+          disabled={!canBuy}
           type='submit'
           sx={{
             textTransform: 'capitalize', //lowercase, capitalize, none
@@ -253,6 +269,7 @@ export const BuyToken = () => {
           </Button>
           :
           <Button variant='contained' color='main' round='rounded'
+          disabled={!canBuy}
           onClick={()=> setOpen(true)}
           sx={{
             textTransform: 'capitalize', //lowercase, capitalize, none

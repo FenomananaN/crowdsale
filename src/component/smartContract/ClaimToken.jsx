@@ -17,8 +17,8 @@ export const ClaimToken = () => {
       setClaim(true)
     }
     else {
-      setClaim(dayjs.unix(vestingTime).isBefore(dayjs()))
-      //setClaim(dayjs.unix(vestingTime).isAfter(dayjs()))
+      //setClaim(dayjs.unix(vestingTime).isBefore(dayjs()))
+      setClaim(dayjs.unix(vestingTime).isAfter(dayjs()))
     }
   },[vestingRound])
 
