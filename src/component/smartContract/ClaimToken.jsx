@@ -8,7 +8,7 @@ import { CountdownSimple } from '../ui/CountdownSimple'
 
 export const ClaimToken = () => {
   
-  const {claimTokens,balance, claimBalance,vestingRound,vestingTime,initialTokenVesting} = useUserContext()
+  const {claimTokens, claimBalance,vestingRound,vestingTime, initialTokenVesting} = useUserContext()
 
   const [claim,setClaim] = useState(false)
 
@@ -17,8 +17,11 @@ export const ClaimToken = () => {
       setClaim(true)
     }
     else {
-      //setClaim(dayjs.unix(vestingTime).isBefore(dayjs()))
-      setClaim(dayjs.unix(vestingTime).isAfter(dayjs()))
+      //ito tena izy
+      setClaim(dayjs.unix(vestingTime).isBefore(dayjs()))
+
+      //test
+      //setClaim(dayjs.unix(vestingTime).isAfter(dayjs()))
     }
   },[vestingRound])
 
@@ -27,19 +30,20 @@ export const ClaimToken = () => {
     //console.log('time',dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
     if(vestingRound >0 && vestingRound<4){
       return dayjs.unix(vestingTime).format('YYYY-MM-DD HH:mm:ss')
+      //return dayjs('2024-02-11 16:53:00')
     }
     else {
       return "0"
     }
   }
   const availableToBeClaimed = () =>{
-    if(vestingRound==0){
+    if(vestingRound===0){
       return claimBalance*25/100
     }
     if(initialTokenVesting){
       return initialTokenVesting*25/100
     }
-    if(vestingRound==3){
+    if(vestingRound===3){
       return claimTokens
     }
   }
@@ -49,10 +53,10 @@ export const ClaimToken = () => {
 
       <Typography> You have {numberFormatter.format(claimBalance)} BITJOY to be claimed</Typography>
       
-      { ! claim && 
-        <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-          <CountdownSimple countdownTarget={convertToReadableTime()}/>
-        </Box>}
+       
+        <Box sx={{ display: 'flex', justifyContent: 'center',my:2}}>
+          <CountdownSimple countdownTarget={convertToReadableTime()} setClaim={setClaim}/>
+        </Box>
       { claim && vestingRound<3 &&
       (
         <>

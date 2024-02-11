@@ -1,8 +1,8 @@
-import { Box, Button, Typography, Stack, TextField, InputAdornment, Paper, Divider } from '@mui/material'
+import { Box, Button, Typography, Stack, InputAdornment, Divider } from '@mui/material'
 import {ReactComponent as  UsdtIcon} from '../../assets/icon/tether-seeklogo.com.svg'
 import {ReactComponent as  BnbIcon} from '../../assets/icon/bnb-bnb-logo.svg'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useStateContext, useUserContext } from '../../context'
 import { DialogBox } from '../utils/DialogBox'
@@ -12,33 +12,62 @@ import * as Yup from 'yup'
 import { yupResolver }from '@hookform/resolvers/yup'
 import { FormInput } from '../utils/FormInput'
 import { Logo } from '../../assets/icon/Logo'
-import { convertToRate, roundNumber } from '../../utils'
+import { roundNumber } from '../../utils'
 
-const validationSchema = Yup.object().shape({
-  crypto: Yup.number()
-    .required("Please enter number")
-    .typeError('Please enter number')
-    .moreThan(0,"shouldn't be zero"),
-    //.min(1,"shouldn't be zero"),
-  token: Yup.number()
-    .typeError('Amount must be a number')
-    .required("Please enter number")
-    .moreThan(0,"shouldn't be zero"),
-})
+
 
 
 export const BuyToken = ({ canBuy, setCanBuy}) => {
 
-  console.log(canBuy,"can buy")
   
-  const {preIco,rate, coreRate, address } = useStateContext()
+  const {preIco,rate, coreRate, address, tokenSold, investorTargetCap, secondInvestorTargetCap, thirdInvestorTargetCap } = useStateContext()
 
   const {buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale, ethBalance, usdtBalance,buyTokensWithUsdt} = useUserContext()
-
 
   const [currencToPay, setCurrencyToPay] = useState('usdt')
   const [crypto, setCrypto] = useState('')
   const [token,setToken] = useState('')
+
+  const [cap,setCap] = useState(0)
+
+  useEffect(()=>{
+    if(preIco===1){
+      setCap(investorTargetCap-tokenSold)
+    } else if(preIco === 2){
+      setCap(secondInvestorTargetCap-tokenSold)
+    } else if(preIco === 3){
+      setCap(thirdInvestorTargetCap-tokenSold)
+    }
+    else {
+      setCap(0)
+    }
+
+  },[tokenSold])
+
+  //balance cap
+  const [balanceCap,setBalnaceCap] = useState(0)
+  useEffect(()=>{
+    if(currencToPay === 'usdt'){
+      setBalnaceCap(usdtBalance)
+    }
+    else {
+      setBalnaceCap(ethBalance)
+    }
+  },[currencToPay])
+
+  const validationSchema = Yup.object().shape({
+    crypto: Yup.number()
+      .required("Please enter number")
+      .typeError('Please enter number')
+      .moreThan(0,"shouldn't be zero")
+      .max(balanceCap,"Balance is not enough"),
+      //.min(1,"shouldn't be zero"),
+    token: Yup.number()
+      .typeError('Amount must be a number')
+      .required("Please enter number")
+      .moreThan(0,"shouldn't be zero")
+      .max(cap,"Token is not enough in this round"),
+  })
 
   const methods = useForm({
     resolver:yupResolver(validationSchema)
@@ -80,10 +109,10 @@ export const BuyToken = ({ canBuy, setCanBuy}) => {
 
   const handleBuyTokenWithEth = async (crypto) => {
     if(preIco){
-      console.log('buyTokenOnPresale')
+     // console.log('buyTokenOnPresale')
       await buyTokenOnPresale(crypto)
     } else {
-      console.log('buyTokens')
+     // console.log('buyTokens')
       await buyTokens(crypto)
     }
     setCrypto('')
@@ -93,10 +122,10 @@ export const BuyToken = ({ canBuy, setCanBuy}) => {
 
   const handleBuyTokenWithUsdt = async (crypto) => {
     if(preIco){
-      console.log('buyTokenWithUsdtOnPresale')
+      //console.log('buyTokenWithUsdtOnPresale')
       await buyTokenWithUsdtOnPresale(crypto)
     } else {
-      console.log('buyTokens')
+      //console.log('buyTokens')
       await buyTokensWithUsdt(crypto)
     }
 

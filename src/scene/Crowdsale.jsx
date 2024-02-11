@@ -1,28 +1,35 @@
-import { Container, Typography , Button, Box, Paper, BottomNavigation, BottomNavigationAction, Tabs, Tab} from '@mui/material'
+import { Container, Typography , Button, Box, Paper, BottomNavigation, BottomNavigationAction} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useStateContext, useUserContext } from '../context'
 import { BuyToken, ClaimToken, CountdownComponent, ProgressBar } from '../component'
 import dayjs from 'dayjs'
-import { convertToRate, numberFormatter, roundNumber } from '../utils'
+import { numberFormatter, roundNumber } from '../utils'
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco, ffundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale, token , tokenSold, crowdsaleTokenBalance, rate,firstRate,secondRate,thirdRate,} = useStateContext()
+  const {preIco, fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, tokenSold, rate,firstRate,secondRate,thirdRate,} = useStateContext()
   const {balance,claim} = useUserContext()
 
-  const fundsRaised=1006000
+  //const fundsRaised=1006000
 
   const convertToReadableTime = () => {
-    //console.log(dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
-    //console.log('time',dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss'))
-    return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    if(preIco === 2){
+      return dayjs.unix(secondTimeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    }
+    else if(preIco === 3){
+      return dayjs.unix(thirdTimeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    }
+    else {
+      //return '2024-02-09 18:55:00'
+      return dayjs.unix(timeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    }
   }
   //console.log("preIco",preIco);
   const [round,setRound] = useState(preIco)
 
   const [canBuy,setCanBuy] = useState(false)
   useEffect(()=>{
-    console.log("miditra",preIco,fundsRaised,investorTargetCap)
+    //console.log("miditra",preIco,fundsRaised,investorTargetCap)
     switch (preIco) {
       case 1 :
         if(Number(fundsRaised)>Number(investorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
@@ -32,14 +39,14 @@ export const Crowdsale = ({id}) => {
         }
         break
       case 2: 
-        if(Number(fundsRaised)>Number(secondInvestorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
+        if(Number(fundsRaised)>Number(secondInvestorTargetCap)|| dayjs.unix(secondTimeCrowdsale).isBefore(dayjs())){
           setCanBuy(false)
         } else {
           setCanBuy(true)
         }
         break
         case 3: 
-          if(Number(fundsRaised)>Number(thirdInvestorTargetCap)|| dayjs.unix(timeCrowdsale).isBefore(dayjs())){
+          if(Number(fundsRaised)>Number(thirdInvestorTargetCap)|| dayjs.unix(thirdTimeCrowdsale).isBefore(dayjs())){
             setCanBuy(false)
           } else {
             setCanBuy(true)
@@ -65,7 +72,7 @@ export const Crowdsale = ({id}) => {
         <Typography variant='h5' align='center' pt={3}>Join the <span style={{color: '#C2992D', fontWeight:'bold'}}>$BITJOY</span> movement</Typography>
 
         {/* NAvigation Phase */}
-        { (preIco === 1 || preIco == 2 || preIco === 3 ) && ( 
+        { (preIco === 1 || preIco === 2 || preIco === 3 ) && ( 
         <Box sx={{display:'flex', justifyContent:'center'}}>
         <BottomNavigation showLabels color={'main'} sx={{ width: {xs:'100%',md:'20vw'} , border:'1px solid #111', borderRadius:2, my:2}} value={round} onChange={handleRound}>
           <BottomNavigationAction sx={{ borderTopLeftRadius: 12, borderBottomLeftRadius:12}}
@@ -99,6 +106,7 @@ export const Crowdsale = ({id}) => {
                 color: '#FFD700',
                 mt:1,
               }}>&lt;&lt; You have {numberFormatter.format(balance)} BITJOY &gt;&gt;</Typography>
+            
               {claim ? 
               <ClaimToken/>
               :

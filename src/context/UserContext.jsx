@@ -4,7 +4,7 @@ import React, { useContext, createContext, useEffect, useState } from 'react'
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { crowdsaleAddress, usdtDecimal } from '../contract';
 import { useStateContext } from '.';
-import { Loading } from '../component';
+import { Loading, ShowError } from '../component';
 import { roundNumber } from '../utils';
 
 const UserContext = createContext();
@@ -32,6 +32,10 @@ export const UserContextProvider = ({children}) => {
   //loading transaction
   const [isLoading,setLoading] = useState(false)
   const [loadingMessage,setLoadingMessage] = useState('')
+
+  //error message
+  const [error, setError] = useState(false)
+  const [errorMessage,setErrorMessage] = useState('')
 
 
   ///get usdt balance ////////////////
@@ -216,7 +220,19 @@ useEffect(()=>{getNativeEth()},[address])
             gasLimit: 1000000, // override default gas limit
             value: value//utils.parseEther("0.1"), // send 0.1 native token with the contract 
         }
-			});
+			})
+      .then(
+        (data)=>{console.log('sucess',data)}
+      )
+      .catch(
+        (e)=>{
+          setErrorMessage("Couldn't buy Token!")
+          setError(true)
+          setTimeout(()=>{
+            setError(false)
+          },5000)
+        }
+      );
 
       console.log("contract call to buy on presale token successed", data)
       setLoading(false)
@@ -259,18 +275,33 @@ useEffect(()=>{getNativeEth()},[address])
              // value: value//utils.parseEther("0.1"), // send 0.1 native token with the contract 
           }
         })
+        .then(
+          ()=>{}
+        )
+        .catch(
+          (e)=>{
+            setErrorMessage("Couldn't buy Token!")
+            setError(true)
+            setTimeout(()=>{
+              setError(false)
+            },5000)
+          }
+        )
 
         console.log("contract call to buy on presale token successed", data)
       }
 
-      else{
-        console.log("tether approuve false cant buy token")
+      else {
+        setErrorMessage("You rejected USDT approval")
+        setError(true)
+        setTimeout(()=>{
+          setError(false)
+        },5000) 
       }
-      
-
       setLoading(false)
+
     } catch (error) {
-      console.log("contract call failure to buy on presale token", error)
+      //console.log("contract call failure to buy on presale token", error)
       setLoading(false)
     }
   }
@@ -371,6 +402,7 @@ useEffect(()=>{getNativeEth()},[address])
         }}>
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
+            <ShowError message={errorMessage} open={error} setOpen={setError}/>
             
     </UserContext.Provider>
   )

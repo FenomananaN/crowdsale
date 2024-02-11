@@ -156,7 +156,7 @@ const AdminLayout = () => {
             px:3
         }}>
             <UsdtIcon width={35} height={35}/>
-            <Typography sx={{pl:1}}>{crowdsaleUsdtBalance} usdt</Typography>
+            <Typography sx={{pl:1}}>{numberFormatter.format(crowdsaleUsdtBalance)} usdt</Typography>
             <Button variant='contained' sx={{ml:2}}  onClick={handleWithdraw}>Withdraw</Button>
         </Box>
         <Box p={3}>

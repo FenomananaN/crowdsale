@@ -194,7 +194,7 @@ useEffect(()=>{
       //setPreIco(Boolean(Number(preIcoData.toString())))
       setPreIco(Number(preIcoData.toString()))
     }
-    console.log(preIco, "pre ico")
+    //console.log(preIco, "pre ico")
   },[preIcoData])
 
   //call this first

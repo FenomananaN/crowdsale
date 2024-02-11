@@ -34,7 +34,7 @@ export const AdminContextProvider = ({children}) => {
 
   //admin
   const _setCrowdsaleUsdtBalance = () => {
-    setCrowdsaleUsdtBalance(ethers.utils.formatUnits(_crowdsaleUsdtBalance,'mwei').toString())
+    setCrowdsaleUsdtBalance(ethers.utils.formatUnits(_crowdsaleUsdtBalance,usdtDecimal).toString())
   }
 
   useEffect(()=>{
