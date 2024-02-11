@@ -45,7 +45,7 @@ export const FAQ = ({id}) => {
               bgcolor: '#242323'
             }}>
               <Typography>
-              You can buy BITJOY here, during the crowdsale, or later on exchange platforms after the launch.
+              You can buy BITJOY here, during the presale, or later on exchange platforms after the launch.
               </Typography>            
             </AccordionDetails>
           </Accordion>
