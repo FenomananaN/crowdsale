@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { ThirdwebProvider, coinbaseWallet, metamaskWallet, okxWallet, trustWallet, walletConnect } from "@thirdweb-dev/react";
 import { StateContextProvider } from './context';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
@@ -24,6 +24,13 @@ root.render(
     <ThirdwebProvider
         activeChain={chain}
         clientId={'019e19953c2a1884996f40491d1e8b35'}
+        supportedWallets={[
+          metamaskWallet({ recommended: true }),
+          coinbaseWallet({ recommended: true }),
+          walletConnect(),
+          trustWallet(),
+          okxWallet()
+        ]}
     >
       <ThemeProvider theme={theme}>
       <StateContextProvider>

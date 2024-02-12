@@ -36,7 +36,6 @@ export const ConnectWalletButton = () => {
 
   return (
     <ConnectWallet
-      
       theme={darkTheme({
         colors: { secondaryText: "#fff" },
       })}
