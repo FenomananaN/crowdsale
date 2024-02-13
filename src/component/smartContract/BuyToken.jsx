@@ -12,7 +12,7 @@ import * as Yup from 'yup'
 import { yupResolver }from '@hookform/resolvers/yup'
 import { FormInput } from '../utils/FormInput'
 import { Logo } from '../../assets/icon/Logo'
-import { roundNumber } from '../../utils'
+import { roundNumber, roundUpNumber } from '../../utils'
 
 
 
@@ -24,7 +24,7 @@ export const BuyToken = ({ canBuy, setCanBuy}) => {
 
   const {buyTokens,buyTokenOnPresale,buyTokenWithUsdtOnPresale, ethBalance, usdtBalance,buyTokensWithUsdt} = useUserContext()
 
-  const [currencToPay, setCurrencyToPay] = useState('usdt')
+  const [currencToPay, setCurrencyToPay] = useState('bnb')
   const [crypto, setCrypto] = useState('')
   const [token,setToken] = useState('')
 
@@ -53,7 +53,7 @@ export const BuyToken = ({ canBuy, setCanBuy}) => {
     else {
       setBalnaceCap(ethBalance)
     }
-  },[currencToPay])
+  },[currencToPay,ethBalance,usdtBalance,address])
 
   const validationSchema = Yup.object().shape({
     crypto: Yup.number()
@@ -180,7 +180,7 @@ export const BuyToken = ({ canBuy, setCanBuy}) => {
       setToken(value)
       setValue('token',value)
       setCrypto(roundNumber(value*rate/coreRate,5)) //diso crowdsale rate*coreRate)
-      setValue('crypto',value*rate/coreRate)
+      setValue('crypto',roundUpNumber(value*rate/coreRate,14))
     }
   }
 
