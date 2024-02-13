@@ -21,7 +21,7 @@ export const usdtDecimal = 18
 
 //bnb smart chain testnet
 export const tokenAddress ='0xd0114b4aDFB975d1BBec00842A39632f7EB9E7A7'
-export const crowdsaleAddress ='0x1037989B049FeF7d579858997459C17B6AdF2a42' 
+export const crowdsaleAddress ='0x1A7258905507df57dAB32F2B2a69A3816c8bb2EC'
 // w-0x4c10E231C6cb4a6d9c47597261c07466Bb9183D3
 // wo-0x0754fE8A9Bb7AEdD1B33Df3a6Af76a8Bba72CA89
 export const tetherAddress ='0x337610d27c682E347C9cD60BD4b3b107C9d34dDd'

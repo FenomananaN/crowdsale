@@ -5,7 +5,7 @@ import { numberFormatter } from '../../utils'
 export const ProgressBar = ({amount,targetedAmount,amountToken,totalAmountToken}) => {
 
     //const withAmout= amountToken * 100 / totalAmountToken
-    const withAmout= amount * 100 / targetedAmount  
+    const withAmout= amountToken * 100 / totalAmountToken  
     
   return (
     <Box>

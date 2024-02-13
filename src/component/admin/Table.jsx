@@ -3,7 +3,10 @@ import React from 'react'
 import DataTable from 'react-data-table-component'
 
 export const Table = ({data}) => {
-    console.log(data)
+    data.forEach(element => {
+      console.log(element.address)
+      
+    });
 
     const columns = [
     

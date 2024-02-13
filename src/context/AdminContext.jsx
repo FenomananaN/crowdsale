@@ -229,6 +229,7 @@ export const AdminContextProvider = ({children}) => {
    useEffect(()=>{
     if(_contributorList){
       setContributorList(_contributorList)
+      //console.log(_contributorList)
     }
    },[_contributorList])
   /// END read contributor list
