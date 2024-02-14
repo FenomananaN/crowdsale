@@ -1,6 +1,5 @@
 import { Box, Container, List, ListItem, ListItemText, Paper, Typography } from '@mui/material'
 import React from 'react'
-import TokenomicsTokenShare from '../assets/image/tokenomics.png'
 import { ChartLabel, CopyToClipboard } from '../component'
 import { Link } from 'react-router-dom'
 import { linkSmartChain, tokenAddress } from '../contract'

@@ -79,8 +79,9 @@ export const Home = ({id}) => {
               component={'img'}
               src={tata}
               alt='tata'
-              width={{xs:'90%', md: 300}}
+              width={{xs:'90%', md: 400}}
               border={'1px dashed grey'}
+              borderRadius={5}
               />
           </Grid>
         </Grid>

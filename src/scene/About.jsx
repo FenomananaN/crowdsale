@@ -15,8 +15,12 @@ export const About = ({id}) => {
                         src={tata}
                         alt='tata'
                         width={{xs:'100%', md: 350}}
-                        border={'2px solid white'}
-                        sx={{boxShadow:'6px 6px 10px 13px #111'}}
+                        //border={'2px solid white'}
+                        sx={{
+                            boxShadow:'10px 10px 10px 0px #111',
+                            borderRadius: 5,
+                            backgroundColor:'#111',
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12} md={8} sx={{display:'flex', alignItems:'center', mt:{xs:3,md:0}}}>
