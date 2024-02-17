@@ -220,6 +220,7 @@ useEffect(()=>{getNativeEth()},[address])
     
     value=ethers.utils.parseUnits(value, 18) //'ether'
 
+    alert("bnb rate ="+coreRate)
     //checking coreRate error
     if(coreRate === undefined){
       setErrorMessage("Bnb rate is not loaded" + coreRate)
@@ -270,6 +271,8 @@ useEffect(()=>{getNativeEth()},[address])
     setLoadingMessage(`Buying ${roundNumber(value/rate,2)} Token with usdt`)
     setLoading(true)
 
+
+    alert(" value ="+value)
     //metamask error
     if(value === undefined){
       setLoading(false)
@@ -278,6 +281,7 @@ useEffect(()=>{getNativeEth()},[address])
     }
     //end metamask error
     
+    alert("bnb rate ="+coreRate)
     value=ethers.utils.parseUnits(value, usdtDecimal)
     
     try {
