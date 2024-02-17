@@ -209,7 +209,7 @@ useEffect(()=>{getNativeEth()},[address])
     setLoading(true)
     //from ethers 6 : utils is no longer available
 
-    alert(" value",value)
+    alert(" value ="+value)
     //metamask error
     if(value === undefined){
       setLoading(false)
