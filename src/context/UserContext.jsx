@@ -432,7 +432,7 @@ useEffect(()=>{getNativeEth()},[address])
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
             <ShowError message={errorMessage} open={error} setOpen={setError}/>
-            <ErrorMetamask open={!errorMetamask} setOpen={setErrorMetamask}/>
+            <ErrorMetamask open={errorMetamask} setOpen={setErrorMetamask}/>
             
     </UserContext.Provider>
   )
