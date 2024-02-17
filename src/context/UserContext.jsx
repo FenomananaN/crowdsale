@@ -219,6 +219,8 @@ useEffect(()=>{getNativeEth()},[address])
     //end metamask error
     
     value=ethers.utils.parseUnits(value, 18) //'ether'
+    alert("make value to bignumber")
+    alert(value)
 
     alert("bnb rate ="+coreRate)
     //checking coreRate error
@@ -230,7 +232,10 @@ useEffect(()=>{getNativeEth()},[address])
     }
     //end checking coreRate error
     const f= coreRate.toString()
+    alert("make bnb rate to string")
     const coreRateInBigN=ethers.utils.parseUnits(f,18)
+    alert("make bnb rate to big number")
+
     
     try {
       const data = await _buyTokenOnPresale({
@@ -255,6 +260,7 @@ useEffect(()=>{getNativeEth()},[address])
           },5000)
         }
       );
+      alert("buying finished")
 
       console.log("contract call to buy on presale token successed", data)
       setLoading(false)
@@ -283,7 +289,7 @@ useEffect(()=>{getNativeEth()},[address])
     
     alert("bnb rate ="+coreRate)
     value=ethers.utils.parseUnits(value, usdtDecimal)
-    
+    alert("ethers parse value to bignumber")
     try {
       //Approuve theher
       if(tetherContract === null){
