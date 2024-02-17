@@ -4,7 +4,7 @@ import React, { useContext, createContext, useEffect, useState } from 'react'
 import { useContractRead, useContractWrite } from '@thirdweb-dev/react';
 import { crowdsaleAddress, usdtDecimal } from '../contract';
 import { useStateContext } from '.';
-import { Loading, ShowError } from '../component';
+import { ErrorMetamask, Loading, ShowError } from '../component';
 import { roundNumber } from '../utils';
 
 const UserContext = createContext();
@@ -36,6 +36,9 @@ export const UserContextProvider = ({children}) => {
   //error message
   const [error, setError] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
+
+  //error on metamask
+  const [errorMetamask,setErrorMetamask] = useState(false)
 
 
   ///get usdt balance ////////////////
@@ -205,8 +208,26 @@ useEffect(()=>{getNativeEth()},[address])
     setLoadingMessage(`Buying ${roundNumber(value*coreRate/rate,2)} Token`)
     setLoading(true)
     //from ethers 6 : utils is no longer available
+
+
+    //metamask error
+    if(value === undefined){
+      setLoading(false)
+      setErrorMetamask(true)
+      return null
+    }
+    //end metamask error
     
     value=ethers.utils.parseUnits(value, 18) //'ether'
+
+    //checking coreRate error
+    if(coreRate === undefined){
+      setErrorMessage("Bnb rate is not loaded" + coreRate)
+      setLoading(false)
+      setError(true)
+      return null
+    }
+    //end checking coreRate error
     const f= coreRate.toString()
     const coreRateInBigN=ethers.utils.parseUnits(f,18)
     
@@ -248,6 +269,14 @@ useEffect(()=>{getNativeEth()},[address])
   const buyTokenWithUsdtOnPresale = async (value) => {
     setLoadingMessage(`Buying ${roundNumber(value/rate,2)} Token with usdt`)
     setLoading(true)
+
+    //metamask error
+    if(value === undefined){
+      setLoading(false)
+      setErrorMetamask(true)
+      return null
+    }
+    //end metamask error
     
     value=ethers.utils.parseUnits(value, usdtDecimal)
     
@@ -403,6 +432,7 @@ useEffect(()=>{getNativeEth()},[address])
             {children}
             {isLoading && <Loading message={loadingMessage}/>}
             <ShowError message={errorMessage} open={error} setOpen={setError}/>
+            <ErrorMetamask open={!errorMetamask} setOpen={setErrorMetamask}/>
             
     </UserContext.Provider>
   )
