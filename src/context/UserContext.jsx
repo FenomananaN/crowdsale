@@ -231,7 +231,8 @@ useEffect(()=>{getNativeEth()},[address])
       return null
     }
     //end checking coreRate error
-    const f= coreRate.toString()
+    //const f= coreRate.toString()
+    const f= coreRate+''
     alert("make bnb rate to string")
     const coreRateInBigN=ethers.utils.parseUnits(f,18)
     alert("make bnb rate to big number")
