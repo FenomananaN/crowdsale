@@ -217,10 +217,9 @@ useEffect(()=>{getNativeEth()},[address])
       return null
     }
     //end metamask error
-    
+    value=value+''
     value=ethers.utils.parseUnits(value, 18) //'ether'
-    alert("make value to bignumber")
-    alert(value)
+    alert("make value to bignumber ="+value)
 
     alert("bnb rate ="+coreRate)
     //checking coreRate error
@@ -239,6 +238,7 @@ useEffect(()=>{getNativeEth()},[address])
 
     
     try {
+      alert('inside try')
       const data = await _buyTokenOnPresale({
 				args: [
 					address, // address who buy token
