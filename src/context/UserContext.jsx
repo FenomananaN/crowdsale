@@ -209,7 +209,7 @@ useEffect(()=>{getNativeEth()},[address])
     setLoading(true)
     //from ethers 6 : utils is no longer available
 
-    alert(" value ="+value)
+    //alert(" value ="+value)
     //metamask error
     if(value === undefined){
       setLoading(false)
@@ -219,9 +219,9 @@ useEffect(()=>{getNativeEth()},[address])
     //end metamask error
     value=value+''
     value=ethers.utils.parseUnits(value, 18) //'ether'
-    alert("make value to bignumber ="+value)
+    //alert("make value to bignumber ="+value)
 
-    alert("bnb rate ="+coreRate)
+    //alert("bnb rate ="+coreRate)0
     //checking coreRate error
     if(coreRate === undefined){
       setErrorMessage("Bnb rate is not loaded" + coreRate)
@@ -232,9 +232,9 @@ useEffect(()=>{getNativeEth()},[address])
     //end checking coreRate error
     //const f= coreRate.toString()
     const f= coreRate+''
-    alert("make bnb rate to string")
+    //alert("make bnb rate to string")
     const coreRateInBigN=ethers.utils.parseUnits(f,18)
-    alert("make bnb rate to big number")
+    //alert("make bnb rate to big number")
 
     
     try {
@@ -261,7 +261,7 @@ useEffect(()=>{getNativeEth()},[address])
           },5000)
         }
       );
-      alert("buying finished")
+      //alert("buying finished")
 
       console.log("contract call to buy on presale token successed", data)
       setLoading(false)
