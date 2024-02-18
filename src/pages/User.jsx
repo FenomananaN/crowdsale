@@ -1,7 +1,7 @@
 import React from 'react'
 import { Footer, Header } from '../component'
 import { UserContextProvider } from '../context'
-import { About, Community, Crowdsale, FAQ, Home, Tokenomics} from '../scene'
+import { About, Airdrop, Community, Crowdsale, FAQ, Home, Tokenomics} from '../scene'
 
 export const User = () => {
   return (
@@ -9,9 +9,10 @@ export const User = () => {
       <Header/>
       <Home id={'Home'}/>
       <About id={'About'}/>
-      <Crowdsale id={'Token sale'}/>
+      <Crowdsale id={'tokensale'}/>
       <Community id={'Community'}/>
       <Tokenomics id={'Tokenomics'} />
+      <Airdrop id={"Airdrop"}/>
       <FAQ id='FAQ'/>
       <Footer/>
     </UserContextProvider>

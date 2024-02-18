@@ -22,12 +22,13 @@ import { Twitter } from './socialMedia/Twitter'
 
 
 const pages = [
-    {title:'Home', offset: 0},
-    {title:'About', offset: -80},
-    {title:'Token sale', offset: -80},
-    {title:'Community', offset: -80},
-    {title:'Tokenomics', offset: -80},
-    {title:'FAQ', offset: -80},
+    {title:'Home',id:'Home', offset: 0},
+    {title:'About',id:"About", offset: -80},
+    {title:'Token sale',id:"tokensale", offset: -80},
+    {title:'Community',id:"Community", offset: -80},
+    {title:'Tokenomics',id:"Tokenomics", offset: -80},
+    {title:'Airdrop',id:"Airdrop", offset: -80},
+    {title:'FAQ',id:"FAQ", offset: -80},
 ]
 
 export const Header = () => {
@@ -139,7 +140,7 @@ export const Header = () => {
                             {pages.map((page) => (
                                 <Link
                                     key={page.title}
-                                    to={page.title}
+                                    to={page.id}
                                     onClick={handleCloseNavMenu}
                                     activeClass='active-on-mobile'
                                     style={{ my: 2, color: 'white', display: 'block', cursor:'pointer'}}
@@ -192,7 +193,7 @@ export const Header = () => {
                         key={page.title}
                         onClick={handleCloseNavMenu}
                         style={{ my: 2, color: 'white', display: 'block' , cursor:'pointer'}}
-                        to={page.title}
+                        to={page.id}
                         spy={true} smooth={true} offset={page.offset} duration={500}
                     >
                         <Typography variant='h6' sx={{

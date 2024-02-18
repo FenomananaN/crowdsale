@@ -15,7 +15,7 @@ export const Home = ({id}) => {
   }
 
   const scrollToCrowdsale = () => {
-    const to = preIco === 2 ? 'Community': 'Crowdsale'
+    const to = preIco === 2 ? 'Community': 'tokensale'
     scroller.scrollTo(to,options)
   }
   return (
@@ -80,7 +80,7 @@ export const Home = ({id}) => {
               src={tata}
               alt='tata'
               width={{xs:'90%', md: 400}}
-              border={'1px dashed grey'}
+              //border={'1px dashed grey'}
               borderRadius={5}
               />
           </Grid>
