@@ -279,18 +279,18 @@ useEffect(()=>{getNativeEth()},[address])
     setLoading(true)
 
 
-    alert(" value ="+value)
+    //alert(" value ="+value)
     //metamask error
-    if(value === undefined){
+    /*if(value === undefined){
       setLoading(false)
       setErrorMetamask(true)
       return null
-    }
+    }*/
     //end metamask error
     
-    alert("bnb rate ="+coreRate)
+    //alert("bnb rate ="+coreRate)
     value=ethers.utils.parseUnits(value, usdtDecimal)
-    alert("ethers parse value to bignumber")
+    //alert("ethers parse value to bignumber")
     try {
       //Approuve theher
       if(tetherContract === null){
@@ -302,7 +302,7 @@ useEffect(()=>{getNativeEth()},[address])
       const approveTether = await tetherContract.contract.approve(crowdsaleAddress,value) //mbl tsy mahay gas limit
       //from ethers 6 : utils is no longer available
 
-      console.log('approuve avy @tether', approveTether)
+      //console.log('approuve avy @tether', approveTether)
       //const approveTether = false
       if(approveTether){
         const data = await _buyTokenWithUsdtOnPresale({
