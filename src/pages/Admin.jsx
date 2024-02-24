@@ -21,7 +21,7 @@ export const Admin = () => {
 
 const AdminLayout = () => {
 
-    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
+    const { token, preIco, coreRate,rate,firstRate,secondRate,thirdRate, address, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale,communityTimeCrowdsale, fundsRaised, usdtRaised, weiRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, tokenSold, crowdsaleTokenBalance } = useStateContext()
     const { setCrowdsaleStage,crowdsaleUsdtBalance, withdrawUsdt, setInvestorTargetCap, contributorList, setRatePrice , setRoundRatePrice} = useAdminContext()
 
     const [open, setOpen] = useState(false)
@@ -313,6 +313,7 @@ const AdminLayout = () => {
         </Box>
         <Box p={3}>
             {timeCrowdsale && <ShowTime round={1} time={timeCrowdsale}/>}
+            {communityTimeCrowdsale && <ShowTime round={4} time={communityTimeCrowdsale}/>}
             {secondTimeCrowdsale && <ShowTime round={2} time={secondTimeCrowdsale}/>}
             {thirdTimeCrowdsale && <ShowTime round={3} time={thirdTimeCrowdsale} />}
         </Box>
