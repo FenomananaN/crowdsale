@@ -238,7 +238,7 @@ useEffect(()=>{getNativeEth()},[address])
 
     
     try {
-      alert('inside try')
+      //alert('inside try')
       const data = await _buyTokenOnPresale({
 				args: [
 					address, // address who buy token
