@@ -7,7 +7,7 @@ import { numberFormatter, roundNumber } from '../utils'
 
 export const Crowdsale = ({id}) => {
 
-  const {preIco, fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, tokenSold, rate,firstRate,secondRate,thirdRate,} = useStateContext()
+  const {preIco, fundsRaised, investorTargetCap,secondInvestorTargetCap, thirdInvestorTargetCap, timeCrowdsale,communityTimeCrowdsale, secondTimeCrowdsale, thirdTimeCrowdsale, tokenSold, rate,firstRate,secondRate,thirdRate,} = useStateContext()
   const {balance,claim} = useUserContext()
 
   //const fundsRaised=1006000
@@ -16,8 +16,12 @@ export const Crowdsale = ({id}) => {
     if(preIco === 2){
       return dayjs.unix(secondTimeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
     }
+    
     else if(preIco === 3){
       return dayjs.unix(thirdTimeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
+    }
+    else if(preIco === 4){
+      return dayjs.unix(communityTimeCrowdsale).format('YYYY-MM-DD HH:mm:ss')
     }
     else {
       //return '2024-02-09 18:55:00'

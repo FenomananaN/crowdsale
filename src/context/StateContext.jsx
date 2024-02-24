@@ -309,6 +309,21 @@ useEffect(()=>{
   //END get contract getThirdInvestorTargetCap
 
 
+  //get community time crowdsale
+  const { data:getCommunityTimeCrowdsale } = useContractRead(contractCrowdsale, 'getPresaleTimeCrowdsale');
+  const [communityTimeCrowdsale,setCommunityTimeCrowdsale] = useState(0)
+  const _setCommunityTimeCrowdsale = () => {
+    setCommunityTimeCrowdsale(getCommunityTimeCrowdsale.toString())
+  }
+
+  useEffect(()=>{
+    if(getCommunityTimeCrowdsale){
+      _setCommunityTimeCrowdsale()
+    }
+  },[getCommunityTimeCrowdsale])
+  //END community time crowdsale
+
+
   //get first time crowdsale
   const { data:getTimeCrowdsale, isLoading:getTimeCrowdsaleLoading, error:getTimeCrowdsaleError } = useContractRead(contractCrowdsale, 'getTimeCrowdsale');
   const [timeCrowdsale,setTimeCrowdsale] = useState(0)
@@ -390,6 +405,7 @@ useEffect(()=>{
         secondInvestorTargetCap,
         thirdInvestorTargetCap,
         timeCrowdsale,
+        communityTimeCrowdsale,
         secondTimeCrowdsale,
         thirdTimeCrowdsale,
         tokenSold,
