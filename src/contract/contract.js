@@ -8,17 +8,17 @@ export const tetherAddress ='0x76a41272B137C4A440b4eF83feAe6972cd79e6c7'
 export const currentChainId = 
 */
 
-/*
+
 //bnb smart chain mainet
-export const tokenAddress =''
-export const crowdsaleAddress =''
+export const tokenAddress ='0x627C099ec131bB9Fc234FD977D554a7e75022d5f'
+export const crowdsaleAddress ='0x5419210e5341037B60fcab84aca15D6DfF5eb99b'
 export const tetherAddress ='0x55d398326f99059ff775485246999027b3197955'
 export const currentChainId = 56 
 export const chain = 'binance'
 export const linkSmartChain = 'bscscan.com'
 export const usdtDecimal = 18
-*/
 
+/*
 //bnb smart chain testnet
 export const tokenAddress ='0x4e96B885a61e18AFc62894C4f74575C9ADa4246E'
 //'0xd0114b4aDFB975d1BBec00842A39632f7EB9E7A7'
@@ -31,6 +31,7 @@ export const currentChainId = 97
 export const chain = 'binance-testnet'
 export const linkSmartChain = 'testnet.bscscan.com'
 export const usdtDecimal = 18
+*/
 
 /*
 //core blockchain mainet
