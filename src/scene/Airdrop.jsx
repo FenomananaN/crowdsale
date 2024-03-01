@@ -23,7 +23,7 @@ export const Airdrop = ({id}) => {
             
 
             <Box sx={{display:'flex' , justifyContent:'center', my:2}}>
-              <Button variant='contained' color='main' href='https://t.me/BitjoyTestButtons_bot?start=Bot11487633' target='_blank' rel='noopener noreferrer'>Join the Airdrop Now!</Button>
+              <Button variant='contained' color='main' href='https://t.me/BitjoyAirdrop_Bot' target='_blank' rel='noopener noreferrer'>Join the Airdrop Now!</Button>
             </Box>
             <Typography align='center' sx={{fontSize: 18}} py={1}>📢 Invite friends & let's grow together!</Typography>
             
