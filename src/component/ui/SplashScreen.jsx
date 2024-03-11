@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { RotatingLines } from 'react-loader-spinner'
+//import { RotatingLines } from 'react-loader-spinner'
 import { ClimbingBoxLoader } from 'react-spinners'
 
 export const SplashScreen = () => {

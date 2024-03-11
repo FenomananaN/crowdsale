@@ -25,11 +25,11 @@ root.render(
         activeChain={chain}
         clientId={'019e19953c2a1884996f40491d1e8b35'}
         supportedWallets={[
-          metamaskWallet({ recommended: true }),
+          okxWallet({ recommended: true }),
           coinbaseWallet({ recommended: true }),
           walletConnect(),
           trustWallet(),
-          okxWallet()
+          metamaskWallet(),
         ]}
     >
       <ThemeProvider theme={theme}>

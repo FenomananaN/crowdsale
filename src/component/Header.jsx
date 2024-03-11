@@ -24,10 +24,10 @@ import { Twitter } from './socialMedia/Twitter'
 const pages = [
     {title:'Home',id:'Home', offset: 0},
     {title:'About',id:"About", offset: -80},
-    {title:'Token sale',id:"tokensale", offset: -80},
+    //{title:'Token sale',id:"tokensale", offset: -80},
     {title:'Community',id:"Community", offset: -80},
-    {title:'Tokenomics',id:"Tokenomics", offset: -80},
     {title:'Airdrop',id:"Airdrop", offset: -80},
+    {title:'Tokenomics',id:"Tokenomics", offset: -80},
     {title:'FAQ',id:"FAQ", offset: -80},
 ]
 

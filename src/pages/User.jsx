@@ -9,10 +9,11 @@ export const User = () => {
       <Header/>
       <Home id={'Home'}/>
       <About id={'About'}/>
-      <Crowdsale id={'tokensale'}/>
+      {/*<Crowdsale id={'tokensale'}/>*/}
       <Community id={'Community'}/>
-      <Tokenomics id={'Tokenomics'} />
       <Airdrop id={"Airdrop"}/>
+      <Tokenomics id={'Tokenomics'} />
+      
       <FAQ id='FAQ'/>
       <Footer/>
     </UserContextProvider>
