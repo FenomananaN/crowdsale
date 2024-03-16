@@ -48,7 +48,7 @@ export const Tokenomics = ({id}) => {
                             <ListItemText primary={"- 25% unlocked every 30 days thereafter"}/>
                         </ListItem>
                     </List> 
-                </ListItem>*/}
+                </ListItem>
 
 
                 <ListItem sx={{ display: "list-item" }} >
@@ -69,7 +69,7 @@ export const Tokenomics = ({id}) => {
                         </ListItem>
                     </List> 
                 </ListItem>
-
+*/}
                 <ListItem sx={{ display: "list-item" }} >
                     <ListItemText primary="Utility Allocation:" primaryTypographyProps={{ fontWeight: 800}}/>
                     
